@@ -1,71 +1,106 @@
 
-# 🚀 Elasticsearch: Resolvendo Problemas Reais do Dia a Dia
+# 📦 Projeto: Elasticsearch ILM com Retenção de Logs de Infraestrutura
 
-Este repositório foi criado com um propósito muito claro:
-
-> **Ajudar você a resolver problemas reais que acontecem no Elasticsearch — antes que eles coloquem seu ambiente de produção em risco.**
+Este repositório demonstra como resolver um problema comum em ambientes com Elasticsearch: **o crescimento descontrolado de índices de log**, levando a risco de **falta de espaço em disco** e degradação de performance do cluster.
 
 ---
 
-## 🛠️ O Que Você Vai Encontrar Aqui
+## 🚨 Problema
 
-Este repositório é um verdadeiro **kit de sobrevivência para ambientes Elasticsearch**, com foco em:
-
-- ✅ Soluções práticas para incidentes comuns
-- ✅ Casos de uso reais com dados simulados
-- ✅ Scripts prontos para rodar
-- ✅ Visualizações no Kibana
-- ✅ **Tudo com passo a passo explicativo**, como se fosse um manual de campo
+Ambientes de infraestrutura frequentemente geram milhares de logs por hora. Quando esses logs são indexados continuamente **sem controle de retenção**, os índices crescem sem limite e comprometem o armazenamento do cluster.
 
 ---
 
-## 📚 Organização
+## ✅ Solução Proposta
 
-Cada subdiretório representa **um caso prático** que pode ocorrer no seu dia a dia com Elasticsearch.  
-Você encontrará:
+Utilizar o **ILM (Index Lifecycle Management)** do Elasticsearch para:
 
-- 🧩 O problema explicado com clareza
-- 🛠️ A solução aplicada com técnicas modernas
-- 📜 Toda a documentação e código necessário para reproduzir
-
----
-
-## 📦 Repositórios Ativos
-
-| Caso | Descrição | Caminho |
-|------|-----------|---------|
-| `elasticsearch-ilm-retencao-logs` | Configuração de ILM para evitar estouro de disco por acúmulo de logs | [`elasticsearch-ilm-retencao-logs`](./elasticsearch-ilm-retencao-logs) |
-
-(Em breve novos diretórios com soluções para segurança, ingestão, pipeline, performance...)
+- Fazer **rollover automático** dos índices a cada 3 dias ou 1 GB.
+- **Apagar automaticamente** índices com mais de 7 dias.
+- Manter dados organizados por meio de **alias**, facilitando o acesso e visualização.
 
 ---
 
-## 🤝 Por Que Esse Repositório é Diferente?
+## 🛠️ Componentes
 
-Porque aqui você não vai encontrar teoria desconectada da realidade.
+| Caminho                     | Descrição |
+|----------------------------|-----------|
+| `ilm/ilm-policy.json`      | Política de ciclo de vida dos índices |
+| `ilm/index-template.json`  | Template com mapeamento e configuração de ILM |
+| `ilm/create-index-alias.sh`| Script para aplicar a política, template e criar o primeiro índice |
+| `ingestao/dados-infra.json`| Mais de 1200 documentos simulados com dados de infra |
+| `ingestao/ingestao.sh`     | Script de ingestão usando `curl` |
+| `visualizacao/dashboard.ndjson` | Dashboard para importação no Kibana |
 
-Tudo foi criado por quem **vive Elasticsearch em ambientes críticos**, com a missão de compartilhar conhecimento e facilitar o caminho para quem precisa resolver **problemas técnicos de verdade**.
+---
+
+## 🧪 Simulação Realista
+
+O arquivo `dados-infra.json` contém **1200 documentos simulando hosts, CPU, memória e status** com timestamps variados durante todo o mês de **agosto de 2025**.
+
+Exemplo de documento:
+```json
+{
+  "host": "infra003",
+  "cpu": 87,
+  "mem": 76,
+  "status": "OK",
+  "timestamp": "2025-08-11T14:22:00Z"
+}
+```
+
+---
+
+## 🚀 Passo a Passo para Rodar
+
+### 1. Subir o ambiente completo (Elasticsearch + Kibana via Docker Compose)
+
+```bash
+docker-compose up -d
+```
+
+### 2. Criar política, template e índice inicial com alias
+
+```bash
+bash ilm/create-index-alias.sh
+```
+
+### 3. Ingerir os dados simulados
+
+```bash
+bash ingestao/ingestao.sh
+```
+
+### 4. Importar o dashboard no Kibana (via Stack Management)
+
+1. Acesse o Kibana em `http://localhost:5601`
+2. Vá em **Stack Management > Saved Objects > Import**
+3. Selecione o arquivo `visualizacao/dashboard.ndjson`
+
+---
+
+## 📊 Visualização
+
+O dashboard contém gráficos de:
+
+- Uso de CPU por host
+- Hosts com alertas CRÍTICOS
+- Linha do tempo com status da infraestrutura
+
+---
+
+## 🧼 Limpeza Automática
+
+Após 7 dias, os índices serão apagados automaticamente pelo ILM, liberando espaço e mantendo a performance do cluster.
 
 ---
 
 ## 👨‍💻 Autor
 
 **Rafael Silva**  
-Especialista em Observabilidade, Dados e Elasticsearch  
 🔗 [LinkedIn](https://linkedin.com/in/rafael-silva-leader-coordenador)  
 💻 [GitHub](https://github.com/rafasilva1984)
 
 ---
 
-## 📢 Contribua
-
-Teve um problema diferente no seu cluster?  
-Quer sugerir um caso real para resolvemos juntos?
-
-**Abra uma issue ou mande uma sugestão!**
-
-Vamos transformar este repositório em uma referência para toda a comunidade técnica.
-
----
-
-🔥 Bem-vindo ao diretório onde o Elasticsearch deixa de ser dor de cabeça... e vira solução.
+Pronto para rodar, modificar e usar como base para seus ambientes!
