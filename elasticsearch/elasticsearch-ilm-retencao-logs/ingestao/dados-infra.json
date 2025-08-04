@@ -1,1800 +1,1200 @@
 { "create": {} }
-{ "index": {} }
 {"host": "infra008", "cpu": 84, "mem": 88, "status": "OK", "timestamp": "2025-08-26T04:20:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra008", "cpu": 60, "mem": 13, "status": "WARNING", "timestamp": "2025-08-21T05:24:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra014", "cpu": 81, "mem": 81, "status": "WARNING", "timestamp": "2025-08-14T05:00:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra009", "cpu": 11, "mem": 77, "status": "CRITICAL", "timestamp": "2025-08-12T03:59:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra006", "cpu": 24, "mem": 81, "status": "OK", "timestamp": "2025-08-06T22:44:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra013", "cpu": 47, "mem": 89, "status": "CRITICAL", "timestamp": "2025-08-14T09:32:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra005", "cpu": 22, "mem": 88, "status": "WARNING", "timestamp": "2025-08-03T20:06:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra004", "cpu": 75, "mem": 59, "status": "OK", "timestamp": "2025-08-27T10:50:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra010", "cpu": 73, "mem": 88, "status": "OK", "timestamp": "2025-08-12T00:45:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra011", "cpu": 49, "mem": 47, "status": "WARNING", "timestamp": "2025-08-22T11:41:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra012", "cpu": 36, "mem": 69, "status": "CRITICAL", "timestamp": "2025-08-20T02:32:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra007", "cpu": 52, "mem": 10, "status": "OK", "timestamp": "2025-08-29T00:03:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra013", "cpu": 76, "mem": 53, "status": "CRITICAL", "timestamp": "2025-08-10T04:16:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra007", "cpu": 39, "mem": 85, "status": "CRITICAL", "timestamp": "2025-08-01T02:22:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra020", "cpu": 46, "mem": 94, "status": "CRITICAL", "timestamp": "2025-08-20T03:40:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra004", "cpu": 49, "mem": 73, "status": "OK", "timestamp": "2025-08-11T17:12:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra001", "cpu": 11, "mem": 37, "status": "CRITICAL", "timestamp": "2025-08-11T10:14:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra010", "cpu": 86, "mem": 47, "status": "CRITICAL", "timestamp": "2025-08-13T19:51:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra009", "cpu": 38, "mem": 94, "status": "CRITICAL", "timestamp": "2025-08-10T01:37:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra018", "cpu": 14, "mem": 27, "status": "WARNING", "timestamp": "2025-08-11T03:37:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra015", "cpu": 42, "mem": 58, "status": "WARNING", "timestamp": "2025-08-20T07:47:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra004", "cpu": 92, "mem": 15, "status": "OK", "timestamp": "2025-08-07T01:25:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra004", "cpu": 94, "mem": 99, "status": "CRITICAL", "timestamp": "2025-08-19T17:48:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra001", "cpu": 64, "mem": 42, "status": "OK", "timestamp": "2025-08-09T00:49:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra020", "cpu": 51, "mem": 97, "status": "WARNING", "timestamp": "2025-08-02T16:18:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra017", "cpu": 48, "mem": 38, "status": "CRITICAL", "timestamp": "2025-08-29T15:17:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra020", "cpu": 41, "mem": 11, "status": "WARNING", "timestamp": "2025-08-06T12:29:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra012", "cpu": 10, "mem": 13, "status": "OK", "timestamp": "2025-08-24T05:10:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra002", "cpu": 91, "mem": 31, "status": "WARNING", "timestamp": "2025-08-07T17:56:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra001", "cpu": 43, "mem": 90, "status": "CRITICAL", "timestamp": "2025-08-06T17:10:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra003", "cpu": 45, "mem": 79, "status": "OK", "timestamp": "2025-08-13T23:10:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra010", "cpu": 30, "mem": 42, "status": "OK", "timestamp": "2025-08-26T10:43:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra014", "cpu": 23, "mem": 79, "status": "OK", "timestamp": "2025-08-02T15:24:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra009", "cpu": 77, "mem": 50, "status": "WARNING", "timestamp": "2025-08-29T07:51:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra012", "cpu": 89, "mem": 90, "status": "CRITICAL", "timestamp": "2025-08-20T03:23:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra007", "cpu": 18, "mem": 93, "status": "WARNING", "timestamp": "2025-08-19T00:02:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra006", "cpu": 25, "mem": 27, "status": "WARNING", "timestamp": "2025-08-08T00:24:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra004", "cpu": 20, "mem": 71, "status": "CRITICAL", "timestamp": "2025-08-26T00:39:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra013", "cpu": 26, "mem": 76, "status": "CRITICAL", "timestamp": "2025-08-06T22:54:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra016", "cpu": 34, "mem": 37, "status": "WARNING", "timestamp": "2025-08-06T15:51:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra018", "cpu": 53, "mem": 81, "status": "WARNING", "timestamp": "2025-08-29T04:45:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra013", "cpu": 72, "mem": 60, "status": "OK", "timestamp": "2025-08-22T00:18:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra014", "cpu": 49, "mem": 42, "status": "CRITICAL", "timestamp": "2025-08-16T22:19:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra013", "cpu": 60, "mem": 30, "status": "WARNING", "timestamp": "2025-08-24T18:43:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra005", "cpu": 73, "mem": 37, "status": "CRITICAL", "timestamp": "2025-08-14T06:24:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra002", "cpu": 74, "mem": 15, "status": "WARNING", "timestamp": "2025-08-01T00:22:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra015", "cpu": 61, "mem": 33, "status": "OK", "timestamp": "2025-08-20T01:59:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra013", "cpu": 50, "mem": 31, "status": "WARNING", "timestamp": "2025-08-16T06:17:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra014", "cpu": 92, "mem": 97, "status": "WARNING", "timestamp": "2025-08-02T20:29:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra001", "cpu": 11, "mem": 33, "status": "CRITICAL", "timestamp": "2025-08-02T16:03:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra013", "cpu": 68, "mem": 85, "status": "OK", "timestamp": "2025-08-18T07:09:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra005", "cpu": 46, "mem": 36, "status": "WARNING", "timestamp": "2025-08-09T13:15:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra006", "cpu": 31, "mem": 76, "status": "OK", "timestamp": "2025-08-17T20:17:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra001", "cpu": 83, "mem": 84, "status": "WARNING", "timestamp": "2025-08-29T18:24:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra011", "cpu": 94, "mem": 29, "status": "WARNING", "timestamp": "2025-08-23T22:55:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra005", "cpu": 52, "mem": 66, "status": "CRITICAL", "timestamp": "2025-08-26T04:58:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra001", "cpu": 48, "mem": 62, "status": "OK", "timestamp": "2025-08-12T02:49:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra002", "cpu": 30, "mem": 26, "status": "WARNING", "timestamp": "2025-08-14T09:19:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra011", "cpu": 92, "mem": 72, "status": "WARNING", "timestamp": "2025-08-10T23:17:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra012", "cpu": 43, "mem": 85, "status": "CRITICAL", "timestamp": "2025-08-03T22:51:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra017", "cpu": 26, "mem": 91, "status": "OK", "timestamp": "2025-08-20T05:43:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra017", "cpu": 99, "mem": 20, "status": "WARNING", "timestamp": "2025-08-28T16:10:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra010", "cpu": 32, "mem": 24, "status": "OK", "timestamp": "2025-08-03T19:25:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra003", "cpu": 18, "mem": 33, "status": "CRITICAL", "timestamp": "2025-08-25T09:05:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra006", "cpu": 85, "mem": 79, "status": "WARNING", "timestamp": "2025-08-01T21:14:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra004", "cpu": 24, "mem": 18, "status": "CRITICAL", "timestamp": "2025-08-16T19:22:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra001", "cpu": 99, "mem": 70, "status": "OK", "timestamp": "2025-08-09T07:16:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra014", "cpu": 12, "mem": 71, "status": "WARNING", "timestamp": "2025-08-23T04:02:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra002", "cpu": 82, "mem": 82, "status": "CRITICAL", "timestamp": "2025-08-12T06:37:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra012", "cpu": 28, "mem": 10, "status": "OK", "timestamp": "2025-08-07T05:00:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra013", "cpu": 16, "mem": 94, "status": "OK", "timestamp": "2025-08-05T08:24:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra004", "cpu": 57, "mem": 40, "status": "WARNING", "timestamp": "2025-08-05T01:36:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra017", "cpu": 43, "mem": 57, "status": "OK", "timestamp": "2025-08-19T01:47:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra019", "cpu": 21, "mem": 76, "status": "CRITICAL", "timestamp": "2025-08-25T00:07:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra006", "cpu": 47, "mem": 48, "status": "WARNING", "timestamp": "2025-08-25T14:58:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra010", "cpu": 55, "mem": 67, "status": "OK", "timestamp": "2025-08-14T21:49:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra001", "cpu": 52, "mem": 45, "status": "OK", "timestamp": "2025-08-01T16:52:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra020", "cpu": 59, "mem": 79, "status": "CRITICAL", "timestamp": "2025-08-11T00:49:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra011", "cpu": 34, "mem": 35, "status": "CRITICAL", "timestamp": "2025-08-15T16:19:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra014", "cpu": 11, "mem": 22, "status": "OK", "timestamp": "2025-08-24T09:42:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra017", "cpu": 17, "mem": 31, "status": "CRITICAL", "timestamp": "2025-08-18T16:24:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra006", "cpu": 32, "mem": 19, "status": "CRITICAL", "timestamp": "2025-08-12T10:43:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra011", "cpu": 97, "mem": 63, "status": "CRITICAL", "timestamp": "2025-08-23T13:38:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra017", "cpu": 79, "mem": 46, "status": "CRITICAL", "timestamp": "2025-08-28T08:16:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra008", "cpu": 74, "mem": 14, "status": "CRITICAL", "timestamp": "2025-08-22T20:56:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra001", "cpu": 65, "mem": 13, "status": "CRITICAL", "timestamp": "2025-08-10T21:08:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra009", "cpu": 73, "mem": 98, "status": "CRITICAL", "timestamp": "2025-08-27T15:09:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra010", "cpu": 62, "mem": 93, "status": "WARNING", "timestamp": "2025-08-08T13:28:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra016", "cpu": 95, "mem": 76, "status": "CRITICAL", "timestamp": "2025-08-14T14:37:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra006", "cpu": 70, "mem": 20, "status": "WARNING", "timestamp": "2025-08-16T15:26:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra012", "cpu": 66, "mem": 79, "status": "OK", "timestamp": "2025-08-24T05:22:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra008", "cpu": 99, "mem": 74, "status": "WARNING", "timestamp": "2025-08-23T16:32:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra019", "cpu": 19, "mem": 89, "status": "CRITICAL", "timestamp": "2025-08-12T10:12:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra008", "cpu": 96, "mem": 63, "status": "OK", "timestamp": "2025-08-29T12:11:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra001", "cpu": 16, "mem": 34, "status": "OK", "timestamp": "2025-08-24T00:24:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra004", "cpu": 84, "mem": 30, "status": "WARNING", "timestamp": "2025-08-11T07:50:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra016", "cpu": 16, "mem": 38, "status": "OK", "timestamp": "2025-08-20T17:20:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra004", "cpu": 91, "mem": 91, "status": "OK", "timestamp": "2025-08-10T18:17:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra004", "cpu": 59, "mem": 64, "status": "CRITICAL", "timestamp": "2025-08-20T11:42:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra007", "cpu": 77, "mem": 62, "status": "WARNING", "timestamp": "2025-08-18T16:13:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra009", "cpu": 85, "mem": 31, "status": "OK", "timestamp": "2025-08-28T15:53:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra015", "cpu": 63, "mem": 17, "status": "CRITICAL", "timestamp": "2025-08-10T22:31:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra002", "cpu": 86, "mem": 27, "status": "WARNING", "timestamp": "2025-08-21T06:34:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra007", "cpu": 97, "mem": 77, "status": "WARNING", "timestamp": "2025-08-24T17:07:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra004", "cpu": 73, "mem": 63, "status": "CRITICAL", "timestamp": "2025-08-05T19:42:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra011", "cpu": 69, "mem": 84, "status": "OK", "timestamp": "2025-08-20T12:48:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra018", "cpu": 97, "mem": 14, "status": "WARNING", "timestamp": "2025-08-30T16:50:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra009", "cpu": 45, "mem": 17, "status": "OK", "timestamp": "2025-08-27T20:21:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra012", "cpu": 58, "mem": 78, "status": "OK", "timestamp": "2025-08-02T10:24:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra008", "cpu": 88, "mem": 97, "status": "CRITICAL", "timestamp": "2025-08-06T11:56:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra020", "cpu": 55, "mem": 72, "status": "WARNING", "timestamp": "2025-08-19T05:12:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra013", "cpu": 68, "mem": 31, "status": "WARNING", "timestamp": "2025-08-02T17:04:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra007", "cpu": 69, "mem": 46, "status": "CRITICAL", "timestamp": "2025-08-12T03:41:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra014", "cpu": 53, "mem": 40, "status": "OK", "timestamp": "2025-08-29T20:11:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra012", "cpu": 61, "mem": 60, "status": "OK", "timestamp": "2025-08-09T13:57:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra014", "cpu": 53, "mem": 36, "status": "CRITICAL", "timestamp": "2025-08-26T03:52:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra009", "cpu": 40, "mem": 20, "status": "CRITICAL", "timestamp": "2025-08-11T03:19:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra018", "cpu": 81, "mem": 35, "status": "CRITICAL", "timestamp": "2025-08-16T20:33:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra007", "cpu": 88, "mem": 82, "status": "CRITICAL", "timestamp": "2025-08-05T01:21:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra011", "cpu": 27, "mem": 90, "status": "CRITICAL", "timestamp": "2025-08-29T15:11:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra016", "cpu": 39, "mem": 18, "status": "OK", "timestamp": "2025-08-12T12:02:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra006", "cpu": 95, "mem": 22, "status": "OK", "timestamp": "2025-08-03T17:42:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra006", "cpu": 22, "mem": 23, "status": "CRITICAL", "timestamp": "2025-08-19T00:16:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra007", "cpu": 77, "mem": 12, "status": "OK", "timestamp": "2025-08-23T16:53:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra016", "cpu": 44, "mem": 87, "status": "CRITICAL", "timestamp": "2025-08-01T19:45:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra007", "cpu": 12, "mem": 56, "status": "OK", "timestamp": "2025-08-12T10:46:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra007", "cpu": 32, "mem": 85, "status": "WARNING", "timestamp": "2025-08-05T23:23:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra006", "cpu": 70, "mem": 85, "status": "CRITICAL", "timestamp": "2025-08-17T12:07:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra020", "cpu": 90, "mem": 68, "status": "OK", "timestamp": "2025-08-24T18:45:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra020", "cpu": 79, "mem": 77, "status": "OK", "timestamp": "2025-08-27T05:38:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra020", "cpu": 31, "mem": 30, "status": "WARNING", "timestamp": "2025-08-30T09:05:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra003", "cpu": 15, "mem": 83, "status": "OK", "timestamp": "2025-08-02T02:54:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra013", "cpu": 82, "mem": 49, "status": "OK", "timestamp": "2025-08-12T22:23:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra016", "cpu": 39, "mem": 95, "status": "WARNING", "timestamp": "2025-08-21T02:15:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra001", "cpu": 69, "mem": 88, "status": "CRITICAL", "timestamp": "2025-08-10T17:10:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra016", "cpu": 70, "mem": 10, "status": "OK", "timestamp": "2025-08-27T14:15:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra014", "cpu": 95, "mem": 18, "status": "CRITICAL", "timestamp": "2025-08-06T14:14:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra011", "cpu": 46, "mem": 20, "status": "OK", "timestamp": "2025-08-17T15:17:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra013", "cpu": 63, "mem": 50, "status": "OK", "timestamp": "2025-08-30T15:58:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra004", "cpu": 98, "mem": 68, "status": "OK", "timestamp": "2025-08-30T02:03:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra018", "cpu": 85, "mem": 85, "status": "OK", "timestamp": "2025-08-24T18:24:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra004", "cpu": 97, "mem": 68, "status": "WARNING", "timestamp": "2025-08-08T07:33:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra002", "cpu": 43, "mem": 79, "status": "OK", "timestamp": "2025-08-09T16:31:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra006", "cpu": 46, "mem": 43, "status": "CRITICAL", "timestamp": "2025-08-02T06:38:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra010", "cpu": 11, "mem": 32, "status": "WARNING", "timestamp": "2025-08-28T14:45:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra008", "cpu": 89, "mem": 36, "status": "CRITICAL", "timestamp": "2025-08-13T12:23:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra014", "cpu": 20, "mem": 44, "status": "WARNING", "timestamp": "2025-08-29T12:07:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra002", "cpu": 67, "mem": 41, "status": "OK", "timestamp": "2025-08-17T14:11:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra013", "cpu": 55, "mem": 86, "status": "WARNING", "timestamp": "2025-08-12T00:23:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra020", "cpu": 30, "mem": 99, "status": "WARNING", "timestamp": "2025-08-11T13:00:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra009", "cpu": 71, "mem": 13, "status": "OK", "timestamp": "2025-08-25T12:28:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra002", "cpu": 87, "mem": 58, "status": "CRITICAL", "timestamp": "2025-08-28T07:08:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra017", "cpu": 92, "mem": 98, "status": "CRITICAL", "timestamp": "2025-08-11T05:13:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra019", "cpu": 52, "mem": 98, "status": "WARNING", "timestamp": "2025-08-05T18:03:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra001", "cpu": 58, "mem": 47, "status": "CRITICAL", "timestamp": "2025-08-21T21:57:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra010", "cpu": 17, "mem": 93, "status": "CRITICAL", "timestamp": "2025-08-28T14:45:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra004", "cpu": 43, "mem": 100, "status": "WARNING", "timestamp": "2025-08-11T23:02:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra013", "cpu": 19, "mem": 83, "status": "CRITICAL", "timestamp": "2025-08-02T16:00:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra014", "cpu": 35, "mem": 72, "status": "CRITICAL", "timestamp": "2025-08-18T03:18:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra008", "cpu": 65, "mem": 19, "status": "OK", "timestamp": "2025-08-11T05:25:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra018", "cpu": 93, "mem": 70, "status": "CRITICAL", "timestamp": "2025-08-06T08:22:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra002", "cpu": 29, "mem": 63, "status": "WARNING", "timestamp": "2025-08-05T10:35:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra008", "cpu": 40, "mem": 10, "status": "CRITICAL", "timestamp": "2025-08-09T12:00:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra012", "cpu": 21, "mem": 78, "status": "OK", "timestamp": "2025-08-22T06:21:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra018", "cpu": 98, "mem": 80, "status": "CRITICAL", "timestamp": "2025-08-02T04:57:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra005", "cpu": 26, "mem": 91, "status": "OK", "timestamp": "2025-08-30T19:07:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra017", "cpu": 76, "mem": 65, "status": "WARNING", "timestamp": "2025-08-05T08:17:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra006", "cpu": 42, "mem": 17, "status": "CRITICAL", "timestamp": "2025-08-24T03:53:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra006", "cpu": 80, "mem": 35, "status": "WARNING", "timestamp": "2025-08-13T22:47:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra014", "cpu": 48, "mem": 72, "status": "CRITICAL", "timestamp": "2025-08-08T23:22:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra016", "cpu": 34, "mem": 64, "status": "CRITICAL", "timestamp": "2025-08-20T13:25:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra005", "cpu": 56, "mem": 86, "status": "CRITICAL", "timestamp": "2025-08-24T03:09:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra020", "cpu": 20, "mem": 79, "status": "OK", "timestamp": "2025-08-08T16:16:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra018", "cpu": 95, "mem": 30, "status": "WARNING", "timestamp": "2025-08-08T05:04:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra007", "cpu": 67, "mem": 18, "status": "CRITICAL", "timestamp": "2025-08-22T11:00:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra005", "cpu": 92, "mem": 26, "status": "WARNING", "timestamp": "2025-08-15T00:39:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra017", "cpu": 19, "mem": 68, "status": "CRITICAL", "timestamp": "2025-08-24T09:12:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra018", "cpu": 100, "mem": 76, "status": "OK", "timestamp": "2025-08-11T22:52:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra017", "cpu": 41, "mem": 82, "status": "WARNING", "timestamp": "2025-08-15T03:53:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra013", "cpu": 63, "mem": 95, "status": "CRITICAL", "timestamp": "2025-08-20T23:03:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra003", "cpu": 48, "mem": 22, "status": "OK", "timestamp": "2025-08-22T01:46:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra004", "cpu": 44, "mem": 11, "status": "CRITICAL", "timestamp": "2025-08-22T02:41:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra006", "cpu": 75, "mem": 66, "status": "OK", "timestamp": "2025-08-26T20:56:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra018", "cpu": 31, "mem": 15, "status": "WARNING", "timestamp": "2025-08-08T03:35:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra018", "cpu": 99, "mem": 24, "status": "CRITICAL", "timestamp": "2025-08-14T23:35:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra011", "cpu": 16, "mem": 63, "status": "OK", "timestamp": "2025-08-06T09:13:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra006", "cpu": 39, "mem": 62, "status": "CRITICAL", "timestamp": "2025-08-20T17:27:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra012", "cpu": 83, "mem": 72, "status": "OK", "timestamp": "2025-08-26T20:49:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra001", "cpu": 39, "mem": 93, "status": "CRITICAL", "timestamp": "2025-08-14T06:35:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra012", "cpu": 36, "mem": 32, "status": "CRITICAL", "timestamp": "2025-08-07T14:56:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra016", "cpu": 23, "mem": 50, "status": "OK", "timestamp": "2025-08-23T21:57:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra003", "cpu": 54, "mem": 24, "status": "CRITICAL", "timestamp": "2025-08-11T10:35:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra001", "cpu": 86, "mem": 57, "status": "OK", "timestamp": "2025-08-20T23:29:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra010", "cpu": 58, "mem": 66, "status": "WARNING", "timestamp": "2025-08-07T02:43:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra004", "cpu": 83, "mem": 60, "status": "WARNING", "timestamp": "2025-08-05T14:36:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra008", "cpu": 60, "mem": 27, "status": "WARNING", "timestamp": "2025-08-04T20:10:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra009", "cpu": 75, "mem": 40, "status": "OK", "timestamp": "2025-08-12T04:20:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra006", "cpu": 77, "mem": 29, "status": "OK", "timestamp": "2025-08-14T00:57:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra010", "cpu": 99, "mem": 84, "status": "CRITICAL", "timestamp": "2025-08-04T01:24:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra004", "cpu": 72, "mem": 92, "status": "CRITICAL", "timestamp": "2025-08-18T03:10:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra020", "cpu": 14, "mem": 63, "status": "WARNING", "timestamp": "2025-08-02T20:03:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra007", "cpu": 98, "mem": 91, "status": "WARNING", "timestamp": "2025-08-28T00:15:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra013", "cpu": 49, "mem": 34, "status": "WARNING", "timestamp": "2025-08-29T22:03:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra018", "cpu": 29, "mem": 21, "status": "OK", "timestamp": "2025-08-03T14:38:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra005", "cpu": 11, "mem": 91, "status": "OK", "timestamp": "2025-08-08T02:45:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra014", "cpu": 59, "mem": 15, "status": "CRITICAL", "timestamp": "2025-08-03T02:24:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra012", "cpu": 51, "mem": 81, "status": "WARNING", "timestamp": "2025-08-21T15:10:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra006", "cpu": 63, "mem": 22, "status": "OK", "timestamp": "2025-08-15T18:23:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra014", "cpu": 81, "mem": 23, "status": "WARNING", "timestamp": "2025-08-13T15:43:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra007", "cpu": 24, "mem": 38, "status": "CRITICAL", "timestamp": "2025-08-03T10:04:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra006", "cpu": 10, "mem": 54, "status": "CRITICAL", "timestamp": "2025-08-15T02:54:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra018", "cpu": 84, "mem": 17, "status": "WARNING", "timestamp": "2025-08-04T07:54:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra005", "cpu": 63, "mem": 35, "status": "OK", "timestamp": "2025-08-06T18:34:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra004", "cpu": 71, "mem": 17, "status": "OK", "timestamp": "2025-08-19T02:44:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra008", "cpu": 72, "mem": 44, "status": "CRITICAL", "timestamp": "2025-08-19T06:27:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra002", "cpu": 90, "mem": 50, "status": "CRITICAL", "timestamp": "2025-08-09T07:09:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra019", "cpu": 13, "mem": 97, "status": "CRITICAL", "timestamp": "2025-08-05T02:34:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra014", "cpu": 31, "mem": 94, "status": "CRITICAL", "timestamp": "2025-08-25T03:28:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra018", "cpu": 55, "mem": 88, "status": "CRITICAL", "timestamp": "2025-08-10T08:45:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra018", "cpu": 85, "mem": 71, "status": "WARNING", "timestamp": "2025-08-30T02:20:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra015", "cpu": 91, "mem": 45, "status": "CRITICAL", "timestamp": "2025-08-24T17:25:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra016", "cpu": 95, "mem": 27, "status": "WARNING", "timestamp": "2025-08-30T15:36:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra006", "cpu": 11, "mem": 14, "status": "CRITICAL", "timestamp": "2025-08-01T10:59:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra018", "cpu": 53, "mem": 29, "status": "OK", "timestamp": "2025-08-15T17:09:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra013", "cpu": 36, "mem": 85, "status": "WARNING", "timestamp": "2025-08-07T04:22:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra003", "cpu": 82, "mem": 66, "status": "WARNING", "timestamp": "2025-08-09T21:33:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra014", "cpu": 52, "mem": 82, "status": "CRITICAL", "timestamp": "2025-08-09T10:20:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra020", "cpu": 10, "mem": 23, "status": "OK", "timestamp": "2025-08-21T13:55:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra020", "cpu": 88, "mem": 18, "status": "CRITICAL", "timestamp": "2025-08-27T11:37:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra011", "cpu": 15, "mem": 31, "status": "CRITICAL", "timestamp": "2025-08-03T12:55:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra008", "cpu": 85, "mem": 56, "status": "CRITICAL", "timestamp": "2025-08-22T03:11:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra014", "cpu": 81, "mem": 28, "status": "WARNING", "timestamp": "2025-08-30T11:35:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra011", "cpu": 74, "mem": 16, "status": "CRITICAL", "timestamp": "2025-08-14T13:17:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra010", "cpu": 90, "mem": 94, "status": "CRITICAL", "timestamp": "2025-08-12T11:13:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra013", "cpu": 83, "mem": 15, "status": "WARNING", "timestamp": "2025-08-04T09:20:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra007", "cpu": 83, "mem": 18, "status": "OK", "timestamp": "2025-08-20T19:52:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra002", "cpu": 67, "mem": 37, "status": "OK", "timestamp": "2025-08-15T17:20:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra018", "cpu": 28, "mem": 68, "status": "CRITICAL", "timestamp": "2025-08-24T04:09:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra017", "cpu": 84, "mem": 91, "status": "WARNING", "timestamp": "2025-08-28T08:22:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra008", "cpu": 23, "mem": 26, "status": "WARNING", "timestamp": "2025-08-04T00:36:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra015", "cpu": 19, "mem": 37, "status": "CRITICAL", "timestamp": "2025-08-22T11:28:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra011", "cpu": 31, "mem": 91, "status": "CRITICAL", "timestamp": "2025-08-24T06:31:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra007", "cpu": 18, "mem": 19, "status": "OK", "timestamp": "2025-08-09T17:59:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra018", "cpu": 21, "mem": 58, "status": "CRITICAL", "timestamp": "2025-08-20T19:55:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra020", "cpu": 28, "mem": 60, "status": "OK", "timestamp": "2025-08-14T10:26:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra002", "cpu": 35, "mem": 78, "status": "CRITICAL", "timestamp": "2025-08-06T12:06:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra017", "cpu": 58, "mem": 81, "status": "CRITICAL", "timestamp": "2025-08-10T23:50:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra020", "cpu": 38, "mem": 35, "status": "OK", "timestamp": "2025-08-26T12:05:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra006", "cpu": 41, "mem": 24, "status": "OK", "timestamp": "2025-08-29T05:06:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra015", "cpu": 21, "mem": 94, "status": "CRITICAL", "timestamp": "2025-08-09T05:01:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra016", "cpu": 27, "mem": 97, "status": "CRITICAL", "timestamp": "2025-08-07T06:07:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra018", "cpu": 40, "mem": 53, "status": "WARNING", "timestamp": "2025-08-14T16:01:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra008", "cpu": 57, "mem": 43, "status": "CRITICAL", "timestamp": "2025-08-11T10:11:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra013", "cpu": 100, "mem": 26, "status": "WARNING", "timestamp": "2025-08-21T01:02:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra017", "cpu": 46, "mem": 100, "status": "CRITICAL", "timestamp": "2025-08-16T07:46:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra004", "cpu": 58, "mem": 57, "status": "OK", "timestamp": "2025-08-05T04:13:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra014", "cpu": 43, "mem": 37, "status": "OK", "timestamp": "2025-08-28T22:23:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra002", "cpu": 84, "mem": 35, "status": "CRITICAL", "timestamp": "2025-08-16T08:58:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra015", "cpu": 41, "mem": 65, "status": "WARNING", "timestamp": "2025-08-02T08:21:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra010", "cpu": 37, "mem": 79, "status": "WARNING", "timestamp": "2025-08-06T17:00:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra012", "cpu": 88, "mem": 42, "status": "CRITICAL", "timestamp": "2025-08-03T12:17:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra002", "cpu": 50, "mem": 97, "status": "OK", "timestamp": "2025-08-03T00:19:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra006", "cpu": 24, "mem": 19, "status": "OK", "timestamp": "2025-08-02T02:22:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra012", "cpu": 88, "mem": 46, "status": "WARNING", "timestamp": "2025-08-09T10:17:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra006", "cpu": 41, "mem": 79, "status": "WARNING", "timestamp": "2025-08-16T23:20:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra009", "cpu": 98, "mem": 76, "status": "CRITICAL", "timestamp": "2025-08-22T10:00:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra018", "cpu": 93, "mem": 83, "status": "CRITICAL", "timestamp": "2025-08-17T17:13:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra007", "cpu": 69, "mem": 52, "status": "CRITICAL", "timestamp": "2025-08-14T14:36:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra013", "cpu": 28, "mem": 73, "status": "CRITICAL", "timestamp": "2025-08-13T15:51:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra008", "cpu": 90, "mem": 13, "status": "CRITICAL", "timestamp": "2025-08-10T08:26:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra014", "cpu": 64, "mem": 28, "status": "CRITICAL", "timestamp": "2025-08-17T15:16:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra014", "cpu": 19, "mem": 52, "status": "OK", "timestamp": "2025-08-06T10:33:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra019", "cpu": 34, "mem": 10, "status": "WARNING", "timestamp": "2025-08-06T03:20:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra001", "cpu": 77, "mem": 12, "status": "CRITICAL", "timestamp": "2025-08-30T01:10:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra003", "cpu": 31, "mem": 13, "status": "OK", "timestamp": "2025-08-07T23:20:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra014", "cpu": 11, "mem": 76, "status": "OK", "timestamp": "2025-08-14T06:13:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra006", "cpu": 13, "mem": 31, "status": "OK", "timestamp": "2025-08-03T20:29:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra009", "cpu": 68, "mem": 32, "status": "WARNING", "timestamp": "2025-08-13T10:43:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra003", "cpu": 94, "mem": 10, "status": "OK", "timestamp": "2025-08-15T22:39:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra017", "cpu": 84, "mem": 81, "status": "OK", "timestamp": "2025-08-16T09:52:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra009", "cpu": 22, "mem": 79, "status": "OK", "timestamp": "2025-08-27T20:15:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra012", "cpu": 66, "mem": 17, "status": "OK", "timestamp": "2025-08-11T05:51:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra018", "cpu": 40, "mem": 65, "status": "CRITICAL", "timestamp": "2025-08-04T06:20:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra020", "cpu": 11, "mem": 10, "status": "CRITICAL", "timestamp": "2025-08-04T18:03:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra016", "cpu": 13, "mem": 79, "status": "OK", "timestamp": "2025-08-19T05:19:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra018", "cpu": 18, "mem": 83, "status": "CRITICAL", "timestamp": "2025-08-09T09:29:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra005", "cpu": 45, "mem": 76, "status": "OK", "timestamp": "2025-08-30T20:33:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra010", "cpu": 94, "mem": 60, "status": "WARNING", "timestamp": "2025-08-12T20:00:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra014", "cpu": 69, "mem": 10, "status": "OK", "timestamp": "2025-08-08T21:10:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra010", "cpu": 55, "mem": 47, "status": "CRITICAL", "timestamp": "2025-08-28T17:44:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra005", "cpu": 29, "mem": 45, "status": "CRITICAL", "timestamp": "2025-08-11T07:04:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra009", "cpu": 44, "mem": 91, "status": "CRITICAL", "timestamp": "2025-08-01T05:08:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra003", "cpu": 33, "mem": 55, "status": "CRITICAL", "timestamp": "2025-08-25T00:25:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra008", "cpu": 10, "mem": 54, "status": "CRITICAL", "timestamp": "2025-08-13T10:24:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra002", "cpu": 65, "mem": 97, "status": "OK", "timestamp": "2025-08-02T19:21:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra018", "cpu": 98, "mem": 17, "status": "WARNING", "timestamp": "2025-08-30T07:45:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra004", "cpu": 29, "mem": 17, "status": "OK", "timestamp": "2025-08-14T20:15:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra004", "cpu": 63, "mem": 94, "status": "WARNING", "timestamp": "2025-08-05T08:45:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra013", "cpu": 46, "mem": 13, "status": "OK", "timestamp": "2025-08-29T08:59:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra002", "cpu": 54, "mem": 33, "status": "OK", "timestamp": "2025-08-26T23:14:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra005", "cpu": 15, "mem": 82, "status": "OK", "timestamp": "2025-08-26T20:22:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra002", "cpu": 70, "mem": 58, "status": "CRITICAL", "timestamp": "2025-08-10T12:27:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra020", "cpu": 21, "mem": 41, "status": "OK", "timestamp": "2025-08-25T01:30:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra012", "cpu": 74, "mem": 12, "status": "OK", "timestamp": "2025-08-23T23:20:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra018", "cpu": 97, "mem": 59, "status": "CRITICAL", "timestamp": "2025-08-02T23:03:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra012", "cpu": 44, "mem": 99, "status": "WARNING", "timestamp": "2025-08-09T21:54:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra019", "cpu": 57, "mem": 58, "status": "CRITICAL", "timestamp": "2025-08-14T20:42:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra012", "cpu": 83, "mem": 70, "status": "CRITICAL", "timestamp": "2025-08-28T23:52:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra004", "cpu": 24, "mem": 23, "status": "WARNING", "timestamp": "2025-08-17T15:46:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra014", "cpu": 91, "mem": 31, "status": "WARNING", "timestamp": "2025-08-14T22:12:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra013", "cpu": 95, "mem": 82, "status": "CRITICAL", "timestamp": "2025-08-20T12:00:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra002", "cpu": 92, "mem": 67, "status": "OK", "timestamp": "2025-08-20T16:16:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra003", "cpu": 82, "mem": 76, "status": "WARNING", "timestamp": "2025-08-04T16:47:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra004", "cpu": 35, "mem": 42, "status": "OK", "timestamp": "2025-08-29T03:33:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra013", "cpu": 66, "mem": 59, "status": "CRITICAL", "timestamp": "2025-08-08T00:16:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra018", "cpu": 61, "mem": 13, "status": "WARNING", "timestamp": "2025-08-18T19:33:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra020", "cpu": 19, "mem": 85, "status": "WARNING", "timestamp": "2025-08-05T04:31:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra007", "cpu": 67, "mem": 69, "status": "OK", "timestamp": "2025-08-13T22:38:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra012", "cpu": 52, "mem": 33, "status": "CRITICAL", "timestamp": "2025-08-03T01:44:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra011", "cpu": 99, "mem": 38, "status": "OK", "timestamp": "2025-08-16T23:05:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra014", "cpu": 75, "mem": 11, "status": "CRITICAL", "timestamp": "2025-08-26T21:20:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra012", "cpu": 68, "mem": 68, "status": "CRITICAL", "timestamp": "2025-08-30T23:29:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra016", "cpu": 15, "mem": 30, "status": "OK", "timestamp": "2025-08-12T12:52:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra013", "cpu": 79, "mem": 59, "status": "WARNING", "timestamp": "2025-08-14T23:07:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra018", "cpu": 99, "mem": 92, "status": "WARNING", "timestamp": "2025-08-13T02:43:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra016", "cpu": 16, "mem": 53, "status": "OK", "timestamp": "2025-08-04T20:59:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra013", "cpu": 92, "mem": 72, "status": "WARNING", "timestamp": "2025-08-15T12:41:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra002", "cpu": 48, "mem": 62, "status": "OK", "timestamp": "2025-08-09T21:27:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra005", "cpu": 78, "mem": 80, "status": "WARNING", "timestamp": "2025-08-08T20:27:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra004", "cpu": 99, "mem": 62, "status": "OK", "timestamp": "2025-08-22T03:52:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra014", "cpu": 90, "mem": 31, "status": "WARNING", "timestamp": "2025-08-26T23:15:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra013", "cpu": 11, "mem": 95, "status": "OK", "timestamp": "2025-08-07T02:34:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra013", "cpu": 70, "mem": 40, "status": "CRITICAL", "timestamp": "2025-08-03T21:22:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra011", "cpu": 63, "mem": 52, "status": "WARNING", "timestamp": "2025-08-16T01:42:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra012", "cpu": 89, "mem": 47, "status": "OK", "timestamp": "2025-08-03T02:17:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra008", "cpu": 50, "mem": 21, "status": "WARNING", "timestamp": "2025-08-06T05:57:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra005", "cpu": 82, "mem": 53, "status": "OK", "timestamp": "2025-08-11T02:03:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra020", "cpu": 49, "mem": 39, "status": "OK", "timestamp": "2025-08-16T06:38:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra011", "cpu": 40, "mem": 41, "status": "OK", "timestamp": "2025-08-16T16:45:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra017", "cpu": 14, "mem": 67, "status": "WARNING", "timestamp": "2025-08-14T05:36:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra017", "cpu": 37, "mem": 61, "status": "CRITICAL", "timestamp": "2025-08-30T05:30:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra006", "cpu": 25, "mem": 17, "status": "WARNING", "timestamp": "2025-08-30T03:03:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra001", "cpu": 51, "mem": 57, "status": "OK", "timestamp": "2025-08-15T00:22:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra009", "cpu": 73, "mem": 30, "status": "OK", "timestamp": "2025-08-09T13:10:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra012", "cpu": 47, "mem": 43, "status": "OK", "timestamp": "2025-08-18T14:44:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra016", "cpu": 75, "mem": 54, "status": "OK", "timestamp": "2025-08-29T13:17:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra002", "cpu": 66, "mem": 26, "status": "WARNING", "timestamp": "2025-08-12T20:27:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra014", "cpu": 45, "mem": 40, "status": "WARNING", "timestamp": "2025-08-18T13:59:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra001", "cpu": 46, "mem": 24, "status": "WARNING", "timestamp": "2025-08-14T07:50:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra003", "cpu": 76, "mem": 57, "status": "CRITICAL", "timestamp": "2025-08-19T01:46:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra016", "cpu": 91, "mem": 49, "status": "OK", "timestamp": "2025-08-09T05:53:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra015", "cpu": 28, "mem": 21, "status": "OK", "timestamp": "2025-08-16T15:58:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra013", "cpu": 77, "mem": 93, "status": "WARNING", "timestamp": "2025-08-26T05:05:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra016", "cpu": 98, "mem": 100, "status": "CRITICAL", "timestamp": "2025-08-19T15:22:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra006", "cpu": 60, "mem": 98, "status": "OK", "timestamp": "2025-08-10T02:48:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra001", "cpu": 57, "mem": 96, "status": "CRITICAL", "timestamp": "2025-08-28T04:05:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra009", "cpu": 44, "mem": 91, "status": "CRITICAL", "timestamp": "2025-08-10T04:19:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra004", "cpu": 16, "mem": 66, "status": "CRITICAL", "timestamp": "2025-08-24T00:17:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra017", "cpu": 65, "mem": 13, "status": "OK", "timestamp": "2025-08-09T01:36:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra006", "cpu": 97, "mem": 17, "status": "CRITICAL", "timestamp": "2025-08-15T13:52:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra015", "cpu": 87, "mem": 95, "status": "OK", "timestamp": "2025-08-27T17:51:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra005", "cpu": 88, "mem": 98, "status": "WARNING", "timestamp": "2025-08-21T01:56:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra008", "cpu": 55, "mem": 98, "status": "OK", "timestamp": "2025-08-03T00:54:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra011", "cpu": 98, "mem": 24, "status": "CRITICAL", "timestamp": "2025-08-03T23:34:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra004", "cpu": 41, "mem": 23, "status": "OK", "timestamp": "2025-08-05T07:58:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra004", "cpu": 15, "mem": 73, "status": "WARNING", "timestamp": "2025-08-19T09:08:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra003", "cpu": 44, "mem": 96, "status": "WARNING", "timestamp": "2025-08-21T21:54:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra013", "cpu": 56, "mem": 67, "status": "WARNING", "timestamp": "2025-08-28T05:56:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra019", "cpu": 49, "mem": 13, "status": "WARNING", "timestamp": "2025-08-22T14:03:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra017", "cpu": 23, "mem": 19, "status": "CRITICAL", "timestamp": "2025-08-19T14:15:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra002", "cpu": 23, "mem": 80, "status": "WARNING", "timestamp": "2025-08-28T15:26:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra020", "cpu": 44, "mem": 39, "status": "CRITICAL", "timestamp": "2025-08-20T12:16:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra015", "cpu": 85, "mem": 42, "status": "OK", "timestamp": "2025-08-06T15:23:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra015", "cpu": 84, "mem": 20, "status": "OK", "timestamp": "2025-08-04T10:43:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra014", "cpu": 20, "mem": 32, "status": "OK", "timestamp": "2025-08-16T20:54:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra015", "cpu": 10, "mem": 98, "status": "CRITICAL", "timestamp": "2025-08-24T20:36:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra006", "cpu": 59, "mem": 44, "status": "OK", "timestamp": "2025-08-04T06:18:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra015", "cpu": 67, "mem": 79, "status": "WARNING", "timestamp": "2025-08-19T00:19:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra006", "cpu": 49, "mem": 32, "status": "WARNING", "timestamp": "2025-08-16T09:04:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra002", "cpu": 39, "mem": 72, "status": "WARNING", "timestamp": "2025-08-15T19:44:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra016", "cpu": 84, "mem": 95, "status": "CRITICAL", "timestamp": "2025-08-30T11:23:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra012", "cpu": 24, "mem": 17, "status": "OK", "timestamp": "2025-08-30T05:00:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra007", "cpu": 86, "mem": 20, "status": "WARNING", "timestamp": "2025-08-08T23:28:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra003", "cpu": 100, "mem": 43, "status": "WARNING", "timestamp": "2025-08-05T01:08:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra019", "cpu": 78, "mem": 50, "status": "WARNING", "timestamp": "2025-08-30T12:15:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra005", "cpu": 15, "mem": 16, "status": "WARNING", "timestamp": "2025-08-27T04:40:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra015", "cpu": 86, "mem": 44, "status": "OK", "timestamp": "2025-08-26T18:42:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra010", "cpu": 63, "mem": 67, "status": "OK", "timestamp": "2025-08-13T09:14:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra003", "cpu": 35, "mem": 92, "status": "WARNING", "timestamp": "2025-08-18T18:31:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra020", "cpu": 50, "mem": 80, "status": "OK", "timestamp": "2025-08-08T03:14:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra017", "cpu": 30, "mem": 23, "status": "CRITICAL", "timestamp": "2025-08-30T23:28:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra010", "cpu": 39, "mem": 41, "status": "CRITICAL", "timestamp": "2025-08-15T16:07:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra009", "cpu": 60, "mem": 65, "status": "CRITICAL", "timestamp": "2025-08-17T15:48:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra013", "cpu": 78, "mem": 44, "status": "WARNING", "timestamp": "2025-08-02T01:24:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra011", "cpu": 94, "mem": 99, "status": "WARNING", "timestamp": "2025-08-06T12:54:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra001", "cpu": 13, "mem": 96, "status": "OK", "timestamp": "2025-08-08T17:24:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra001", "cpu": 82, "mem": 47, "status": "WARNING", "timestamp": "2025-08-04T02:35:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra019", "cpu": 48, "mem": 41, "status": "CRITICAL", "timestamp": "2025-08-13T09:32:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra017", "cpu": 52, "mem": 16, "status": "WARNING", "timestamp": "2025-08-19T18:57:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra018", "cpu": 76, "mem": 82, "status": "WARNING", "timestamp": "2025-08-20T19:07:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra007", "cpu": 13, "mem": 79, "status": "CRITICAL", "timestamp": "2025-08-04T15:20:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra014", "cpu": 21, "mem": 56, "status": "OK", "timestamp": "2025-08-04T06:53:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra012", "cpu": 41, "mem": 59, "status": "CRITICAL", "timestamp": "2025-08-19T00:26:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra008", "cpu": 56, "mem": 74, "status": "OK", "timestamp": "2025-08-05T08:20:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra004", "cpu": 43, "mem": 68, "status": "CRITICAL", "timestamp": "2025-08-19T17:25:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra010", "cpu": 96, "mem": 93, "status": "CRITICAL", "timestamp": "2025-08-21T07:31:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra008", "cpu": 41, "mem": 75, "status": "WARNING", "timestamp": "2025-08-14T07:04:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra007", "cpu": 88, "mem": 52, "status": "CRITICAL", "timestamp": "2025-08-22T08:13:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra013", "cpu": 19, "mem": 61, "status": "OK", "timestamp": "2025-08-05T22:34:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra009", "cpu": 95, "mem": 50, "status": "WARNING", "timestamp": "2025-08-24T09:08:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra006", "cpu": 70, "mem": 92, "status": "OK", "timestamp": "2025-08-22T09:04:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra013", "cpu": 66, "mem": 84, "status": "OK", "timestamp": "2025-08-02T17:58:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra017", "cpu": 59, "mem": 71, "status": "CRITICAL", "timestamp": "2025-08-25T01:36:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra005", "cpu": 15, "mem": 50, "status": "OK", "timestamp": "2025-08-29T11:49:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra010", "cpu": 35, "mem": 78, "status": "WARNING", "timestamp": "2025-08-11T15:32:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra011", "cpu": 47, "mem": 94, "status": "WARNING", "timestamp": "2025-08-25T21:40:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra012", "cpu": 15, "mem": 24, "status": "WARNING", "timestamp": "2025-08-05T21:42:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra001", "cpu": 96, "mem": 14, "status": "CRITICAL", "timestamp": "2025-08-08T22:11:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra001", "cpu": 51, "mem": 84, "status": "WARNING", "timestamp": "2025-08-06T04:39:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra010", "cpu": 35, "mem": 80, "status": "OK", "timestamp": "2025-08-17T18:39:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra003", "cpu": 17, "mem": 52, "status": "CRITICAL", "timestamp": "2025-08-09T02:14:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra020", "cpu": 94, "mem": 99, "status": "OK", "timestamp": "2025-08-25T07:13:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra005", "cpu": 86, "mem": 71, "status": "CRITICAL", "timestamp": "2025-08-11T06:02:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra004", "cpu": 71, "mem": 99, "status": "CRITICAL", "timestamp": "2025-08-23T06:45:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra016", "cpu": 75, "mem": 34, "status": "WARNING", "timestamp": "2025-08-28T05:42:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra007", "cpu": 32, "mem": 53, "status": "OK", "timestamp": "2025-08-29T12:18:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra014", "cpu": 94, "mem": 25, "status": "OK", "timestamp": "2025-08-06T22:05:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra005", "cpu": 70, "mem": 28, "status": "CRITICAL", "timestamp": "2025-08-13T20:10:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra008", "cpu": 19, "mem": 41, "status": "CRITICAL", "timestamp": "2025-08-18T01:19:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra016", "cpu": 59, "mem": 70, "status": "WARNING", "timestamp": "2025-08-14T17:57:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra015", "cpu": 93, "mem": 17, "status": "OK", "timestamp": "2025-08-08T03:12:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra010", "cpu": 11, "mem": 69, "status": "OK", "timestamp": "2025-08-13T02:46:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra007", "cpu": 43, "mem": 68, "status": "WARNING", "timestamp": "2025-08-22T11:03:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra016", "cpu": 89, "mem": 31, "status": "CRITICAL", "timestamp": "2025-08-26T18:32:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra005", "cpu": 95, "mem": 24, "status": "WARNING", "timestamp": "2025-08-12T02:00:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra019", "cpu": 58, "mem": 11, "status": "OK", "timestamp": "2025-08-29T18:08:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra018", "cpu": 27, "mem": 69, "status": "WARNING", "timestamp": "2025-08-25T16:38:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra007", "cpu": 37, "mem": 46, "status": "OK", "timestamp": "2025-08-04T20:12:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra018", "cpu": 77, "mem": 66, "status": "WARNING", "timestamp": "2025-08-28T07:05:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra007", "cpu": 93, "mem": 56, "status": "WARNING", "timestamp": "2025-08-23T01:44:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra011", "cpu": 21, "mem": 17, "status": "WARNING", "timestamp": "2025-08-01T10:56:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra012", "cpu": 16, "mem": 75, "status": "CRITICAL", "timestamp": "2025-08-13T06:06:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra015", "cpu": 55, "mem": 90, "status": "CRITICAL", "timestamp": "2025-08-16T13:13:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra010", "cpu": 42, "mem": 41, "status": "OK", "timestamp": "2025-08-12T13:31:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra012", "cpu": 73, "mem": 48, "status": "CRITICAL", "timestamp": "2025-08-28T08:17:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra012", "cpu": 100, "mem": 84, "status": "WARNING", "timestamp": "2025-08-02T07:16:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra018", "cpu": 88, "mem": 18, "status": "WARNING", "timestamp": "2025-08-03T15:43:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra008", "cpu": 75, "mem": 46, "status": "WARNING", "timestamp": "2025-08-06T19:17:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra003", "cpu": 50, "mem": 74, "status": "WARNING", "timestamp": "2025-08-23T17:32:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra006", "cpu": 38, "mem": 40, "status": "OK", "timestamp": "2025-08-07T20:09:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra007", "cpu": 79, "mem": 96, "status": "CRITICAL", "timestamp": "2025-08-12T23:42:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra020", "cpu": 10, "mem": 70, "status": "OK", "timestamp": "2025-08-07T10:08:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra001", "cpu": 79, "mem": 41, "status": "CRITICAL", "timestamp": "2025-08-10T21:05:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra006", "cpu": 83, "mem": 80, "status": "CRITICAL", "timestamp": "2025-08-02T12:42:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra010", "cpu": 91, "mem": 66, "status": "WARNING", "timestamp": "2025-08-09T08:08:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra001", "cpu": 73, "mem": 41, "status": "OK", "timestamp": "2025-08-27T05:58:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra010", "cpu": 68, "mem": 42, "status": "WARNING", "timestamp": "2025-08-24T01:30:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra013", "cpu": 21, "mem": 86, "status": "WARNING", "timestamp": "2025-08-25T03:42:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra019", "cpu": 59, "mem": 43, "status": "OK", "timestamp": "2025-08-15T02:19:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra010", "cpu": 95, "mem": 65, "status": "WARNING", "timestamp": "2025-08-28T22:17:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra006", "cpu": 81, "mem": 54, "status": "CRITICAL", "timestamp": "2025-08-11T20:23:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra018", "cpu": 25, "mem": 49, "status": "OK", "timestamp": "2025-08-14T09:13:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra006", "cpu": 31, "mem": 22, "status": "OK", "timestamp": "2025-08-16T22:32:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra015", "cpu": 10, "mem": 54, "status": "OK", "timestamp": "2025-08-24T17:23:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra020", "cpu": 36, "mem": 98, "status": "OK", "timestamp": "2025-08-22T21:02:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra006", "cpu": 25, "mem": 39, "status": "CRITICAL", "timestamp": "2025-08-23T05:20:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra012", "cpu": 46, "mem": 85, "status": "OK", "timestamp": "2025-08-20T16:02:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra017", "cpu": 58, "mem": 36, "status": "OK", "timestamp": "2025-08-30T17:08:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra003", "cpu": 88, "mem": 40, "status": "CRITICAL", "timestamp": "2025-08-23T23:01:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra009", "cpu": 68, "mem": 24, "status": "CRITICAL", "timestamp": "2025-08-23T07:58:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra007", "cpu": 28, "mem": 41, "status": "WARNING", "timestamp": "2025-08-17T15:41:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra016", "cpu": 80, "mem": 23, "status": "OK", "timestamp": "2025-08-07T23:37:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra002", "cpu": 26, "mem": 96, "status": "CRITICAL", "timestamp": "2025-08-21T04:56:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra010", "cpu": 58, "mem": 88, "status": "CRITICAL", "timestamp": "2025-08-08T00:07:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra008", "cpu": 22, "mem": 51, "status": "WARNING", "timestamp": "2025-08-04T12:56:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra006", "cpu": 26, "mem": 79, "status": "OK", "timestamp": "2025-08-23T16:24:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra006", "cpu": 86, "mem": 95, "status": "WARNING", "timestamp": "2025-08-18T17:39:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra011", "cpu": 97, "mem": 39, "status": "CRITICAL", "timestamp": "2025-08-12T02:29:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra015", "cpu": 31, "mem": 30, "status": "WARNING", "timestamp": "2025-08-30T07:07:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra006", "cpu": 26, "mem": 29, "status": "WARNING", "timestamp": "2025-08-18T17:27:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra005", "cpu": 44, "mem": 29, "status": "CRITICAL", "timestamp": "2025-08-11T14:43:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra008", "cpu": 36, "mem": 97, "status": "OK", "timestamp": "2025-08-14T16:24:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra020", "cpu": 26, "mem": 98, "status": "CRITICAL", "timestamp": "2025-08-24T19:18:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra016", "cpu": 79, "mem": 95, "status": "OK", "timestamp": "2025-08-20T04:35:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra012", "cpu": 21, "mem": 36, "status": "CRITICAL", "timestamp": "2025-08-05T16:49:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra012", "cpu": 18, "mem": 11, "status": "OK", "timestamp": "2025-08-15T00:26:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra009", "cpu": 45, "mem": 19, "status": "CRITICAL", "timestamp": "2025-08-29T10:17:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra014", "cpu": 37, "mem": 90, "status": "CRITICAL", "timestamp": "2025-08-18T05:47:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra002", "cpu": 46, "mem": 75, "status": "WARNING", "timestamp": "2025-08-20T10:12:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra014", "cpu": 87, "mem": 86, "status": "OK", "timestamp": "2025-08-25T19:27:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra005", "cpu": 14, "mem": 98, "status": "CRITICAL", "timestamp": "2025-08-28T07:51:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra002", "cpu": 79, "mem": 92, "status": "CRITICAL", "timestamp": "2025-08-15T04:58:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra020", "cpu": 51, "mem": 20, "status": "OK", "timestamp": "2025-08-01T15:14:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra009", "cpu": 12, "mem": 43, "status": "WARNING", "timestamp": "2025-08-08T13:47:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra007", "cpu": 67, "mem": 58, "status": "CRITICAL", "timestamp": "2025-08-27T13:56:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra014", "cpu": 13, "mem": 81, "status": "WARNING", "timestamp": "2025-08-17T03:45:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra006", "cpu": 49, "mem": 94, "status": "CRITICAL", "timestamp": "2025-08-27T05:59:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra006", "cpu": 81, "mem": 27, "status": "CRITICAL", "timestamp": "2025-08-30T17:11:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra015", "cpu": 55, "mem": 33, "status": "WARNING", "timestamp": "2025-08-13T11:51:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra006", "cpu": 17, "mem": 44, "status": "WARNING", "timestamp": "2025-08-24T06:04:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra009", "cpu": 47, "mem": 26, "status": "CRITICAL", "timestamp": "2025-08-01T12:46:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra012", "cpu": 53, "mem": 10, "status": "CRITICAL", "timestamp": "2025-08-07T02:50:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra010", "cpu": 94, "mem": 45, "status": "WARNING", "timestamp": "2025-08-05T09:44:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra011", "cpu": 99, "mem": 75, "status": "WARNING", "timestamp": "2025-08-10T11:24:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra006", "cpu": 27, "mem": 53, "status": "OK", "timestamp": "2025-08-04T20:03:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra013", "cpu": 43, "mem": 40, "status": "OK", "timestamp": "2025-08-27T13:33:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra001", "cpu": 40, "mem": 42, "status": "WARNING", "timestamp": "2025-08-07T06:52:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra015", "cpu": 61, "mem": 33, "status": "OK", "timestamp": "2025-08-07T03:09:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra009", "cpu": 66, "mem": 11, "status": "CRITICAL", "timestamp": "2025-08-21T01:45:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra010", "cpu": 48, "mem": 65, "status": "CRITICAL", "timestamp": "2025-08-25T09:50:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra013", "cpu": 87, "mem": 22, "status": "WARNING", "timestamp": "2025-08-24T21:49:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra012", "cpu": 49, "mem": 77, "status": "CRITICAL", "timestamp": "2025-08-13T11:26:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra015", "cpu": 94, "mem": 18, "status": "CRITICAL", "timestamp": "2025-08-25T02:24:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra010", "cpu": 41, "mem": 71, "status": "CRITICAL", "timestamp": "2025-08-18T09:03:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra007", "cpu": 83, "mem": 91, "status": "CRITICAL", "timestamp": "2025-08-26T14:15:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra008", "cpu": 95, "mem": 91, "status": "OK", "timestamp": "2025-08-26T13:44:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra003", "cpu": 58, "mem": 68, "status": "OK", "timestamp": "2025-08-11T13:22:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra005", "cpu": 86, "mem": 11, "status": "WARNING", "timestamp": "2025-08-26T10:38:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra006", "cpu": 59, "mem": 77, "status": "WARNING", "timestamp": "2025-08-16T10:04:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra012", "cpu": 96, "mem": 84, "status": "CRITICAL", "timestamp": "2025-08-23T19:42:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra011", "cpu": 55, "mem": 67, "status": "WARNING", "timestamp": "2025-08-30T05:15:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra007", "cpu": 16, "mem": 40, "status": "OK", "timestamp": "2025-08-08T06:19:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra004", "cpu": 73, "mem": 96, "status": "OK", "timestamp": "2025-08-30T13:44:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra002", "cpu": 45, "mem": 97, "status": "OK", "timestamp": "2025-08-24T01:08:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra004", "cpu": 67, "mem": 80, "status": "CRITICAL", "timestamp": "2025-08-16T14:32:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra001", "cpu": 94, "mem": 79, "status": "OK", "timestamp": "2025-08-25T11:32:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra009", "cpu": 47, "mem": 94, "status": "OK", "timestamp": "2025-08-25T20:37:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra007", "cpu": 90, "mem": 11, "status": "OK", "timestamp": "2025-08-17T05:05:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra019", "cpu": 59, "mem": 86, "status": "CRITICAL", "timestamp": "2025-08-20T15:49:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra016", "cpu": 84, "mem": 28, "status": "WARNING", "timestamp": "2025-08-15T18:01:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra001", "cpu": 10, "mem": 60, "status": "OK", "timestamp": "2025-08-28T07:11:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra006", "cpu": 95, "mem": 37, "status": "OK", "timestamp": "2025-08-22T23:35:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra015", "cpu": 52, "mem": 15, "status": "OK", "timestamp": "2025-08-09T22:48:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra014", "cpu": 16, "mem": 29, "status": "OK", "timestamp": "2025-08-26T00:21:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra006", "cpu": 98, "mem": 18, "status": "OK", "timestamp": "2025-08-13T20:12:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra017", "cpu": 83, "mem": 96, "status": "WARNING", "timestamp": "2025-08-28T14:42:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra002", "cpu": 12, "mem": 46, "status": "OK", "timestamp": "2025-08-29T00:06:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra016", "cpu": 90, "mem": 97, "status": "WARNING", "timestamp": "2025-08-19T11:12:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra006", "cpu": 68, "mem": 55, "status": "WARNING", "timestamp": "2025-08-24T16:06:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra003", "cpu": 91, "mem": 66, "status": "CRITICAL", "timestamp": "2025-08-12T06:54:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra009", "cpu": 17, "mem": 81, "status": "WARNING", "timestamp": "2025-08-15T13:12:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra012", "cpu": 79, "mem": 35, "status": "WARNING", "timestamp": "2025-08-07T09:14:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra009", "cpu": 87, "mem": 20, "status": "CRITICAL", "timestamp": "2025-08-15T16:51:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra015", "cpu": 42, "mem": 77, "status": "CRITICAL", "timestamp": "2025-08-10T20:14:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra013", "cpu": 30, "mem": 94, "status": "OK", "timestamp": "2025-08-08T16:31:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra008", "cpu": 33, "mem": 45, "status": "CRITICAL", "timestamp": "2025-08-25T01:07:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra008", "cpu": 58, "mem": 91, "status": "CRITICAL", "timestamp": "2025-08-02T16:19:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra003", "cpu": 79, "mem": 95, "status": "CRITICAL", "timestamp": "2025-08-10T05:54:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra001", "cpu": 38, "mem": 21, "status": "OK", "timestamp": "2025-08-18T05:43:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra005", "cpu": 64, "mem": 49, "status": "OK", "timestamp": "2025-08-03T05:16:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra017", "cpu": 33, "mem": 84, "status": "CRITICAL", "timestamp": "2025-08-17T16:20:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra010", "cpu": 70, "mem": 66, "status": "CRITICAL", "timestamp": "2025-08-26T17:46:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra009", "cpu": 99, "mem": 91, "status": "CRITICAL", "timestamp": "2025-08-14T09:35:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra003", "cpu": 36, "mem": 17, "status": "OK", "timestamp": "2025-08-17T17:48:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra018", "cpu": 28, "mem": 34, "status": "CRITICAL", "timestamp": "2025-08-08T12:53:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra013", "cpu": 97, "mem": 29, "status": "OK", "timestamp": "2025-08-29T02:00:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra002", "cpu": 15, "mem": 43, "status": "CRITICAL", "timestamp": "2025-08-22T11:06:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra004", "cpu": 89, "mem": 62, "status": "OK", "timestamp": "2025-08-14T05:18:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra019", "cpu": 94, "mem": 71, "status": "WARNING", "timestamp": "2025-08-30T17:38:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra018", "cpu": 95, "mem": 15, "status": "OK", "timestamp": "2025-08-18T09:14:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra013", "cpu": 71, "mem": 56, "status": "OK", "timestamp": "2025-08-18T08:21:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra011", "cpu": 57, "mem": 79, "status": "WARNING", "timestamp": "2025-08-28T05:09:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra009", "cpu": 45, "mem": 37, "status": "CRITICAL", "timestamp": "2025-08-29T12:23:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra006", "cpu": 95, "mem": 54, "status": "CRITICAL", "timestamp": "2025-08-27T11:45:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra003", "cpu": 77, "mem": 83, "status": "CRITICAL", "timestamp": "2025-08-16T07:53:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra004", "cpu": 38, "mem": 37, "status": "OK", "timestamp": "2025-08-26T19:05:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra014", "cpu": 41, "mem": 42, "status": "OK", "timestamp": "2025-08-12T21:36:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra002", "cpu": 64, "mem": 13, "status": "CRITICAL", "timestamp": "2025-08-11T14:06:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra017", "cpu": 53, "mem": 43, "status": "OK", "timestamp": "2025-08-27T20:44:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra003", "cpu": 96, "mem": 53, "status": "CRITICAL", "timestamp": "2025-08-22T06:46:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra020", "cpu": 56, "mem": 97, "status": "CRITICAL", "timestamp": "2025-08-15T16:01:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra018", "cpu": 10, "mem": 50, "status": "CRITICAL", "timestamp": "2025-08-20T22:11:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra014", "cpu": 42, "mem": 43, "status": "WARNING", "timestamp": "2025-08-13T17:57:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra014", "cpu": 59, "mem": 81, "status": "WARNING", "timestamp": "2025-08-09T23:58:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra005", "cpu": 18, "mem": 59, "status": "OK", "timestamp": "2025-08-28T10:46:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra012", "cpu": 68, "mem": 42, "status": "WARNING", "timestamp": "2025-08-06T00:24:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra016", "cpu": 71, "mem": 100, "status": "WARNING", "timestamp": "2025-08-30T22:51:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra012", "cpu": 37, "mem": 38, "status": "CRITICAL", "timestamp": "2025-08-12T13:18:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra007", "cpu": 92, "mem": 17, "status": "OK", "timestamp": "2025-08-04T18:01:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra011", "cpu": 62, "mem": 49, "status": "WARNING", "timestamp": "2025-08-28T13:57:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra002", "cpu": 36, "mem": 93, "status": "OK", "timestamp": "2025-08-13T22:15:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra002", "cpu": 39, "mem": 58, "status": "WARNING", "timestamp": "2025-08-10T08:19:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra007", "cpu": 78, "mem": 37, "status": "CRITICAL", "timestamp": "2025-08-20T20:40:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra008", "cpu": 40, "mem": 74, "status": "OK", "timestamp": "2025-08-04T18:41:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra012", "cpu": 31, "mem": 25, "status": "OK", "timestamp": "2025-08-03T03:46:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra018", "cpu": 41, "mem": 79, "status": "CRITICAL", "timestamp": "2025-08-06T09:07:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra019", "cpu": 35, "mem": 61, "status": "WARNING", "timestamp": "2025-08-16T02:33:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra005", "cpu": 62, "mem": 29, "status": "WARNING", "timestamp": "2025-08-01T08:41:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra007", "cpu": 80, "mem": 40, "status": "OK", "timestamp": "2025-08-18T05:54:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra020", "cpu": 42, "mem": 11, "status": "CRITICAL", "timestamp": "2025-08-25T19:33:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra007", "cpu": 50, "mem": 23, "status": "CRITICAL", "timestamp": "2025-08-21T12:15:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra009", "cpu": 13, "mem": 81, "status": "OK", "timestamp": "2025-08-25T18:45:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra013", "cpu": 87, "mem": 93, "status": "CRITICAL", "timestamp": "2025-08-03T02:01:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra014", "cpu": 17, "mem": 65, "status": "CRITICAL", "timestamp": "2025-08-09T17:03:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra011", "cpu": 93, "mem": 51, "status": "OK", "timestamp": "2025-08-14T18:18:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra003", "cpu": 15, "mem": 54, "status": "WARNING", "timestamp": "2025-08-04T07:06:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra002", "cpu": 84, "mem": 77, "status": "OK", "timestamp": "2025-08-11T04:41:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra002", "cpu": 43, "mem": 16, "status": "OK", "timestamp": "2025-08-01T12:17:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra011", "cpu": 64, "mem": 39, "status": "WARNING", "timestamp": "2025-08-24T02:06:00Z"}
 { "create": {} }
-{ "index": {} }
 {"host": "infra003", "cpu": 10, "mem": 86, "status": "CRITICAL", "timestamp": "2025-08-27T03:48:00Z"}
