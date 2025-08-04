@@ -1,0 +1,31 @@
+{
+  "index_patterns": [
+    "infra-logs-*"
+  ],
+  "data_stream": {},
+  "template": {
+    "settings": {
+      "index.lifecycle.name": "infra-ilm-policy",
+      "index.lifecycle.rollover_alias": "infra-logs"
+    },
+    "mappings": {
+      "properties": {
+        "host": {
+          "type": "keyword"
+        },
+        "cpu": {
+          "type": "integer"
+        },
+        "mem": {
+          "type": "integer"
+        },
+        "status": {
+          "type": "keyword"
+        },
+        "timestamp": {
+          "type": "date"
+        }
+      }
+    }
+  }
+}
