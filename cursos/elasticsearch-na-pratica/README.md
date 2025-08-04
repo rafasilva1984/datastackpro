@@ -1,1 +1,0 @@
-# Curso Elasticsearch na Prática
