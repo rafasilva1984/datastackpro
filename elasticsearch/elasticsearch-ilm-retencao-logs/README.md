@@ -53,10 +53,10 @@ Exemplo de documento:
 
 ## 🚀 Passo a Passo para Rodar
 
-### 1. Subir um cluster Elasticsearch local (ou usar um existente)
+### 1. Subir o ambiente completo (Elasticsearch + Kibana via Docker Compose)
 
 ```bash
-docker run -d --name elastic -p 9200:9200 -e "discovery.type=single-node" -e "xpack.security.enabled=false" elasticsearch:8.12.2
+docker-compose up -d
 ```
 
 ### 2. Criar política, template e índice inicial com alias
@@ -73,7 +73,7 @@ bash ingestao/ingestao.sh
 
 ### 4. Importar o dashboard no Kibana (via Stack Management)
 
-1. Acesse `http://localhost:5601`
+1. Acesse o Kibana em `http://localhost:5601`
 2. Vá em **Stack Management > Saved Objects > Import**
 3. Selecione o arquivo `visualizacao/dashboard.ndjson`
 
