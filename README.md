@@ -1,4 +1,13 @@
 
+<!-- BADGES -->
+<p align="center">
+  <img src="https://img.shields.io/badge/status-em%20desenvolvimento-yellow?style=for-the-badge" alt="Status">
+  <img src="https://img.shields.io/badge/licença-MIT-blue?style=for-the-badge" alt="Licença">
+  <img src="https://img.shields.io/github/last-commit/rafasilva1984/datastackpro?style=for-the-badge" alt="Último commit">
+  <img src="https://img.shields.io/github/languages/top/rafasilva1984/datastackpro?style=for-the-badge" alt="Linguagem principal">
+  <img src="https://img.shields.io/badge/cursos-4%20em%20andamento-orange?style=for-the-badge" alt="Cursos">
+</p>
+
 # 🚀 DataStackPro
 
 **Domine o Stack. Decole na Carreira.**
