@@ -1,2 +1,4 @@
-# configuração do Elasticsearch com xpack.security
-Conteúdo simulado para elasticsearch.yml
+cluster.name: "es-datastackpro"
+network.host: 0.0.0.0
+xpack.security.enabled: true
+xpack.security.transport.ssl.enabled: true
