@@ -3,4 +3,3 @@ server.host: "0.0.0.0"
 elasticsearch.hosts: [ "http://elasticsearch:9200" ]
 elasticsearch.serviceAccountToken: "AAEAAWVsYXN0aWMva2liYW5hL2tpYmFuYS10b2tlbjo0MEZhMmxxYVNTbUZ6M0REdjNVTVZR"
 xpack.security.enabled: true
-path.config: /usr/share/kibana/kibana.yml
