@@ -18,8 +18,12 @@ services:
     container_name: kibana
     ports:
       - "5601:5601"
+    depends_on:
+      - elasticsearch
     environment:
       - ELASTICSEARCH_HOSTS=http://elasticsearch:9200
+    volumes:
+      - ./docker/kibana.yml:/usr/share/kibana/config/kibana.yml
 
   app:
     build:
