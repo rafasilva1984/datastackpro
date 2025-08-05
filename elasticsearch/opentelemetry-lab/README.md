@@ -1,5 +1,5 @@
 
-# 📦 OpenTelemetry + Elastic Stack – Observabilidade na Prática
+# 🚀 OpenTelemetry Lab – Observabilidade com Elastic APM
 
 ![DataStackPro](https://img.shields.io/badge/DataStackPro-Projeto%20Oficial-blue)
 ![Elastic APM](https://img.shields.io/badge/Elastic-APM-yellow)
@@ -8,41 +8,59 @@
 
 ---
 
-Este projeto demonstra como aplicar observabilidade com OpenTelemetry enviando dados diretamente para o Elastic APM Server via OTLP, eliminando o uso do Collector.
+Este projeto demonstra, de forma prática, como aplicar observabilidade com OpenTelemetry enviando dados diretamente para o Elastic APM Server via OTLP — simulando o comportamento de uma aplicação real de tecnologia monitorada por rastreamento distribuído.
 
 ---
 
-## 🧱 Componentes
+## 📌 Arquitetura
 
-| Serviço         | Descrição                          | Porta  |
-|-----------------|------------------------------------|--------|
-| app-nodejs      | App com traces OTEL                | 3000   |
-| apm-server      | Coleta e envia para Elastic        | 8200   |
-| elasticsearch   | Armazena os dados observados       | 9200   |
-| kibana          | Interface gráfica de visualização  | 5601   |
+```
+[ Node.js App ]
+     |
+     | OTLP Traces
+     v
+[ Elastic APM Server ] → [ Elasticsearch ] → [ Kibana ]
+```
 
 ---
 
-## 🚀 Como executar
+## ✅ Pré-requisitos
 
-### 1. Clone o repositório
+- Docker e Docker Compose instalados
+- Acesso à porta `3000`, `5601`, `8200`, `9200`
+- 4 GB de RAM livre para execução local
+
+---
+
+## 🧪 Como executar (Passo a Passo)
+
+### 1. Clone o repositório principal
 
 ```bash
 git clone https://github.com/rafasilva1984/datastackpro.git
 cd datastackpro/elasticsearch/opentelemetry-lab/docker
 ```
 
-### 2. Suba os containers
+### 2. Suba os containers com Docker Compose
 
 ```bash
 docker compose up -d
 ```
 
+Os seguintes serviços serão iniciados:
+
+| Serviço         | Descrição                   | Porta |
+|-----------------|-----------------------------|-------|
+| `app`           | Aplicação Node.js instrumentada OTEL | 3000  |
+| `apm-server`    | Coletor de traces do Elastic APM     | 8200  |
+| `elasticsearch` | Armazenamento dos dados observados  | 9200  |
+| `kibana`        | Interface de análise e visualização | 5601  |
+
 ---
 
-### 3. Gere tráfego de teste
+### 3. Gere tráfego para observação
 
-Abra outro terminal:
+Abra outro terminal e execute os seguintes comandos:
 
 ```bash
 curl http://localhost:3000/login
@@ -50,16 +68,49 @@ curl http://localhost:3000/checkout
 curl http://localhost:3000/error
 ```
 
+Ou use o script automático:
+
+```bash
+cd ../scripts
+chmod +x load-test.sh
+./load-test.sh
+```
+
 ---
 
-## 📊 Visualize no Kibana
+### 4. Visualize no Kibana
 
-Acesse: [http://localhost:5601](http://localhost:5601)  
-Vá em **APM > Services** e veja os traces do app!
+Acesse: [http://localhost:5601](http://localhost:5601)
+
+- Vá em **Observability > APM > Services**
+- Clique no serviço detectado para visualizar os traces
+- Explore transações, erros, dependências e tempo de resposta
 
 ---
 
-## ✍️ Autor
+## 📊 Dashboard adicional
+
+1. Vá em **Stack Management > Saved Objects**
+2. Clique em **Import**
+3. Escolha o arquivo `dashboards/dashboard-otel.ndjson`
+4. Acesse o dashboard importado
+
+---
+
+## 📁 Estrutura do Projeto
+
+```
+opentelemetry-lab/
+├── app-nodejs/         # Código da aplicação com OpenTelemetry
+├── docker/             # Arquivos do Docker Compose
+├── scripts/            # Scripts para carga de testes
+├── dashboards/         # Dashboards Kibana exportados
+└── README.md           # Documentação detalhada
+```
+
+---
+
+## 🙋‍♂️ Autor
 
 **Rafael Silva**  
 🔗 [LinkedIn](http://linkedin.com/in/rafael-silva-leader-coordenador)  
