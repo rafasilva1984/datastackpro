@@ -1,0 +1,17 @@
+
+receivers:
+  otlp:
+    protocols:
+      grpc:
+      http:
+
+exporters:
+  elastic:
+    apm_server:
+      endpoint: "http://apm-server:8200"
+
+service:
+  pipelines:
+    traces:
+      receivers: [otlp]
+      exporters: [elastic]
