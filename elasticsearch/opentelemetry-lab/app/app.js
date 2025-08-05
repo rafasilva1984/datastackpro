@@ -1,39 +1,24 @@
-
-// app-nodejs/app.js
 const express = require('express');
-const app = express();
-const port = 3000;
-
-// OpenTelemetry SDK
 const { NodeSDK } = require('@opentelemetry/sdk-node');
-const { getNodeAutoInstrumentations } = require('@opentelemetry/auto-instrumentations-node');
-const { OTLPTraceExporter } = require('@opentelemetry/exporter-trace-otlp-grpc');
+const { getNodeAutoInstrumentations } = require('@opentelemetry/auto-instrumentations-node'); // opcional se funcionar
 
+const app = express();
+
+// OpenTelemetry config
 const sdk = new NodeSDK({
-  traceExporter: new OTLPTraceExporter({
-    url: 'http://otel-collector:4317',
-  }),
-  instrumentations: [getNodeAutoInstrumentations()],
+  instrumentations: [
+    require('@opentelemetry/instrumentation-http'),
+    require('@opentelemetry/instrumentation-express')
+  ]
 });
 
 sdk.start();
 
-app.get('/login', (req, res) => {
-  setTimeout(() => {
-    res.send('Login efetuado com sucesso');
-  }, 100);
+app.get('/', (req, res) => {
+  res.send('Aplicação Node com OpenTelemetry está funcionando!');
 });
 
-app.get('/checkout', (req, res) => {
-  setTimeout(() => {
-    res.send('Checkout realizado');
-  }, 200);
-});
-
-app.get('/error', (req, res) => {
-  throw new Error('Erro simulado!');
-});
-
+const port = process.env.PORT || 3000;
 app.listen(port, () => {
-  console.log(`App rodando na porta ${port}`);
+  console.log(`Servidor rodando em http://localhost:${port}`);
 });
