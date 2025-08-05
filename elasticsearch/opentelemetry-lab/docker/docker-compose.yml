@@ -23,7 +23,7 @@ services:
     environment:
       - ELASTICSEARCH_HOSTS=http://elasticsearch:9200
     volumes:
-      - ./docker/kibana.yml:/usr/share/kibana/kibana.yml
+      - ./docker/kibana-config:/usr/share/kibana/config
 
   app:
     build:
