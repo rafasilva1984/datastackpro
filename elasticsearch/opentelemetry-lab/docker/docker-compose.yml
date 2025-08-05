@@ -1,4 +1,5 @@
 version: "3.8"
+
 services:
   elasticsearch:
     image: docker.elastic.co/elasticsearch/elasticsearch:8.13.0
@@ -22,5 +23,17 @@ services:
       - ELASTICSEARCH_USERNAME=elastic
       - ELASTICSEARCH_PASSWORD=changeme
 
-volumes:
-  esdata:
+  app:
+    build:
+      context: ../app
+      dockerfile: Dockerfile
+    container_name: otel-app
+    environment:
+      - OTEL_SERVICE_NAME=meu-app-node
+      - OTEL_EXPORTER_OTLP_ENDPOINT=http://localhost:4318
+      - NODE_TLS_REJECT_UNAUTHORIZED=0
+    depends_on:
+      - elasticsearch
+      - kibana
+    ports:
+      - "3000:3000"
