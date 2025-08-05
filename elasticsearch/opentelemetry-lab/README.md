@@ -1,81 +1,127 @@
 
-# OpenTelemetry Lab com Elasticsearch + Kibana (Segurança Ativada)
+# 📡 OpenTelemetry Lab com Elasticsearch + Kibana (Segurança Ativada)
 
-Este laboratório faz parte da iniciativa **DataStackPro** e demonstra como integrar uma aplicação Node.js instrumentada com OpenTelemetry a um cluster Elasticsearch com **X-Pack Security habilitado**, utilizando o APM da Elastic para observabilidade real.
-
----
-
-## 🔐 Segurança
-
-Este ambiente já está configurado com autenticação básica via X-Pack.
-
-- **Usuário**: `elastic`
-- **Senha**: `changeme` (definida apenas para fins locais/testes)
+Este laboratório faz parte da iniciativa **[DataStackPro](https://github.com/rafasilva1984/datastackpro)** e simula um cenário real de observabilidade para aplicações modernas com **OpenTelemetry** + **Elastic APM**, integrando rastreamento distribuído, análise de performance e dashboards prontos em um cluster com **segurança ativada** via X-Pack.
 
 ---
 
-## 📦 Estrutura do Projeto
+## 🔐 Segurança (X-Pack Enabled)
 
-```
+O ambiente está protegido com autenticação básica via **X-Pack Security**, simulando ambientes corporativos reais.
+
+| Recurso     | Valor     |
+|-------------|-----------|
+| Usuário     | `elastic` |
+| Senha       | `changeme` (uso apenas local/testes) |
+
+> Todos os serviços compartilham credenciais e autenticação integrada no cluster. O Fleet/APM requerem esse nível básico de segurança ativo.
+
+---
+
+## 🧱 Estrutura do Projeto
+
+```bash
 opentelemetry-lab/
-├── app/                 # Aplicação Node.js instrumentada
+├── app/                 # Aplicação Node.js instrumentada com OTEL
 │   ├── app.js
 │   ├── package.json
 │   └── Dockerfile
-├── docker/              # Arquivos de configuração do Elastic e Kibana
+├── docker/              # Configurações dos containers e serviços
+│   ├── docker-compose.yml
 │   ├── elasticsearch.yml
-│   ├── kibana.yml
-│   └── docker-compose.yml
-├── dashboards/          # Dashboards prontos para importar no Kibana
+│   └── kibana.yml
+├── dashboards/          # Dashboards APM customizados exportados do Kibana
 │   └── apm-dashboard.ndjson
-├── scripts/             # Scripts utilitários
+├── scripts/             # Script utilitário para simular carga de requisições
 │   └── load.sh
-└── README.md            # Este arquivo
+└── README.md            # Este guia
 ```
 
 ---
 
-## 🚀 Como rodar o projeto localmente (Docker Desktop)
+## 🚀 Como executar o projeto (Docker Desktop)
 
-1. Clone este repositório:
+### 1. Clone o repositório
+
 ```bash
 git clone https://github.com/rafasilva1984/datastackpro.git
 cd datastackpro/elasticsearch/opentelemetry-lab
 ```
 
-2. Suba os containers:
+### 2. Suba todos os serviços com Docker Compose
+
 ```bash
 docker compose -f docker/docker-compose.yml up --build -d
 ```
 
-3. Aguarde 1-2 minutos até os serviços inicializarem.
+⚠️ Aguarde cerca de 1–2 minutos para os containers estarem prontos. Verifique com:
 
-4. Inicie a carga simulada de dados:
+```bash
+docker ps
+```
+
+---
+
+## 🧪 Gerar dados de telemetria simulados
+
+Execute o script de carga para gerar tráfego com spans, latência, erros e requisições reais:
+
 ```bash
 bash scripts/load.sh
 ```
+
+Esse script executa diversas rotas da aplicação `/login`, `/checkout`, `/error`, permitindo visualizar os fluxos no Kibana.
 
 ---
 
 ## 📊 Acessando o Kibana
 
 - URL: [http://localhost:5601](http://localhost:5601)
-- Usuário: `elastic`
+- Login: `elastic`
 - Senha: `changeme`
 
-> Vá em *APM > Services* para visualizar os dados de telemetria.
+### Navegue até:
+
+- **Observability > APM > Services** → Ver os serviços OTEL
+- **Dashboards** → Importar visualizações extras
 
 ---
 
-## 📌 Observações
+## 📈 Importando Dashboard Personalizado (Opcional)
 
-- Este ambiente roda **totalmente local**, com dados simulados.
-- O `X-Pack Security` é ativado para permitir uso do **Fleet** e **APM UI**.
-- Toda a comunicação entre os serviços usa `localhost`, sem necessidade de certificados adicionais.
+1. Vá em **Stack Management > Saved Objects**
+2. Clique em **Import**
+3. Selecione o arquivo: `dashboards/apm-dashboard.ndjson`
+4. Após importar, vá em **Dashboard > APM – OTEL Lab**
 
 ---
 
-## 🤝 Projeto mantido por [Rafael Silva](https://github.com/rafasilva1984) para a comunidade de Observabilidade.
+## 📌 Observações Importantes
 
-Siga e contribua com o projeto no GitHub: ⭐  
-https://github.com/rafasilva1984/datastackpro
+- ✅ Ideal para estudos, PoCs, workshops ou treinamento de equipes.
+- ✅ Stack completa com dados reais trafegando localmente.
+- ✅ Usa `OTLP/gRPC` como protocolo padrão entre app e o APM Server.
+- ✅ Todo ambiente roda em `localhost`, sem necessidade de certificados TLS.
+- 🚫 Não recomendado usar `changeme` em ambientes reais.
+
+---
+
+## 💡 Extensões futuras
+
+- 📦 Adicionar métricas com OpenTelemetry Metrics + Elastic Agent
+- 🧵 Habilitar logging estruturado com Elastic Logging
+- 📬 Incluir alertas com Watcher / Kibana Alerts
+- 🌍 Integração com observabilidade distribuída multi-stack
+
+---
+
+## 👨‍💻 Autor
+
+**Rafael Silva** – Especialista em Observabilidade, Elastic Stack, Dados e DevOps  
+🔗 [LinkedIn](http://linkedin.com/in/rafael-silva-leader-coordenador)  
+🐙 [GitHub](https://github.com/rafasilva1984)
+
+---
+
+© 2025 – Projeto mantido na comunidade **[DataStackPro](https://github.com/rafasilva1984/datastackpro)**  
+Compartilhe, contribua e fortaleça a cultura DevOps com observabilidade real.
