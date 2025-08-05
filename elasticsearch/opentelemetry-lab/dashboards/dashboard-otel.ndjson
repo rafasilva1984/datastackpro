@@ -1,0 +1,10 @@
+
+{
+  "type": "dashboard",
+  "attributes": {
+    "title": "OpenTelemetry - App Observability",
+    "panelsJSON": "[{"panelIndex":"1","gridData":{"x":0,"y":0,"w":24,"h":15,"i":"1"},"type":"visualization","id":"service-latency"},{"panelIndex":"2","gridData":{"x":0,"y":15,"w":24,"h":15,"i":"2"},"type":"visualization","id":"errors-by-service"}]",
+    "optionsJSON": "{}",
+    "version": 1
+  }
+}
