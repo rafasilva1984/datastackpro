@@ -1,6 +1,5 @@
 server.name: kibana
 server.host: "0.0.0.0"
 elasticsearch.hosts: [ "http://elasticsearch:9200" ]
-elasticsearch.username: "elastic"
-elasticsearch.password: "changeme"
+elasticsearch.serviceAccountToken: "AAEAAWVsYXN0aWMva2liYW5hL2tpYmFuYS10b2tlbjpFcm8taS1aTlNUQ0FVd3A4VW42N0Fn"
 xpack.security.enabled: true
