@@ -12,7 +12,7 @@
     "@opentelemetry/sdk-node": "^0.45.0",
     "@opentelemetry/instrumentation-http": "^0.45.0",
     "@opentelemetry/instrumentation-express": "^0.45.0",
-    "@opentelemetry/auto-instrumentations-node": "^0.45.0",
+    "@opentelemetry/auto-instrumentations-node": "^0.43.0",
     "@opentelemetry/exporter-trace-otlp-http": "^0.45.0"
   }
 }
