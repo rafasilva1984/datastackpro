@@ -10,7 +10,7 @@ const { OTLPTraceExporter } = require('@opentelemetry/exporter-trace-otlp-http')
 
 const sdk = new NodeSDK({
   traceExporter: new OTLPTraceExporter({
-    url: 'http://localhost:8200/v1/traces', // <-- ALTERADO para o APM Server real
+    url: 'http://localhost:8200', // <-- ALTERADO para o APM Server real
   }),
   instrumentations: [getNodeAutoInstrumentations()],
 });
