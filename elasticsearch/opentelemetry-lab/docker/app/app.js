@@ -1,4 +1,3 @@
-
 // app-nodejs/app.js
 const express = require('express');
 const app = express();
@@ -7,11 +6,11 @@ const port = 3000;
 // OpenTelemetry SDK
 const { NodeSDK } = require('@opentelemetry/sdk-node');
 const { getNodeAutoInstrumentations } = require('@opentelemetry/auto-instrumentations-node');
-const { OTLPTraceExporter } = require('@opentelemetry/exporter-trace-otlp-grpc');
+const { OTLPTraceExporter } = require('@opentelemetry/exporter-trace-otlp-http'); // <-- ALTERADO
 
 const sdk = new NodeSDK({
   traceExporter: new OTLPTraceExporter({
-    url: 'http://localhost:8200',
+    url: 'http://apm-server:8200/v1/traces', // <-- ALTERADO para o APM Server real
   }),
   instrumentations: [getNodeAutoInstrumentations()],
 });
