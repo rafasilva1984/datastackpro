@@ -6,12 +6,16 @@ const port = 3000;
 // OpenTelemetry SDK
 const { NodeSDK } = require('@opentelemetry/sdk-node');
 const { getNodeAutoInstrumentations } = require('@opentelemetry/auto-instrumentations-node');
-const { OTLPTraceExporter } = require('@opentelemetry/exporter-trace-otlp-http'); // <-- ALTERADO
+const { OTLPTraceExporter } = require('@opentelemetry/exporter-trace-otlp-http');
 
 const sdk = new NodeSDK({
   traceExporter: new OTLPTraceExporter({
-    url: 'http://localhost:8200', // <-- ALTERADO para o APM Server real
+    url: 'http://kibana:8200/v1/traces',
+    headers: {
+      'Authorization': 'Basic ' + Buffer.from('elastic:changeme').toString('base64'),
+    },
   }),
+  serviceName: 'meu-app-node',
   instrumentations: [getNodeAutoInstrumentations()],
 });
 
