@@ -1,12 +1,15 @@
-FROM node:18
+# app-nodejs/Dockerfile
+FROM node:18-alpine
 
-ENV NODE_TLS_REJECT_UNAUTHORIZED=0
+WORKDIR /app
 
-WORKDIR /usr/src/app
-COPY . .
-
+COPY package*.json ./
 RUN npm config set strict-ssl false && \
     npm config set registry https://registry.npmjs.org/ && \
     npm install
 
-CMD ["node", "app.js"]
+COPY . .
+
+EXPOSE 3000
+
+CMD ["npm", "start"]
