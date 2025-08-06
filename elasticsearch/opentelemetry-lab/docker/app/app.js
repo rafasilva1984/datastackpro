@@ -1,9 +1,7 @@
-// app-nodejs/app.js
 const express = require('express');
 const app = express();
 const port = 3000;
 
-// OpenTelemetry SDK
 const { NodeSDK } = require('@opentelemetry/sdk-node');
 const { getNodeAutoInstrumentations } = require('@opentelemetry/auto-instrumentations-node');
 const { OTLPTraceExporter } = require('@opentelemetry/exporter-trace-otlp-http');
