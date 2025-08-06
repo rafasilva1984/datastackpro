@@ -3,5 +3,9 @@ server.host: "0.0.0.0"
 elasticsearch.hosts: [ "http://elasticsearch:9200" ]
 #elasticsearch.serviceAccountToken: "AAEAAWVsYXN0aWMva2liYW5hL2tpYmFuYS10b2tlbjp0RzZKc1lFQlQwQ3VZMVRWSzdNZ3Zn"
 xpack.security.enabled: true
+# Desabilita verificação de TLS para acessar o Elastic Package Registry
+xpack.fleet.registryUrl: "https://epr.elastic.co"
+xpack.fleet.registryProxyUrl: ""
+xpack.fleet.tlsCheckDisabled: true
 
 
