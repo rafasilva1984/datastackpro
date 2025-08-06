@@ -62,7 +62,7 @@ services:
       - "3000:3000"
     environment:
       - OTEL_SERVICE_NAME=meu-app-node
-      - OTEL_EXPORTER_OTLP_ENDPOINT=http://apm-server:8200
+      - OTEL_EXPORTER_OTLP_ENDPOINT=http://localhost:8200
       - NODE_TLS_REJECT_UNAUTHORIZED=0
 
 volumes:
