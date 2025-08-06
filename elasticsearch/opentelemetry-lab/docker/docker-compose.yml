@@ -26,19 +26,45 @@ services:
       - ELASTICSEARCH_PASSWORD=changeme
       - NODE_TLS_REJECT_UNAUTHORIZED=0
 
-  app:
+
+apm-server:
+    image: docker.elastic.co/apm/apm-server:7.17.13
+    container_name: apm-server
+    depends_on:
+      - elasticsearch
+    ports:
+      - "8200:8200"
+    environment:
+      - output.elasticsearch.hosts=["http://elasticsearch:9200"]
+      - output.elasticsearch.username=elastic
+      - output.elasticsearch.password=changeme
+    command: >
+      apm-server -e
+        -E apm-server.host=0.0.0.0:8200
+        -E apm-server.secret_token=changeme
+        -E setup.kibana.host=kibana:5601
+        -E setup.kibana.username=elastic
+        -E setup.kibana.password=changeme
+        -E output.elasticsearch.enabled=true
+        -E output.elasticsearch.hosts=["http://elasticsearch:9200"]
+        -E output.elasticsearch.username=elastic
+        -E output.elasticsearch.password=changeme
+
+  otel-app:
     build:
-      context: ./app
+      context: ../app
       dockerfile: Dockerfile
     container_name: otel-app
-    environment:
-      - OTEL_SERVICE_NAME=meu-app-node
-      - OTEL_EXPORTER_OTLP_ENDPOINT=http://localhost:4318
     depends_on:
+      - apm-server
       - elasticsearch
       - kibana
     ports:
       - "3000:3000"
+    environment:
+      - OTEL_SERVICE_NAME=meu-app-node
+      - OTEL_EXPORTER_OTLP_ENDPOINT=http://localhost:8200
+      - NODE_TLS_REJECT_UNAUTHORIZED=0
 
 volumes:
   esdata:
