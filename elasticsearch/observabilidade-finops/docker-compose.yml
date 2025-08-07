@@ -19,12 +19,12 @@ services:
     container_name: kibana
     ports:
       - 5601:5601
+    volumes:
+      - ./kibana.yml:/usr/share/kibana/config/kibana.yml
     environment:
       - ELASTICSEARCH_HOSTS=http://elasticsearch:9200
     depends_on:
       - elasticsearch
-    command: >
-      bash -c "echo 'server.host: 0.0.0.0' >> config/kibana.yml && kibana"
 
 volumes:
   esdata:
