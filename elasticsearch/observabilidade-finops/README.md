@@ -65,35 +65,37 @@ Todos os dados são simulados com timestamps entre 01 e 05 de agosto de 2025.
 ---
 **Autor:** [Rafael Silva](https://github.com/rafasilva1984) · Projeto DataStackPro
 
+
 ---
 
-## 🔐 Autenticação no Kibana (versão 8.x)
+## 🐳 Como subir o ambiente com autenticação via token (Elasticsearch 8.x+)
 
-O Kibana 8 não permite mais usar o usuário `elastic` diretamente para autenticação no `kibana.yml` ou `docker-compose.yml`.  
-É necessário utilizar um **Service Account Token**.
+Atenção: o Kibana **não permite mais autenticação direta com o usuário `elastic`**.
 
-### Passos:
+### ✅ Passo a passo completo:
 
 ```bash
 # 1. Suba apenas o Elasticsearch
 docker compose up -d elasticsearch
 
-# 2. Gere o token com o script abaixo:
+# 2. Gere o token de serviço para o Kibana
 ./create_kibana_token.sh
 ```
 
-O comando retornará algo como:
+O script vai retornar algo como:
 
 ```
 elastic/kibana/kibana-token: AAEAAWVsYXN0aWMva2liYW5hL2tpYmFuYS10b2tlbjpKRkRCQ1dI...
 ```
 
-### 3. No `docker-compose.yml`, substitua:
+### 3. Copie o token e substitua no arquivo `docker-compose.yml`, na parte do Kibana:
 ```yaml
-- ELASTICSEARCH_SERVICE_ACCOUNT_TOKEN=AAEAAWVsYXN0aWMva2liYW5h...
+environment:
+  - ELASTICSEARCH_HOSTS=http://elasticsearch:9200
+  - ELASTICSEARCH_SERVICE_ACCOUNT_TOKEN=AAEAAWVsYXN0aWMva2liYW5h... (cole aqui)
 ```
 
-E remova:
+💡 Remova ou comente as linhas abaixo, se estiverem presentes:
 ```yaml
 # - ELASTICSEARCH_USERNAME=elastic
 # - ELASTICSEARCH_PASSWORD=changeme
@@ -103,3 +105,5 @@ E remova:
 ```bash
 docker compose up -d kibana
 ```
+
+O Kibana agora irá autenticar corretamente usando o token gerado.
