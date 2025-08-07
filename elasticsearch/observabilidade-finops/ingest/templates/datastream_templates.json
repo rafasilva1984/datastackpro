@@ -1,0 +1,14 @@
+{
+  "index_patterns": ["cost-*", "perf-*"],
+  "data_stream": {},
+  "template": {
+    "settings": {
+      "number_of_shards": 1
+    },
+    "mappings": {
+      "properties": {
+        "@timestamp": { "type": "date" }
+      }
+    }
+  }
+}

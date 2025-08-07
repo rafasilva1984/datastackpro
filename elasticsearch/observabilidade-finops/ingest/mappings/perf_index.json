@@ -1,0 +1,12 @@
+{
+  "mappings": {
+    "properties": {
+      "@timestamp": { "type": "date" },
+      "cluster_uuid": { "type": "keyword" },
+      "servico": { "type": "keyword" },
+      "latencia_ms": { "type": "float" },
+      "cpu_percent": { "type": "float" },
+      "erros_total": { "type": "integer" }
+    }
+  }
+}

@@ -1,0 +1,5 @@
+servico-auth
+servico-pagamento
+servico-estoque
+servico-notificacao
+servico-relatorio

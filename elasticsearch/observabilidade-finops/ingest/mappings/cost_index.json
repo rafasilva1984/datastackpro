@@ -1,0 +1,10 @@
+{
+  "mappings": {
+    "properties": {
+      "@timestamp": { "type": "date" },
+      "cluster_uuid": { "type": "keyword" },
+      "servico": { "type": "keyword" },
+      "custo_reais": { "type": "float" }
+    }
+  }
+}
