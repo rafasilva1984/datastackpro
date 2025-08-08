@@ -17,10 +17,7 @@ Este projeto demonstra como correlacionar **custos operacionais** e **performanc
 │   └── templates/
 │       └── datastream_templates.json
 ├── dashboards/
-│   ├── painel-geral.ndjson
-│   ├── painel-clusters.ndjson
-│   ├── painel-servico.ndjson
-│   └── painel-anomalias.ndjson
+│   ├── export.ndjson
 └── README.md
 ```
 
