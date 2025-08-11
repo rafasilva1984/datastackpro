@@ -200,7 +200,7 @@ services:
   loadgen:
     image: curlimages/curl:8.7.1
     container_name: loadgen
-    command: ["sh", "-c", "/scripts/load.sh"]
+    command: ["sh", "-c", "chmod +x /scripts/load.sh && sed -i 's/\\r$//' /scripts/load.sh && /scripts/load.sh"]
     volumes:
       - ./scripts/load.sh:/scripts/load.sh:ro
     environment:
