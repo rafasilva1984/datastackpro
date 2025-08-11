@@ -1,0 +1,125 @@
+{
+  "annotations": {
+    "list": []
+  },
+  "editable": true,
+  "graphTooltip": 0,
+  "id": null,
+  "panels": [
+    {
+      "type": "timeseries",
+      "title": "RPS (rate) - sampleapp",
+      "targets": [
+        {
+          "expr": "rate(sampleapp_http_requests_total[5m])"
+        }
+      ],
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 0
+      },
+      "datasource": {
+        "type": "prometheus",
+        "uid": "Prometheus"
+      }
+    },
+    {
+      "type": "timeseries",
+      "title": "Tempo previsto para atingir RPS (seg)",
+      "targets": [
+        {
+          "expr": "time_to_threshold_seconds{metric=\"sampleapp_rps\"}",
+          "legendFormat": "segundos"
+        }
+      ],
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 12,
+        "y": 0
+      },
+      "datasource": {
+        "type": "prometheus",
+        "uid": "Prometheus"
+      }
+    },
+    {
+      "type": "logs",
+      "title": "Logs da sampleapp (Loki)",
+      "targets": [
+        {
+          "expr": "{job=\"sampleapp\"}"
+        }
+      ],
+      "gridPos": {
+        "h": 9,
+        "w": 12,
+        "x": 0,
+        "y": 8
+      },
+      "datasource": {
+        "type": "loki",
+        "uid": "Loki"
+      }
+    },
+    {
+      "type": "timeseries",
+      "title": "Contagem de logs (ES) por status",
+      "targets": [
+        {
+          "query": "status:*",
+          "refId": "A",
+          "metrics": [
+            {
+              "id": "1",
+              "type": "count"
+            }
+          ],
+          "bucketAggs": [
+            {
+              "id": "2",
+              "type": "terms",
+              "field": "status",
+              "settings": {
+                "size": 5
+              }
+            },
+            {
+              "id": "3",
+              "type": "date_histogram",
+              "field": "@timestamp",
+              "settings": {
+                "interval": "auto"
+              }
+            }
+          ],
+          "timeField": "@timestamp",
+          "datasource": {
+            "type": "elasticsearch",
+            "uid": "Elasticsearch"
+          }
+        }
+      ],
+      "gridPos": {
+        "h": 9,
+        "w": 12,
+        "x": 12,
+        "y": 8
+      }
+    }
+  ],
+  "refresh": "10s",
+  "schemaVersion": 38,
+  "style": "dark",
+  "tags": [
+    "open-observability"
+  ],
+  "time": {
+    "from": "now-1h",
+    "to": "now"
+  },
+  "title": "Open Observability \u2013 Vis\u00e3o Unificada (com Elasticsearch)",
+  "version": 1
+}

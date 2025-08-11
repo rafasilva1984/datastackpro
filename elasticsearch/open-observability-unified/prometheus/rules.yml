@@ -1,0 +1,11 @@
+groups:
+  - name: predictive-alerts
+    rules:
+      - alert: ImminentRequestSaturation
+        expr: time_to_threshold_seconds{metric="sampleapp_rps"} < 600
+        for: 2m
+        labels:
+          severity: critical
+        annotations:
+          summary: "Tráfego previsto para saturar em menos de 10 minutos"
+          description: "RPS prevista atingirá {{ $labels.threshold }} em {{ $value }}s ({{ $labels.instance }})"

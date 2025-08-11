@@ -1,0 +1,212 @@
+version: "3.9"
+
+networks:
+  obs-net:
+
+volumes:
+  prometheus-data:
+  grafana-data:
+  loki-data:
+  tempo-data:
+  esdata:
+  kbdata:
+  sampleapp-logs:   # named volume to share app logs with Filebeat/Promtail
+
+services:
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:8.12.2
+    container_name: elasticsearch
+    environment:
+      - discovery.type=single-node
+      - xpack.security.enabled=false
+      - ES_JAVA_OPTS=-Xms1g -Xmx1g
+    ports:
+      - "9200:9200"
+      - "9300:9300"
+    volumes:
+      - esdata:/usr/share/elasticsearch/data
+    networks:
+      - obs-net
+
+  kibana:
+    image: docker.elastic.co/kibana/kibana:8.12.2
+    container_name: kibana
+    environment:
+      - ELASTICSEARCH_HOSTS=http://elasticsearch:9200
+      - SERVER_PUBLICBASEURL=http://localhost:5601
+    ports:
+      - "5601:5601"
+    depends_on:
+      - elasticsearch
+    networks:
+      - obs-net
+
+  prometheus:
+    image: prom/prometheus:v2.53.0
+    container_name: prometheus
+    command:
+      - "--config.file=/etc/prometheus/prometheus.yml"
+      - "--storage.tsdb.path=/prometheus"
+      - "--web.enable-lifecycle"
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+      - ./prometheus/rules.yml:/etc/prometheus/rules.yml:ro
+      - prometheus-data:/prometheus
+    networks:
+      - obs-net
+
+  alertmanager:
+    image: prom/alertmanager:v0.27.0
+    container_name: alertmanager
+    command: ["--config.file=/etc/alertmanager/config.yml"]
+    ports:
+      - "9093:9093"
+    volumes:
+      - ./alertmanager/config.yml:/etc/alertmanager/config.yml:ro
+    networks:
+      - obs-net
+
+  grafana:
+    image: grafana/grafana:11.1.0
+    container_name: grafana
+    ports:
+      - "3000:3000"
+    environment:
+      - GF_SECURITY_ADMIN_USER=admin
+      - GF_SECURITY_ADMIN_PASSWORD=admin
+      - GF_AUTH_ANONYMOUS_ENABLED=true
+      - GF_AUTH_ANONYMOUS_ORG_ROLE=Viewer
+    volumes:
+      - grafana-data:/var/lib/grafana
+      - ./grafana/provisioning/datasources:/etc/grafana/provisioning/datasources
+      - ./grafana/provisioning/dashboards:/etc/grafana/provisioning/dashboards
+      - ./grafana/dashboards:/var/lib/grafana/dashboards
+    depends_on:
+      - prometheus
+      - loki
+      - tempo
+      - elasticsearch
+    networks:
+      - obs-net
+
+  loki:
+    image: grafana/loki:2.9.8
+    container_name: loki
+    command: ["-config.file=/etc/loki/config.yml"]
+    ports:
+      - "3100:3100"
+    volumes:
+      - ./loki/config.yml:/etc/loki/config.yml:ro
+      - loki-data:/loki
+    networks:
+      - obs-net
+
+  promtail:
+    image: grafana/promtail:2.9.8
+    container_name: promtail
+    command: ["-config.file=/etc/promtail/config.yml"]
+    volumes:
+      - ./promtail/config.yml:/etc/promtail/config.yml:ro
+      - sampleapp-logs:/var/log/sampleapp:ro
+    depends_on:
+      - loki
+    networks:
+      - obs-net
+
+  tempo:
+    image: grafana/tempo:2.5.0
+    container_name: tempo
+    command: ["-config.file=/etc/tempo/config.yaml"]
+    ports:
+      - "3200:3200"   # tempo http
+      - "4317:4317"   # otlp grpc
+      - "4318:4318"   # otlp http
+    volumes:
+      - ./tempo/config.yaml:/etc/tempo/config.yaml:ro
+      - tempo-data:/tmp/tempo
+    networks:
+      - obs-net
+
+  otel-collector:
+    image: otel/opentelemetry-collector-contrib:0.104.0
+    container_name: otel-collector
+    command: ["--config=/etc/otelcol/config.yaml"]
+    ports:
+      - "8888:8888"   # metrics
+      - "4317:4317"
+      - "4318:4318"
+    volumes:
+      - ./otel-collector/config.yaml:/etc/otelcol/config.yaml:ro
+    depends_on:
+      - tempo
+    networks:
+      - obs-net
+
+  cadvisor:
+    image: gcr.io/cadvisor/cadvisor:v0.47.2
+    container_name: cadvisor
+    ports:
+      - "8080:8080"
+    networks:
+      - obs-net
+
+  sampleapp:
+    build: ./sampleapp
+    container_name: sampleapp
+    environment:
+      - SERVICE_NAME=sampleapp
+      - OTEL_EXPORTER_OTLP_ENDPOINT=http://otel-collector:4318
+      - OTEL_SERVICE_NAME=sampleapp
+      - OTEL_RESOURCE_ATTRIBUTES=service.version=1.0,deployment.environment=demo
+      - NODE_ENV=production
+      - APP_PORT=3000
+    ports:
+      - "3001:3000"
+    volumes:
+      - sampleapp-logs:/var/log/sampleapp
+    depends_on:
+      - otel-collector
+    networks:
+      - obs-net
+
+  predictor:
+    build: ./predictor
+    container_name: predictor
+    environment:
+      - PROM_URL=http://prometheus:9090
+      - TARGET_EXPR=rate(sampleapp_http_requests_total[5m])
+      - TARGET_THRESHOLD=50
+      - POLL_SECONDS=60
+    ports:
+      - "8000:8000"
+    depends_on:
+      - prometheus
+    networks:
+      - obs-net
+
+  loadgen:
+    image: curlimages/curl:8.7.1
+    container_name: loadgen
+    command: ["sh", "-c", "/scripts/load.sh"]
+    volumes:
+      - ./scripts/load.sh:/scripts/load.sh:ro
+    depends_on:
+      - sampleapp
+    networks:
+      - obs-net
+
+  filebeat:
+    image: docker.elastic.co/beats/filebeat:8.12.2
+    container_name: filebeat
+    user: root
+    command: ["-e", "-strict.perms=false"]
+    volumes:
+      - ./filebeat/filebeat.yml:/usr/share/filebeat/filebeat.yml:ro
+      - sampleapp-logs:/var/log/sampleapp:ro
+    depends_on:
+      - elasticsearch
+      - sampleapp
+    networks:
+      - obs-net
