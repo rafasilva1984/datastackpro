@@ -1,5 +1,6 @@
-#!/bin/bash
-set -euo pipefail
+#!/bin/sh
+set -eu
+
 echo "🔁 Gerando carga automática para a aplicação..."
 SLEEP_SECONDS="${SLEEP_SECONDS:-1}"
 
