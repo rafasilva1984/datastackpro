@@ -203,6 +203,8 @@ services:
     command: ["sh", "-c", "/scripts/load.sh"]
     volumes:
       - ./scripts/load.sh:/scripts/load.sh:ro
+    environment:
+      - SLEEP_SECONDS=1
     depends_on:
       - sampleapp
     networks:
