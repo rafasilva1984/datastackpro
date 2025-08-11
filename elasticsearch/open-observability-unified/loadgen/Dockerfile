@@ -1,13 +1,13 @@
-FROM alpine:3.18
+# Usa imagem com curl pronto – evita apk e problemas de CA/proxy
+FROM curlimages/curl:8.7.1
 
-RUN apk add --no-cache curl
-
-# Copia o script e define permissão AINDA NO BUILD
 WORKDIR /app
 COPY scripts/load.sh /app/load.sh
+
+# Garante execução (feito no build, não no runtime)
 RUN chmod +x /app/load.sh
 
-# Variável opcional para controlar intensidade da carga
+# Controla intensidade da carga (segundos)
 ENV SLEEP_SECONDS=1
 
-CMD ["/app/load.sh"]
+CMD ["/bin/sh", "/app/load.sh"]
