@@ -10,7 +10,7 @@ volumes:
   tempo-data:
   esdata:
   kbdata:
-  sampleapp-logs:   # named volume to share app logs with Filebeat/Promtail
+  sampleapp-logs:
 
 services:
   elasticsearch:
@@ -115,17 +115,29 @@ services:
     networks:
       - obs-net
 
+  # Init container para ajustar permissões do volume do Tempo
+  tempo-init:
+    image: busybox:1.36
+    container_name: tempo-init
+    command: sh -c "mkdir -p /tmp/tempo/blocks /tmp/tempo/wal && chmod -R 777 /tmp/tempo"
+    volumes:
+      - tempo-data:/tmp/tempo
+    networks:
+      - obs-net
+
   tempo:
     image: grafana/tempo:2.5.0
     container_name: tempo
     command: ["-config.file=/etc/tempo/config.yaml"]
     ports:
-      - "3200:3200"   # tempo http
+      - "3200:3200"   # http
       - "4317:4317"   # otlp grpc
       - "4318:4318"   # otlp http
     volumes:
       - ./tempo/config.yaml:/etc/tempo/config.yaml:ro
       - tempo-data:/tmp/tempo
+    depends_on:
+      - tempo-init
     networks:
       - obs-net
 
