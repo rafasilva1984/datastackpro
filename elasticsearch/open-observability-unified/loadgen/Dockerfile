@@ -1,13 +1,11 @@
-# Usa imagem com curl pronto – evita apk e problemas de CA/proxy
 FROM curlimages/curl:8.7.1
 
-WORKDIR /app
-COPY scripts/load.sh /app/load.sh
+# /tmp é gravável por qualquer usuário
+WORKDIR /tmp
 
-# Garante execução (feito no build, não no runtime)
-RUN chmod +x /app/load.sh
+# Define permissão no momento do COPY (não precisa rodar chmod)
+COPY --chmod=0755 scripts/load.sh /tmp/load.sh
 
-# Controla intensidade da carga (segundos)
 ENV SLEEP_SECONDS=1
 
-CMD ["/bin/sh", "/app/load.sh"]
+CMD ["/bin/sh", "/tmp/load.sh"]
