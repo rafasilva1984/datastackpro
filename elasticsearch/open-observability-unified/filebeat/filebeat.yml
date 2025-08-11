@@ -1,19 +1,20 @@
 filebeat.inputs:
-  - type: log
+  - type: filestream
+    id: sampleapp
     enabled: true
     paths:
-      - /var/log/sampleapp/app.log
-    json.keys_under_root: true
-    json.add_error_key: true
-    fields:
-      service.name: sampleapp
-    fields_under_root: true
-
-setup.template.enabled: true
-setup.template.name: "sampleapp-logs"
-setup.template.pattern: "sampleapp-logs-*"
-setup.ilm.enabled: false
+      - /var/log/sampleapp/*.log
+    parsers:
+      - ndjson:
+          overwrite_keys: true
+          add_error_key: true
+          message_key: message
 
 output.elasticsearch:
   hosts: ["http://elasticsearch:9200"]
-  index: "sampleapp-logs-%{+yyyy.MM.dd}"
+  # se tiver segurança ligada, ajuste:
+  # username: "elastic"
+  # password: "changeme"
+
+setup.template.enabled: true
+setup.ilm.enabled: false
