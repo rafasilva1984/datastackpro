@@ -94,11 +94,11 @@ services:
   loki:
     image: grafana/loki:2.9.8
     container_name: loki
-    command: ["-config.file=/etc/loki/config.yml"]
+    command: ["-config.file=/etc/loki/local-config.yaml"]
     ports:
       - "3100:3100"
     volumes:
-      - ./loki/config.yml:/etc/loki/config.yml:ro
+      - ./loki/local-config.yaml:/etc/loki/local-config.yaml:ro
       - loki-data:/loki
     networks:
       - obs-net
@@ -145,7 +145,7 @@ services:
     image: otel/opentelemetry-collector-contrib:0.104.0
     container_name: otel-collector
     command: ["--config=/etc/otelcol/config.yaml"]
-    # Só expomos 8888 (métricas). 4317/4318 ficam apenas na rede interna para evitar conflito com Tempo.
+    # Exponho só 8888; 4317/4318 ficam internas, evitando conflito com Tempo
     ports:
       - "8888:8888"
     volumes:
