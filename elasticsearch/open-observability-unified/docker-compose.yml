@@ -145,7 +145,7 @@ services:
     container_name: otel-collector
     command: ["--config=/etc/otelcol/config.yaml"]
     ports:
-      - "8888:8888"   # expõe só métricas
+      - "8889:8889"   # expõe só métricas
     volumes:
       - ./otel-collector/config.yaml:/etc/otelcol/config.yaml:ro
     depends_on:
