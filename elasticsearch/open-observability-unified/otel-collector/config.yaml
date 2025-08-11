@@ -1,27 +1,39 @@
 receivers:
   otlp:
     protocols:
-      http:
       grpc:
-
-processors:
-  batch: {}
+        endpoint: "0.0.0.0:4317"
+      http:
+        endpoint: "0.0.0.0:4318"
 
 exporters:
+  logging:
+    loglevel: debug
+
   otlp:
     endpoint: tempo:4317
     tls:
       insecure: true
+
+  otlphttp:
+    endpoint: http://loki:3100/otlp
+    tls:
+      insecure: true
+
   prometheus:
-    endpoint: "0.0.0.0:8888"
+    endpoint: "0.0.0.0:9464"
 
 service:
+  telemetry:
+    metrics:
+      address: 0.0.0.0:8889   # Porta alterada para evitar conflito
   pipelines:
     traces:
       receivers: [otlp]
-      processors: [batch]
-      exporters: [otlp]
+      exporters: [otlp, logging]
     metrics:
       receivers: [otlp]
-      processors: [batch]
-      exporters: [prometheus]
+      exporters: [prometheus, logging]
+    logs:
+      receivers: [otlp]
+      exporters: [otlphttp, logging]
