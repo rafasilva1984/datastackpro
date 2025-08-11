@@ -115,7 +115,7 @@ services:
     networks:
       - obs-net
 
-  # Init container para ajustar permissões do volume do Tempo
+  # init para corrigir permissões do volume do Tempo
   tempo-init:
     image: busybox:1.36
     container_name: tempo-init
@@ -145,10 +145,9 @@ services:
     image: otel/opentelemetry-collector-contrib:0.104.0
     container_name: otel-collector
     command: ["--config=/etc/otelcol/config.yaml"]
+    # Só expomos 8888 (métricas). 4317/4318 ficam apenas na rede interna para evitar conflito com Tempo.
     ports:
-      - "8888:8888"   # metrics
-      - "4317:4317"
-      - "4318:4318"
+      - "8888:8888"
     volumes:
       - ./otel-collector/config.yaml:/etc/otelcol/config.yaml:ro
     depends_on:
