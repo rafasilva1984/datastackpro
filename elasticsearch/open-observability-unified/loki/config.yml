@@ -1,6 +1,9 @@
 auth_enabled: false
+
 server:
   http_listen_port: 3100
+  grpc_listen_port: 9095
+
 common:
   path_prefix: /loki
   storage:
@@ -10,6 +13,14 @@ common:
   replication_factor: 1
   ring:
     instance_addr: 127.0.0.1
+    kvstore:
+      store: memberlist
+
+memberlist:
+  bind_addr: 0.0.0.0
+  bind_port: 7946
+  join_members: []   # single-node
+
 schema_config:
   configs:
     - from: 2020-10-24
@@ -19,5 +30,10 @@ schema_config:
       index:
         prefix: index_
         period: 24h
+
 ruler:
   alertmanager_url: http://alertmanager:9093
+  storage:
+    type: local
+    local:
+      directory: /loki/rules
