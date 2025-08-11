@@ -17,9 +17,10 @@ common:
       store: memberlist
 
 memberlist:
-  bind_addr: 0.0.0.0
+  # Em single-node não precisamos bind_addr; só a porta do ring.
   bind_port: 7946
-  join_members: []  # single-node
+  # Lista explícita (vazia) de peers
+  join_members: []
 
 schema_config:
   configs:
