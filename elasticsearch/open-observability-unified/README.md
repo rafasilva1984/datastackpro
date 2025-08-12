@@ -1,105 +1,158 @@
-# Open Observability – Plataforma 100% Open com **Elastic + Grafana Stack + OTel**
 
-**Objetivo do Case**  
-Criar uma **plataforma de observabilidade unificada**, 100% em containers, que combina o **melhor do ecossistema open**:
-- **Métricas & Alertas** com **Prometheus** (previsão pró-ativa via serviço próprio)
-- **Logs** em **dois destinos**: **Loki** (rápida exploração) **e Elasticsearch** (pesquisa/analytics e Kibana)
-- **Traces** com **OpenTelemetry → Tempo**
-- **Visualização** com **Grafana** (técnico) e **Kibana** (exploração de logs no Elastic)
+# Open Observability Unified
 
-> O diferencial é a **inteligência preditiva**: um microserviço (*predictor*) estima “**em quantos segundos**” você atingirá um limiar de RPS. Isso permite **alertas antes** do problema acontecer.
+Este repositório é uma **prova de conceito** que integra as principais ferramentas de observabilidade em um ecossistema unificado.
+O objetivo é permitir **monitoramento, análise, rastreamento e alertas** de forma centralizada, simulando um ambiente real de observabilidade.
 
 ---
 
-## Arquitetura (alto nível)
+## 📌 Visão Geral do Ecossistema
+
+O ambiente é composto por:
+
+- **Prometheus** → Coleta métricas numéricas de serviços e aplicações.
+- **Grafana** → Interface visual para dashboards e análise de métricas e logs.
+- **Loki** → Armazenamento e consulta de logs.
+- **Tempo** → Rastreamento distribuído (distributed tracing).
+- **Alertmanager** → Gerenciamento de alertas enviados pelo Prometheus.
+- **SampleApp** → Aplicação de exemplo que gera métricas, logs e traces.
+- **Predictor** → Serviço de exemplo que expõe métricas para Prometheus.
+- **Elastic Stack (Opcional)** → Indexação e busca avançada de dados.
+
+A comunicação entre essas ferramentas é orquestrada via **Docker Compose**.
+
+---
+
+## 📂 Estrutura do Projeto
 
 ```
-Carga -> SampleApp (Node.js) --OTLP--> OTel Collector -> Tempo (Traces)
-        |-> Metrics (Prometheus client) -> Prometheus -----> Grafana (Dashboards/Alertas)
-        |-> Logs (JSON) -> Promtail -> Loki ----------------> Grafana (Logs)
-        |-> Logs (JSON) -> Filebeat -> Elasticsearch -------> Kibana (Discover/Visualize)
-Predictor (Python) <-- Prometheus API  ---------------------> Expondo métrica preditiva
+open-observability-unified/
+│── docker-compose.yml        # Orquestração dos containers
+│── prometheus.yml             # Configuração do Prometheus
+│── alert.rules.yml            # Regras de alerta
+│── grafana/                   # Dashboards e datasources
+│── loki-config.yml            # Configuração do Loki
+│── tempo-config.yml           # Configuração do Tempo
+│── sampleapp/                 # Código da aplicação de exemplo
+│   ├── app.js                 
+│   ├── Dockerfile
+│   └── load.sh                 # Script para gerar carga
+│── predictor/                 
+│   ├── app.py                  
+│   ├── requirements.txt
+│── README.md                  
 ```
 
 ---
 
-## Requisitos
-- Docker e Docker Compose
+## ⚙️ Ferramentas e Funções
 
-## Passo a Passo (5 minutos)
-1. **Subir a stack**  
-   ```bash
-   docker compose up -d --build
-   ```
-   Aguarde ~30–60s para provisionamento.
+### **Prometheus**
+- Coleta métricas expostas em endpoints `/metrics` das aplicações.
+- Usa **scrape jobs** definidos no `prometheus.yml` para buscar métricas em intervalos configurados.
+- Armazena dados temporariamente em seu banco interno de séries temporais.
+- Pode enviar alertas para o **Alertmanager**.
 
-2. **Acessos rápidos**
-   - Grafana: http://localhost:3000 (admin / admin)  
-   - Prometheus: http://localhost:9090  
-   - Alertmanager: http://localhost:9093  
-   - Kibana: http://localhost:5601  
-   - Elasticsearch: http://localhost:9200  
-   - SampleApp: http://localhost:3001/health  
-   - Predictor: http://localhost:8000/health  
-
-3. **Dashboard pronto (Grafana)**  
-   Abra o painel **“Open Observability – Visão Unificada (com Elasticsearch)”**.  
-   Você verá:
-   - **RPS** (Prometheus)
-   - **Tempo previsto (s)** para atingir o limiar (métrica `time_to_threshold_seconds`)
-   - **Logs (Loki)** em tempo real
-   - **Contagem de logs por status (Elasticsearch)**
-
-4. **Explorar logs no Kibana (Elasticsearch)**
-   - Acesse **Kibana → Discover**
-   - Crie um **Data View** com `sampleapp-logs-*` e campo de tempo `@timestamp`
-   - Explore campos `route`, `status`, `duration_ms`, `level`, `msg`, `service.name`
-
-5. **Teste os alertas preditivos**
-   - Regra no Prometheus: **ImminentRequestSaturation** dispara quando `time_to_threshold_seconds < 600` por 2m
-   - Aumente carga ajustando o `sleep` em `scripts/load.sh` (diminua o intervalo)
-
----
-
-## Componentes e responsabilidades
-- **Elasticsearch (8.x) + Kibana**: pesquisa e análise de logs (`sampleapp-logs-*`), visual/Discover
-- **Filebeat**: leitor de `/var/log/sampleapp/app.log` → envia para Elasticsearch (mapeamento automático)
-- **Loki + Promtail**: exploração de logs rápida e barata (complementar ao Elastic)
-- **Prometheus + Alertmanager**: métricas e alertas baseados em regra
-- **Predictor (Python)**: previsão por tendência linear do `rate(sampleapp_http_requests_total[5m])`
-- **Grafana**: visão unificada (Prometheus/Loki/Tempo/Elasticsearch)
-- **Tempo**: armazenamento de traces OTLP
-- **OTel Collector**: gateway para traces e métricas por OTLP
-- **SampleApp (Node.js)**: gera métricas, logs (JSON) e traces
-- **Loadgen**: envia tráfego automaticamente
-
----
-
-## Como funciona a previsão
-O serviço **predictor** usa a API do Prometheus para ler o histórico do **RPS**, ajusta uma reta (regressão linear) e calcula **em quantos segundos** o valor atingirá o **limiar** (default `50`).  
-- Métrica: `time_to_threshold_seconds{metric="sampleapp_rps", threshold="50"}`
-- **Alerta**: dispara quando `< 600s` por **2m**.
-
-Personalize no `docker-compose.yml` (serviço `predictor`):
-- `TARGET_EXPR` (PromQL), `TARGET_THRESHOLD`, `POLL_SECONDS`.
-
----
-
-## Troubleshooting
-- **Kibana sem dados**: confirme `filebeat` rodando e volume `sampleapp-logs` montado na app e no filebeat.
-- **Sem dashboards no Grafana**: veja logs do container `grafana` (provisionamento de datasources e dashboards).
-- **Sem traces**: verifique `otel-collector` e `tempo`, e log `OpenTelemetry SDK started` na `sampleapp`.
-- **Sem previsão**: cheque `http://localhost:8000/health` e alcance do Prometheus pelo `predictor`.
-
----
-
-## Observações de licença
-- **Elasticsearch/Kibana** (Elastic License 2) são **gratuitos** para uso e adequados a PoC.  
-- Loki, Prometheus, Grafana, Tempo, OTel Collector são projetos **open source**.
-
----
-
-## Parar e remover
+📌 **Comando para consultar métricas diretamente**:
 ```bash
-docker compose down -v
+curl -s "http://localhost:9090/api/v1/query" --data-urlencode 'query=up'
 ```
+
+---
+
+### **Grafana**
+- Painel visual que conecta-se ao Prometheus, Loki, Tempo e Elasticsearch.
+- Permite criar dashboards unificados.
+- Possui **datasources** pré-configurados para este ambiente.
+
+📌 **Acesso**: [http://localhost:3000](http://localhost:3000) (usuário: admin / senha: admin)
+
+---
+
+### **Loki**
+- Sistema de logs otimizado, inspirado no Prometheus, mas para texto.
+- Coleta logs via push (promtail) ou APIs.
+- Consultas com **LogQL**:
+```bash
+curl -sG "http://localhost:3100/loki/api/v1/query"   --data-urlencode 'query={job="sampleapp"}'   --data-urlencode 'limit=5'
+```
+
+---
+
+### **Tempo**
+- Solução para rastreamento distribuído.
+- Permite ver o caminho de requisições e identificar gargalos.
+
+📌 **Exemplo de uso**:
+- Ao acessar a `SampleApp`, cada requisição gera um **trace** que pode ser visualizado no Grafana.
+
+---
+
+### **Alertmanager**
+- Recebe alertas do Prometheus.
+- Agrupa, deduplica e envia notificações para canais (e-mail, Slack, etc.).
+
+📌 **Acesso**: [http://localhost:9093](http://localhost:9093)
+
+---
+
+## 🚀 Subindo o Ambiente
+
+```bash
+docker compose up -d
+```
+
+Verifique se os containers estão rodando:
+```bash
+docker compose ps
+```
+
+---
+
+## 📊 Gerando Carga e Dados
+
+Para popular o ambiente com métricas, logs e traces:
+
+```bash
+docker compose exec sampleapp bash /app/load.sh
+```
+
+Isso fará com que:
+- O Prometheus colete novas métricas.
+- O Loki receba logs.
+- O Tempo registre novos traces.
+
+---
+
+## 🚨 Simulando Alertas
+
+1. Localize a regra no arquivo `alert.rules.yml`.
+2. Gere uma condição de alerta artificial (exemplo: aumentar uso de CPU).
+3. Veja no Alertmanager: [http://localhost:9093](http://localhost:9093)
+
+---
+
+## 📈 Gerando Insights
+
+- Use o **Grafana** para criar dashboards correlacionando métricas, logs e traces.
+- Exemplo: Crie um painel com:
+  - **Tempo de resposta médio** (Prometheus)
+  - **Logs de erros** (Loki)
+  - **Traces de requisições lentas** (Tempo)
+
+---
+
+## 📚 Guia de Estudos
+Este repositório é ideal para aprender:
+- Fundamentos de observabilidade.
+- Criação de dashboards no Grafana.
+- Consultas PromQL e LogQL.
+- Configuração de alertas.
+- Integração de métricas, logs e traces.
+
+---
+
+## 🛠 Próximos Passos
+- Adicionar autenticação no Grafana e Prometheus.
+- Criar alertas mais complexos.
+- Integrar com Slack ou e-mail para notificações.
