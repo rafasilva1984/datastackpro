@@ -1,0 +1,35 @@
+groups:
+  - name: example-alerts
+    rules:
+      # dispara se a sampleapp ficar OFF por 1 minuto
+      - alert: SampleAppDown
+        expr: up{job="sampleapp"} == 0
+        for: 1m
+        labels:
+          severity: critical
+          env: production
+        annotations:
+          summary: "SampleApp indisponível"
+          description: "O alvo sampleapp está DOWN há mais de 1 minuto."
+
+      # dispara se houver erros (rota /error) de forma contínua
+      - alert: HighErrorRate
+        expr: sum(rate(sampleapp_http_requests_total{route="error"}[1m])) > 0.1
+        for: 2m
+        labels:
+          severity: warning
+          env: production
+        annotations:
+          summary: "Taxa de erro elevada"
+          description: "A rota /error está acima de 0.1 rps por >2m."
+
+      # dispara se o predictor parar de expor métricas
+      - alert: PredictorDown
+        expr: up{job="predictor"} == 0
+        for: 1m
+        labels:
+          severity: critical
+          env: production
+        annotations:
+          summary: "Predictor indisponível"
+          description: "O serviço predictor não responde há >1m."
