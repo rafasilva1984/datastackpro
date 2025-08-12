@@ -1,5 +1,18 @@
 route:
-  receiver: "default"
+  receiver: default
+  group_by: ['alertname', 'job']
+  group_wait: 10s
+  group_interval: 1m
+  repeat_interval: 2h
+
 receivers:
-  - name: "default"
-    webhook_configs: []
+  - name: default
+    # Sem integrações externas por enquanto (somente UI).
+    # Exemplo de webhook (quando quiser testar):
+    # webhook_configs:
+    #   - url: "http://webhook:9000/alerts"
+
+inhibit_rules:
+  - source_matchers: ['severity="critical"']
+    target_matchers: ['severity="warning"']
+    equal: ['alertname', 'job']
