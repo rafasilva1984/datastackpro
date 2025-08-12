@@ -1,109 +1,176 @@
 
-# Open Observability Unified 🚀
+# 📊 Open Observability Unified – Guia Completo
 
-Este repositório demonstra um ecossistema de observabilidade completo, integrado com Elastic Stack, Prometheus, Loki, Grafana e Alertmanager, permitindo coleta, visualização e alerta de métricas, logs e eventos de forma unificada.
-
----
-
-## 📦 Componentes
-
-### 1. Elasticsearch
-Banco de dados para armazenamento e busca de logs e métricas. Utilizado para análise detalhada, dashboards e insights.
-
-### 2. Kibana
-Interface de visualização para dados do Elasticsearch, criação de dashboards e exploração de logs.
-
-### 3. Loki
-Armazenamento otimizado de logs, com integração nativa ao Grafana.
-
-### 4. Prometheus
-Coleta e armazena métricas numéricas em série temporal. Ideal para monitoramento de infraestrutura e aplicações.
-
-### 5. Alertmanager
-Gerencia e envia alertas originados do Prometheus, com suporte a rotas, silenciamento e agrupamento.
-
-### 6. Grafana
-Painéis interativos unificando dados de métricas, logs e traces.
-
-### 7. SampleApp
-Aplicação simulada que gera métricas e logs para testes do ecossistema.
-
-### 8. Predictor
-Serviço que expõe métricas para simular monitoramento de modelo de machine learning.
+Este repositório reúne um **ecossistema completo de observabilidade** integrando métricas, logs e alertas com ferramentas amplamente utilizadas no mercado, permitindo **monitoramento unificado e proativo**.
 
 ---
 
-## 🔍 Fluxo de Dados
+## 🛠️ Arquitetura Geral
 
-1. **SampleApp** → Envia métricas para Prometheus e logs para Loki.
-2. **Predictor** → Envia métricas para Prometheus.
-3. **Prometheus** → Armazena métricas e dispara alertas para o Alertmanager.
-4. **Loki** → Armazena logs consultáveis pelo Grafana.
-5. **Elasticsearch + Kibana** → Coleta e visualiza logs/alertas detalhados.
-6. **Grafana** → Unifica visualização de métricas, logs e alertas.
+A solução é composta por:
+- **Prometheus** → Coleta métricas de aplicações e serviços via *scraping*.
+- **Alertmanager** → Recebe alertas do Prometheus e envia notificações.
+- **Grafana** → Interface visual para dashboards e análise de métricas/logs.
+- **Loki** → Coleta e indexa logs de forma eficiente.
+- **SampleApp** → Aplicação de exemplo para gerar métricas e logs.
+- **Predictor** → Serviço de previsão para gerar métricas simuladas.
+- **Docker Compose** → Orquestra todos os serviços localmente.
 
 ---
 
-## 📊 Geração de Insights
+## 🔍 Componentes e Funcionamento
 
-- **Identificar Gargalos**: Usando métricas de CPU, memória e latência do Prometheus.
-- **Investigar Problemas**: Consultando logs no Loki e Elasticsearch.
-- **Correlacionar Eventos**: Painéis no Grafana mostrando logs e métricas no mesmo período.
-- **Receber Alertas**: Configurações no Alertmanager notificam sobre eventos críticos.
+### 1. **Prometheus**
+- **Função:** Coleta métricas de endpoints configurados no `prometheus.yml`.
+- **Como funciona:** Faz requisições HTTP periódicas (`scraping`) para URLs de serviços que expõem métricas no formato Prometheus.
+- **Configuração-chave:**
+  ```yaml
+  scrape_configs:
+    - job_name: 'sampleapp'
+      static_configs:
+        - targets: ['sampleapp:3000']
+    - job_name: 'predictor'
+      static_configs:
+        - targets: ['predictor:8000']
+  ```
+- **Uso:** Métricas são armazenadas em banco de dados interno *time-series*.
+
+---
+
+### 2. **Alertmanager**
+- **Função:** Recebe alertas do Prometheus e gerencia notificações.
+- **Cenários de uso:** Avisar sobre picos de CPU, indisponibilidade de serviço, etc.
+- **Fluxo:**  
+  1. Prometheus detecta condição de alerta →  
+  2. Envia para Alertmanager →  
+  3. Alertmanager encaminha para e-mail, Slack, etc.
+
+**Configuração de exemplo (`alertmanager.yml`):**
+```yaml
+route:
+  receiver: 'default'
+receivers:
+  - name: 'default'
+    email_configs:
+      - to: 'meuemail@dominio.com'
+```
+
+---
+
+### 3. **Grafana**
+- **Função:** Visualizar métricas e logs de forma unificada.
+- **Integrações neste projeto:**
+  - **Prometheus** (métricas)
+  - **Loki** (logs)
+- **Uso prático:** Criar dashboards para CPU, memória, taxa de erros e muito mais.
+- **Acesso:** [http://localhost:3000](http://localhost:3000) (login padrão: `admin/admin`).
+
+---
+
+### 4. **Loki**
+- **Função:** Armazenar e consultar logs de forma rápida e econômica.
+- **Configuração do Promtail (coletor de logs):**
+```yaml
+scrape_configs:
+  - job_name: 'sampleapp'
+    static_configs:
+      - targets: ['localhost']
+        labels:
+          job: sampleapp
+          __path__: /var/log/*.log
+```
+- **Uso prático:** Buscar logs específicos no Grafana com consultas como:
+```logql
+{job="sampleapp"} |= "ERROR"
+```
+
+---
+
+### 5. **SampleApp**
+- **Função:** Aplicação simples para simular um ambiente monitorado.
+- **Endpoints principais:**
+  - `/login` → Operação de login
+  - `/checkout` → Operação de compra
+  - `/error` → Gera erro proposital
+- **Métricas expostas:** Número de logins, compras e erros.
+
+---
+
+### 6. **Predictor**
+- **Função:** Gera métricas de previsão (ex: tempo estimado para evento).
+- **Endpoint de métricas:** `/metrics`
+
+---
+
+## 🚀 Subindo o Ambiente
+
+```bash
+docker compose up -d
+```
+
+Verifique os serviços ativos:
+```bash
+docker compose ps
+```
+
+---
+
+## 📡 Simulação de Carga
+
+```bash
+for i in {1..50}; do
+  curl -s http://localhost:3001/login >/dev/null
+  curl -s http://localhost:3001/checkout >/dev/null
+  curl -s http://localhost:3001/error >/dev/null || true
+done
+```
 
 ---
 
 ## 🔔 Simulação de Alertas
 
-Para validar o funcionamento do **Prometheus** + **Alertmanager**, siga os passos abaixo para simular alertas de forma controlada.
+Execute no Prometheus para simular:
 
-### 1️⃣ Simulação de Alta CPU
-Força carga de CPU no container `sampleapp` para disparar alerta de **Alta Utilização de CPU**.
+**1. Alerta de CPU Alta**
 ```bash
-docker compose exec sampleapp sh -c 'yes > /dev/null &'
+curl -X POST http://localhost:9090/-/reload
 ```
-> Para parar a carga:
+*(Com regra configurada para CPU > 80%)*
+
+**2. Alerta de Latência Alta**
+Gerar carga artificial:
 ```bash
-docker compose exec sampleapp pkill yes
+for i in {1..200}; do curl -s http://localhost:3001/login; done
 ```
 
----
-
-### 2️⃣ Simulação de Falha de Serviço
-Interrompe o serviço `predictor` para disparar alerta de **Instância Inativa**.
+**3. Alerta de Serviço Fora**
 ```bash
-docker compose stop predictor
-```
-> Para voltar ao normal:
-```bash
-docker compose start predictor
+docker compose stop sampleapp
 ```
 
 ---
 
-### 3️⃣ Simulação de Latência Alta
-Envia múltiplas requisições simultâneas para aumentar a latência e gerar alerta de **Atraso no Tempo de Resposta**.
-```bash
-for i in {1..200}; do
-  curl -s http://localhost:3001/login >/dev/null &
-  curl -s http://localhost:3001/checkout >/dev/null &
-  curl -s http://localhost:3001/error >/dev/null || true &
-done
-wait
-```
+## 📈 Geração de Insights
+- **Dashboards:** Combine métricas do Prometheus com logs do Loki.
+- **Correlação:** Use o mesmo `job` ou `instance` para cruzar dados.
+- **Técnica prática:**  
+  1. Identificar pico de erros →  
+  2. Filtrar logs do mesmo intervalo →  
+  3. Mapear causa raiz.
 
 ---
 
-💡 **Dica:** Após executar cada simulação, acesse o Alertmanager para verificar o disparo do alerta:  
-👉 [http://localhost:9093](http://localhost:9093)
+## 📚 Guia de Estudos
+1. Entender coleta de métricas (Prometheus).
+2. Criar consultas no Prometheus UI.
+3. Integrar e explorar dashboards no Grafana.
+4. Consultar logs no Loki com LogQL.
+5. Criar regras de alerta no Prometheus e integrar no Alertmanager.
 
 ---
 
-## 📚 Uso Educacional
-
-Este repositório serve como um **guia prático de estudo** para entender o funcionamento de um ecossistema de observabilidade real, cobrindo:
-
-- Coleta de métricas e logs
-- Visualização integrada
-- Criação e teste de alertas
-- Análise de incidentes
+## 📌 Referências
+- [Prometheus Docs](https://prometheus.io/docs/)
+- [Grafana Docs](https://grafana.com/docs/)
+- [Loki Docs](https://grafana.com/docs/loki/)
+- [Alertmanager Docs](https://prometheus.io/docs/alerting/latest/alertmanager/)
