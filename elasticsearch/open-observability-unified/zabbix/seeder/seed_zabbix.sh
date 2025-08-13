@@ -6,8 +6,13 @@ ZBX_API_URL="${ZBX_API_URL:-http://zabbix-web:8080/api_jsonrpc.php}"
 ZBX_USER="${ZBX_USER:-Admin}"
 ZBX_PASS="${ZBX_PASS:-zabbix}"
 
-echo "⏳ Aguardando Zabbix Web ficar disponível..."
-until [ "$(curl -s -o /dev/null -w "%{http_code}" http://zabbix-web:8080/api_jsonrpc.php)" -eq 200 ]; do
+echo "⏳ Aguardando Zabbix Web responder com HTTP 200..."
+while true; do
+  STATUS=$(curl -s -o /dev/null -w "%{http_code}" "$ZBX_URL")
+  echo "Status atual: $STATUS"
+  if [ "$STATUS" = "200" ]; then
+    break
+  fi
   sleep 2
 done
 echo "✅ Zabbix Web está no ar!"
