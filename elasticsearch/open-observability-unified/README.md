@@ -60,17 +60,54 @@ done
 Devido a problemas de **certificado SSL inválido** no container oficial, o plugin **Zabbix App para Grafana** é instalado manualmente neste projeto.
 
 ### 🔧 Etapas automatizadas pelo Dockerfile
-1. O plugin `alexanderzobnin-zabbix-app` é baixado previamente (Linux AMD64) na pasta `grafana/plugins/`
-2. O Dockerfile instala as dependências necessárias (`unzip`, `ca-certificates`)
-3. O plugin é descompactado manualmente em `/var/lib/grafana/plugins/zabbix`
-4. O plugin fica disponível automaticamente ao acessar o Grafana
+1. O plugin `alexanderzobnin-zabbix-app` é descompactado previamente no diretório `grafana/zabbix/`
+2. O Dockerfile copia o conteúdo descompactado para `/var/lib/grafana/plugins/zabbix`
+3. O plugin fica disponível automaticamente ao acessar o Grafana
 
 ### 📝 Arquivos relevantes
 - `grafana/Dockerfile` → Customização da imagem do Grafana
-- `grafana/plugins/alexanderzobnin-zabbix-app.zip` → Plugin Zabbix (pré-baixado)
+- `grafana/zabbix/alexanderzobnin-zabbix-app/` → Plugin Zabbix descompactado
 
 **⚠️ Caso queira atualizar o plugin no futuro, baixe manualmente em:**  
 https://grafana.com/grafana/plugins/alexanderzobnin-zabbix-app/
+
+---
+
+## 🔧 Ajustes manuais obrigatórios
+
+Após subir o ambiente, é **necessário executar manualmente as seguintes etapas** para o correto funcionamento do Grafana com o Zabbix e Elasticsearch:
+
+### 1. Ajustar os Hosts no Zabbix
+- Acesse o frontend do Zabbix: [http://localhost:8081](http://localhost:8081)
+- Navegue até **Configuration > Hosts**
+- Localize e edite os hosts existentes
+- Substitua os nomes para `zbx-agent1`, `zbx-agent2` e `zbx-agent3`
+- Certifique-se de que o agente Zabbix está habilitado e escutando na porta 10050
+
+### 2. Criar novo datasource Zabbix no Grafana
+- Acesse o Grafana: [http://localhost:3000](http://localhost:3000)
+- Vá em **Connections > Data sources** e clique em **Add data source**
+- Escolha **Zabbix**
+- Configure o campo **URL** como:
+  ```
+  http://zabbix-web:8080/api_jsonrpc.php
+  ```
+- Autenticação: desabilitada
+- Login: `Admin`, Senha: `zabbix`
+- Clique em **Save & test**
+
+> ⚠️ O datasource Zabbix provisionado automaticamente pode estar bloqueado para edição. Por isso, a criação manual é recomendada.
+
+### 3. Criar novo datasource Elasticsearch no Grafana
+- Ainda em **Connections > Data sources**, clique em **Add data source**
+- Escolha **Elasticsearch**
+- Configure o campo **URL** como:
+  ```
+  http://elasticsearch:9200
+  ```
+- Pattern: `filebeat-*`
+- Time field name: `@timestamp`
+- Salve e teste a conexão
 
 ---
 
@@ -91,7 +128,7 @@ Após subir os serviços com `docker compose up -d --build`, siga este checklist
 ### 🧪 Verificar dashboards no Grafana:
 - Dashboard SampleApp (métricas + logs + traces)
 - Dashboard Elasticsearch Logs
-- Dashboard Zabbix Infraestrutura
+- Dashboard Zabbix Infraestrutura (⚠️ após configurar o novo datasource)
 
 ### 🔐 Testar logins
 - Grafana: `admin` / `admin`
