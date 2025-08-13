@@ -55,6 +55,57 @@ done
 
 ---
 
+## ⚙️ Plugin Zabbix no Grafana: instalação manual
+
+Devido a problemas de **certificado SSL inválido** no container oficial, o plugin **Zabbix App para Grafana** é instalado manualmente neste projeto.
+
+### 🔧 Etapas automatizadas pelo Dockerfile
+1. O plugin `alexanderzobnin-zabbix-app` é baixado previamente (Linux AMD64) na pasta `grafana/plugins/`
+2. O Dockerfile instala as dependências necessárias (`unzip`, `ca-certificates`)
+3. O plugin é descompactado manualmente em `/var/lib/grafana/plugins/zabbix`
+4. O plugin fica disponível automaticamente ao acessar o Grafana
+
+### 📝 Arquivos relevantes
+- `grafana/Dockerfile` → Customização da imagem do Grafana
+- `grafana/plugins/alexanderzobnin-zabbix-app.zip` → Plugin Zabbix (pré-baixado)
+
+**⚠️ Caso queira atualizar o plugin no futuro, baixe manualmente em:**  
+https://grafana.com/grafana/plugins/alexanderzobnin-zabbix-app/
+
+---
+
+## ✅ Validação do ambiente completo
+
+Após subir os serviços com `docker compose up -d --build`, siga este checklist:
+
+### 🔎 Verificar URLs (todas devem estar acessíveis):
+- [x] Grafana em http://localhost:3000
+- [x] Zabbix frontend em http://localhost:8081
+- [x] Kibana em http://localhost:5601
+- [x] Prometheus em http://localhost:9090
+- [x] Tempo em http://localhost:3200
+- [x] Loki em http://localhost:3100
+- [x] Alertmanager em http://localhost:9093
+- [x] SampleApp em http://localhost:3001/health
+
+### 🧪 Verificar dashboards no Grafana:
+- Dashboard SampleApp (métricas + logs + traces)
+- Dashboard Elasticsearch Logs
+- Dashboard Zabbix Infraestrutura
+
+### 🔐 Testar logins
+- Grafana: `admin` / `admin`
+- Zabbix: `Admin` / `zabbix`
+- Elasticsearch: `elastic` / `changeme`
+
+### 📊 Testar ingestão de dados
+```bash
+bash sampleapp/scripts/load.sh
+```
+Ou execute manualmente conforme o passo 6 acima.
+
+---
+
 ## 🔍 Componentes do ecossistema
 
 ### 🟢 Prometheus
@@ -134,7 +185,7 @@ for i in {1..500}; do curl -s http://localhost:3001/login >/dev/null; done
 - `docker-compose.yml` → Sobe todos os serviços
 - `prometheus.yml` → Configuração de coleta
 - `alert.rules.yml` → Regras de alerta
-- `grafana/` → Dashboards e datasources
+- `grafana/` → Dashboards, datasources e plugin manual Zabbix
 - `sampleapp/` → App de exemplo com logs e métricas
 - `zabbix/` → Configuração do frontend e server Zabbix
 
