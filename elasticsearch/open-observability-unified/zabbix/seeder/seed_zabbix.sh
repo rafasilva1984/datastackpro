@@ -7,14 +7,25 @@ until curl -s -o /dev/null "$ZBX_URL"; do
 done
 echo "✅ Zabbix Web está no ar!"
 
-# Login e pegar token (sem jq)
-AUTH_PAYLOAD="{\"jsonrpc\":\"2.0\",\"method\":\"user.login\",\"params\":{\"user\":\"$ZBX_USER\",\"password\":\"$ZBX_PASS\"},\"id\":1}"
-AUTH_RESPONSE=$(curl -s -X POST -H 'Content-Type: application/json' -d "$AUTH_PAYLOAD" "$ZBX_URL")
-AUTH_TOKEN=$(echo "$AUTH_RESPONSE" | sed -n 's|.*"result":"\([^"]*\)".*|\1|p')
+# Login e pegar token
+LOGIN_PAYLOAD=$(cat <<EOF
+{
+  "jsonrpc": "2.0",
+  "method": "user.login",
+  "params": {
+    "user": "$ZBX_USER",
+    "password": "$ZBX_PASS"
+  },
+  "id": 1
+}
+EOF
+)
+
+AUTH_TOKEN=$(curl -s -X POST -H 'Content-Type: application/json' \
+  -d "$LOGIN_PAYLOAD" "$ZBX_URL" | sed -n 's/.*"result":"\([^"]*\)".*/\1/p')
 
 if [ -z "$AUTH_TOKEN" ]; then
-  echo "❌ Erro ao obter token de autenticação. Resposta:"
-  echo "$AUTH_RESPONSE"
+  echo "❌ Erro ao obter token de autenticação. Verifique usuário e senha."
   exit 1
 fi
 
