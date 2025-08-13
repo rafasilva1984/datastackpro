@@ -108,6 +108,31 @@
         "x": 12,
         "y": 8
       }
+    },
+    {
+      "type": "timeseries",
+      "title": "Uso de CPU (Zabbix)",
+      "targets": [
+        {
+          "group": { "filter": "" },
+          "host": { "filter": "Zabbix server" },
+          "application": { "filter": "CPU" },
+          "item": { "filter": "CPU utilization" },
+          "mode": 0,
+          "resultFormat": "time_series",
+          "refId": "A"
+        }
+      ],
+      "gridPos": {
+        "h": 9,
+        "w": 12,
+        "x": 0,
+        "y": 17
+      },
+      "datasource": {
+        "type": "alexanderzobnin-zabbix-datasource",
+        "uid": "Zabbix"
+      }
     }
   ],
   "refresh": "10s",
@@ -120,6 +145,6 @@
     "from": "now-1h",
     "to": "now"
   },
-  "title": "Open Observability \u2013 Vis\u00e3o Unificada (com Elasticsearch)",
-  "version": 1
+  "title": "Open Observability – Visão Unificada (com Elasticsearch e Zabbix)",
+  "version": 2
 }
