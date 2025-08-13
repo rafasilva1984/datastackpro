@@ -1,7 +1,12 @@
 FROM grafana/grafana:11.1.0
 
-# Instala o plugin Zabbix para Grafana
-RUN grafana-cli plugins install alexanderzobnin-zabbix-datasource
+# Garante que os certificados CA estejam presentes
+USER root
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends ca-certificates curl && \
+    update-ca-certificates && \
+    grafana-cli plugins install alexanderzobnin-zabbix-datasource && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
 
-# Reinicia o servidor do Grafana automaticamente após instalação
-ENV GF_INSTALL_PLUGINS=alexanderzobnin-zabbix-datasource
+USER grafana
