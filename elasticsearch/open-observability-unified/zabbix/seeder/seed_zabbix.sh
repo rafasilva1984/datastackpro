@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 set -e
 
 echo "\u23f3 Aguardando Zabbix Web ficar dispon\u00edvel..."
