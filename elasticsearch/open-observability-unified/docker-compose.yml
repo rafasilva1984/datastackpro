@@ -88,6 +88,7 @@ services:
       - ./grafana/provisioning/datasources:/etc/grafana/provisioning/datasources
       - ./grafana/provisioning/dashboards:/etc/grafana/provisioning/dashboards
       - ./grafana/dashboards:/var/lib/grafana/dashboards
+      - ./grafana/zabbix:/var/lib/grafana/plugins/alexanderzobnin-zabbix-app
     depends_on: [prometheus, loki, tempo, elasticsearch]
     networks: [obs-net]
     restart: unless-stopped
