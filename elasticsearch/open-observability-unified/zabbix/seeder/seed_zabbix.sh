@@ -7,10 +7,9 @@ ZBX_USER="${ZBX_USER:-Admin}"
 ZBX_PASS="${ZBX_PASS:-zabbix}"
 
 echo "⏳ Aguardando Zabbix Web ficar disponível..."
-until curl -s -o /dev/null -w "%{http_code}" "$ZBX_API_URL" | grep -q "200"; do
+until [ "$(curl -s -o /dev/null -w "%{http_code}" http://zabbix-web:8080/api_jsonrpc.php)" -eq 200 ]; do
   sleep 2
 done
-
 echo "✅ Zabbix Web está no ar!"
 
 # Faz login e obtém o token de autenticação
