@@ -6,16 +6,21 @@ ZBX_API_URL="${ZBX_API_URL:-http://zabbix-web:8080/api_jsonrpc.php}"
 ZBX_USER="${ZBX_USER:-Admin}"
 ZBX_PASS="${ZBX_PASS:-zabbix}"
 
-echo "⏳ Aguardando Zabbix Web responder com HTTP 200..."
+echo "⏳ Aguardando Zabbix API responder corretamente..."
+
 while true; do
-  STATUS=$(curl -s -o /dev/null -w "%{http_code}" "$ZBX_URL")
-  echo "Status atual: $STATUS"
-  if [ "$STATUS" = "200" ]; then
+  RESPONSE=$(curl -s -X POST -H 'Content-Type: application/json' \
+    -d '{"jsonrpc":"2.0","method":"apiinfo.version","id":1}' "$ZBX_URL")
+
+  if echo "$RESPONSE" | grep -q '"result"'; then
+    echo "✅ Zabbix API está respondendo!"
     break
+  else
+    echo "🔁 Aguardando... (resposta atual: $RESPONSE)"
+    sleep 3
   fi
-  sleep 2
 done
-echo "✅ Zabbix Web está no ar!"
+
 
 # Faz login e obtém o token de autenticação
 LOGIN_PAYLOAD=$(cat <<EOF
