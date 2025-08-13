@@ -72,25 +72,25 @@ services:
     networks: [obs-net]
     restart: unless-stopped
 
-grafana:
-  build:
-    context: ./grafana
-  container_name: grafana
-  ports:
-    - "3000:3000"
-  environment:
-    - GF_SECURITY_ADMIN_USER=admin
-    - GF_SECURITY_ADMIN_PASSWORD=admin
-    - GF_AUTH_ANONYMOUS_ENABLED=true
-    - GF_AUTH_ANONYMOUS_ORG_ROLE=Viewer
-  volumes:
-    - grafana-data:/var/lib/grafana
-    - ./grafana/provisioning/datasources:/etc/grafana/provisioning/datasources
-    - ./grafana/provisioning/dashboards:/etc/grafana/provisioning/dashboards
-    - ./grafana/dashboards:/var/lib/grafana/dashboards
-  depends_on: [prometheus, loki, tempo, elasticsearch]
-  networks: [obs-net]
-  restart: unless-stopped
+  grafana:
+    build:
+      context: ./grafana
+    container_name: grafana
+    ports:
+      - "3000:3000"
+    environment:
+      - GF_SECURITY_ADMIN_USER=admin
+      - GF_SECURITY_ADMIN_PASSWORD=admin
+      - GF_AUTH_ANONYMOUS_ENABLED=true
+      - GF_AUTH_ANONYMOUS_ORG_ROLE=Viewer
+    volumes:
+      - grafana-data:/var/lib/grafana
+      - ./grafana/provisioning/datasources:/etc/grafana/provisioning/datasources
+      - ./grafana/provisioning/dashboards:/etc/grafana/provisioning/dashboards
+      - ./grafana/dashboards:/var/lib/grafana/dashboards
+    depends_on: [prometheus, loki, tempo, elasticsearch]
+    networks: [obs-net]
+    restart: unless-stopped
 
 
   loki:
