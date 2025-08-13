@@ -1,14 +1,13 @@
-# Imagem base leve
+# Imagem base
 FROM alpine:3.19
 
-# Instala curl, bash e sed
-RUN apk add --no-cache curl bash sed
+# Troca o repositório para usar HTTP (evita erros de certificado SSL)
+RUN sed -i 's|https://dl-cdn.alpinelinux.org|http://dl-cdn.alpinelinux.org|g' /etc/apk/repositories && \
+    apk add --no-cache curl bash sed
 
-# Copia o script de seed
+# Copia o script de seed para dentro do container
 COPY seed_zabbix.sh /seed/seed_zabbix.sh
-
-# Dá permissão de execução
 RUN chmod +x /seed/seed_zabbix.sh
 
-# Executa o script ao subir
-CMD ["/seed/seed_zabbix.sh"]
+# Define o script como entrypoint
+ENTRYPOINT ["/seed/seed_zabbix.sh"]
