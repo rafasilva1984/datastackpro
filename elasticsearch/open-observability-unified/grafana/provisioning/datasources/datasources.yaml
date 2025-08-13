@@ -31,6 +31,22 @@
         "maxConcurrentShardRequests": 5,
         "database": "sampleapp-logs-*"
       }
+    },
+    {
+      "name": "Zabbix",
+      "type": "alexanderzobnin-zabbix-datasource",
+      "access": "proxy",
+      "url": "http://zabbix-server:10051",
+      "jsonData": {
+        "username": "Admin",
+        "password": "zabbix",
+        "trends": true,
+        "trendsFrom": "7d",
+        "cacheTTL": "1h"
+      },
+      "secureJsonData": {
+        "password": "zabbix"
+      }
     }
   ]
 }
