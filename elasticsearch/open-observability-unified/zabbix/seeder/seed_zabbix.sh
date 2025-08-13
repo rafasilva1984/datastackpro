@@ -3,7 +3,6 @@ set -e
 
 echo "⏳ Aguardando Zabbix API responder corretamente..."
 
-# Aguarda até que a API do Zabbix responda com erro (ou seja, está online)
 while true; do
   RESPONSE=$(curl -s -X POST -H 'Content-Type: application/json' \
     -d '{"jsonrpc":"2.0","method":"apiinfo.version","id":1}' "$ZBX_URL")
@@ -40,7 +39,7 @@ fi
 
 echo "🔑 Token obtido: $AUTH_TOKEN"
 
-# Verifica ou cria grupo
+# Grupo
 GROUP_RESPONSE=$(curl -s -X POST -H 'Content-Type: application/json' \
   -d "{
         \"jsonrpc\": \"2.0\",
@@ -61,14 +60,13 @@ if [ -z "$GROUP_ID" ]; then
           \"auth\": \"$AUTH_TOKEN\",
           \"id\": 1
         }" "$ZBX_URL")
-
   GROUP_ID=$(echo "$CREATE_GROUP_RESPONSE" | sed -n 's/.*"groupids":\["\([^"]*\)"\].*/\1/p')
   echo "📦 Grupo criado: $GROUP_ID"
 else
   echo "📦 Grupo já existe: $GROUP_ID"
 fi
 
-# Busca template
+# Template
 TEMPLATE_RESPONSE=$(curl -s -X POST -H 'Content-Type: application/json' \
   -d "{
         \"jsonrpc\": \"2.0\",
@@ -87,7 +85,6 @@ fi
 
 echo "📋 Template encontrado: $TEMPLATE_ID"
 
-# Criação dos hosts
 IFS=',' read -r -a HOSTS <<< "$ZBX_HOSTS"
 
 for HOST in "${HOSTS[@]}"; do
@@ -125,14 +122,12 @@ for HOST in "${HOSTS[@]}"; do
             \"auth\": \"$AUTH_TOKEN\",
             \"id\": 1
           }" "$ZBX_URL")
-
     HOST_ID=$(echo "$CREATE_HOST_RESPONSE" | sed -n 's/.*"hostids":\["\([^"]*\)"\].*/\1/p')
-    echo "🖥 Host criado: $HOST_ID ($HOST)"
+    echo "🖥 Host criado: $HOST_ID"
   else
-    echo "🖥 Host já existe: $HOST_ID ($HOST)"
+    echo "🖥 Host já existe: $HOST_ID"
   fi
 
-  # Verifica item trapper
   ITEM_RESPONSE=$(curl -s -X POST -H 'Content-Type: application/json' \
     -d "{
           \"jsonrpc\": \"2.0\",
@@ -163,7 +158,6 @@ for HOST in "${HOSTS[@]}"; do
             \"auth\": \"$AUTH_TOKEN\",
             \"id\": 1
           }" "$ZBX_URL")
-
     ITEM_ID=$(echo "$CREATE_ITEM_RESPONSE" | sed -n 's/.*"itemids":\["\([^"]*\)"\].*/\1/p')
     echo "📊 Item criado: $ITEM_ID"
   else
