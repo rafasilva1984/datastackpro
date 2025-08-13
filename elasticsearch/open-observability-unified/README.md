@@ -79,34 +79,34 @@ Após subir o ambiente, é **necessário executar manualmente as seguintes etapa
 
 ### 1. Ajustar os Hosts no Zabbix
 - Acesse o frontend do Zabbix: [http://localhost:8081](http://localhost:8081)
-- Navegue até **Configuration > Hosts**
-- Localize e edite os hosts existentes
-- Substitua os nomes para `zbx-agent1`, `zbx-agent2` e `zbx-agent3`
-- Certifique-se de que o agente Zabbix está habilitado e escutando na porta 10050
+- Vá em **Configuration > Hosts**
+- Edite os hosts existentes
+- Altere os nomes para `zbx-agent1`, `zbx-agent2`, `zbx-agent3`
+- Certifique-se que o agente está ativo e escutando na porta padrão (10050)
 
 ### 2. Criar novo datasource Zabbix no Grafana
-- Acesse o Grafana: [http://localhost:3000](http://localhost:3000)
-- Vá em **Connections > Data sources** e clique em **Add data source**
-- Escolha **Zabbix**
-- Configure o campo **URL** como:
+- Acesse: [http://localhost:3000](http://localhost:3000)
+- Vá em **Connections > Data Sources**
+- Clique em **Add data source**
+- Selecione **Zabbix**
+- Configure a URL:
   ```
   http://zabbix-web:8080/api_jsonrpc.php
   ```
-- Autenticação: desabilitada
 - Login: `Admin`, Senha: `zabbix`
-- Clique em **Save & test**
+- Clique em **Save & Test**
 
-> ⚠️ O datasource Zabbix provisionado automaticamente pode estar bloqueado para edição. Por isso, a criação manual é recomendada.
+> ⚠️ O datasource provisionado automaticamente pode estar bloqueado para edição. A criação manual garante o funcionamento.
 
 ### 3. Criar novo datasource Elasticsearch no Grafana
-- Ainda em **Connections > Data sources**, clique em **Add data source**
-- Escolha **Elasticsearch**
-- Configure o campo **URL** como:
+- Ainda em **Data Sources**, clique em **Add data source**
+- Selecione **Elasticsearch**
+- URL:
   ```
   http://elasticsearch:9200
   ```
-- Pattern: `filebeat-*`
-- Time field name: `@timestamp`
+- Index pattern: `filebeat-*`
+- Time field: `@timestamp`
 - Salve e teste a conexão
 
 ---
@@ -139,15 +139,14 @@ Após subir os serviços com `docker compose up -d --build`, siga este checklist
 ```bash
 bash sampleapp/scripts/load.sh
 ```
-Ou execute manualmente conforme o passo 6 acima.
 
 ---
 
 ## 🔍 Componentes do ecossistema
 
 ### 🟢 Prometheus
-- Coleta métricas via *pull* dos endpoints configurados.
-- Suporta alertas definidos em `alert.rules.yml`.
+- Coleta métricas via *pull*
+- Regras de alerta: `alert.rules.yml`
 
 **API exemplo:**
 ```bash
@@ -155,7 +154,7 @@ curl "http://localhost:9090/api/v1/query?query=up"
 ```
 
 ### 🚨 Alertmanager
-- Gerencia e envia notificações com base nas regras do Prometheus.
+- Envia alertas definidos no Prometheus
 
 **API exemplo:**
 ```bash
@@ -163,29 +162,29 @@ curl "http://localhost:9093/api/v2/alerts"
 ```
 
 ### 📈 Grafana
-- Painéis de visualização para Prometheus, Loki, Tempo, Elasticsearch e Zabbix.
+- Dashboards e unificação visual
 
 ### 📄 Loki
-- Indexação de logs (via Promtail e Filebeat).
+- Logs estruturados via Filebeat
 
-**API exemplo:**
+**Consulta via API:**
 ```bash
 curl -G "http://localhost:3100/loki/api/v1/query" --data-urlencode 'query={job="sampleapp"}'
 ```
 
 ### 🧵 Tempo
-- Armazena traces distribuídos (OpenTelemetry).
+- Traces distribuídos OpenTelemetry
 
 ### 🔍 Elasticsearch + Kibana
-- Armazena logs estruturados da SampleApp e dashboards no Kibana.
+- Logs e análises de observabilidade
 
-**API exemplo:**
+**Exemplo:**
 ```bash
 curl -u elastic:changeme "http://localhost:9200/_cat/indices?v"
 ```
 
 ### 🖥️ Zabbix
-- Plataforma para monitoramento de infraestrutura e ativos físicos.
+- Monitoramento tradicional de infraestrutura
 
 ---
 
@@ -211,19 +210,19 @@ for i in {1..500}; do curl -s http://localhost:3001/login >/dev/null; done
 ---
 
 ## 📚 Dicas de estudo
-- Combine **métricas (Prometheus)**, **logs (Loki/Elasticsearch)** e **traces (Tempo)** no Grafana.
-- Utilize o Zabbix para observabilidade de infraestrutura on-premises.
-- Explore APIs de todos os componentes para criar integrações automatizadas.
-- Modifique e reinicie serviços no `docker-compose.yml` para testar novos cenários.
+- Combine métricas + logs + traces em dashboards unificados.
+- Explore as APIs dos componentes para automações.
+- O Zabbix é ideal para infra legada ou ambientes on-premises.
+- Reconfigure o `docker-compose.yml` para novos testes.
 
 ---
 
 ## 🛠 Estrutura dos arquivos principais
-- `docker-compose.yml` → Sobe todos os serviços
-- `prometheus.yml` → Configuração de coleta
+- `docker-compose.yml` → Infraestrutura
+- `prometheus.yml` → Coleta de métricas
 - `alert.rules.yml` → Regras de alerta
-- `grafana/` → Dashboards, datasources e plugin manual Zabbix
-- `sampleapp/` → App de exemplo com logs e métricas
-- `zabbix/` → Configuração do frontend e server Zabbix
+- `grafana/` → Dashboards e plugin Zabbix
+- `sampleapp/` → App instrumentado
+- `zabbix/` → Configuração dos containers
 
 ---
