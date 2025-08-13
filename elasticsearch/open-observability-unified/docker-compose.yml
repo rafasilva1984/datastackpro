@@ -9,6 +9,7 @@ volumes:
   tempo-data:
   esdata:
   sampleapp-logs:
+  zbx-pgdata:        # <-- NOVO volume p/ Postgres do Zabbix
 
 services:
   elasticsearch:
@@ -80,6 +81,7 @@ services:
       - GF_SECURITY_ADMIN_PASSWORD=admin
       - GF_AUTH_ANONYMOUS_ENABLED=true
       - GF_AUTH_ANONYMOUS_ORG_ROLE=Viewer
+      - GF_INSTALL_PLUGINS=alexanderzobnin-zabbix-app   # <-- plugin do Zabbix
     volumes:
       - grafana-data:/var/lib/grafana
       - ./grafana/provisioning/datasources:/etc/grafana/provisioning/datasources
@@ -193,5 +195,146 @@ services:
     environment:
       - SLEEP_SECONDS=1
     depends_on: [sampleapp]
+    networks: [obs-net]
+    restart: unless-stopped
+
+  # =========================
+  # Zabbix (Infra on-prem)
+  # =========================
+  zbx-db:
+    image: postgres:15-alpine
+    container_name: zbx-db
+    environment:
+      POSTGRES_USER: zabbix
+      POSTGRES_PASSWORD: zabbix
+      POSTGRES_DB: zabbix
+    volumes:
+      - zbx-pgdata:/var/lib/postgresql/data
+    networks: [obs-net]
+    restart: unless-stopped
+
+  zabbix-server:
+    image: zabbix/zabbix-server-pgsql:alpine-6.4-latest
+    container_name: zabbix-server
+    environment:
+      DB_SERVER_HOST: zbx-db
+      POSTGRES_USER: zabbix
+      POSTGRES_PASSWORD: zabbix
+      POSTGRES_DB: zabbix
+    depends_on: [zbx-db]
+    ports:
+      - "10051:10051"   # server para agentes/proxies
+    networks: [obs-net]
+    restart: unless-stopped
+
+  zabbix-web:
+    image: zabbix/zabbix-web-nginx-pgsql:alpine-6.4-latest
+    container_name: zabbix-web
+    environment:
+      DB_SERVER_HOST: zbx-db
+      POSTGRES_USER: zabbix
+      POSTGRES_PASSWORD: zabbix
+      POSTGRES_DB: zabbix
+      ZBX_SERVER_HOST: zabbix-server
+      PHP_TZ: America/Sao_Paulo
+    depends_on: [zabbix-server, zbx-db]
+    ports:
+      - "8081:8080"     # UI do Zabbix (usei 8081 pra não bater com cadvisor 8080)
+    networks: [obs-net]
+    restart: unless-stopped
+
+  # 5 agentes para simular hosts
+  zbx-agent1:
+    image: zabbix/zabbix-agent2:alpine-6.4-latest
+    container_name: zbx-agent1
+    environment:
+      - ZBX_SERVER_HOST=zabbix-server
+      - ZBX_SERVER_PORT=10051
+      - ZBX_ACTIVE_ALLOW=1
+      - ZBX_HOSTNAME=agent1
+    depends_on: [zabbix-server]
+    networks: [obs-net]
+    restart: unless-stopped
+
+  zbx-agent2:
+    image: zabbix/zabbix-agent2:alpine-6.4-latest
+    container_name: zbx-agent2
+    environment:
+      - ZBX_SERVER_HOST=zabbix-server
+      - ZBX_SERVER_PORT=10051
+      - ZBX_ACTIVE_ALLOW=1
+      - ZBX_HOSTNAME=agent2
+    depends_on: [zabbix-server]
+    networks: [obs-net]
+    restart: unless-stopped
+
+  zbx-agent3:
+    image: zabbix/zabbix-agent2:alpine-6.4-latest
+    container_name: zbx-agent3
+    environment:
+      - ZBX_SERVER_HOST=zabbix-server
+      - ZBX_SERVER_PORT=10051
+      - ZBX_ACTIVE_ALLOW=1
+      - ZBX_HOSTNAME=agent3
+    depends_on: [zabbix-server]
+    networks: [obs-net]
+    restart: unless-stopped
+
+  zbx-agent4:
+    image: zabbix/zabbix-agent2:alpine-6.4-latest
+    container_name: zbx-agent4
+    environment:
+      - ZBX_SERVER_HOST=zabbix-server
+      - ZBX_SERVER_PORT=10051
+      - ZBX_ACTIVE_ALLOW=1
+      - ZBX_HOSTNAME=agent4
+    depends_on: [zabbix-server]
+    networks: [obs-net]
+    restart: unless-stopped
+
+  zbx-agent5:
+    image: zabbix/zabbix-agent2:alpine-6.4-latest
+    container_name: zbx-agent5
+    environment:
+      - ZBX_SERVER_HOST=zabbix-server
+      - ZBX_SERVER_PORT=10051
+      - ZBX_ACTIVE_ALLOW=1
+      - ZBX_HOSTNAME=agent5
+    depends_on: [zabbix-server]
+    networks: [obs-net]
+    restart: unless-stopped
+
+  # Seeder: cria grupo/hosts/itens trapper via API
+  zbx-seeder:
+    image: curlimages/curl:8.10.1
+    container_name: zbx-seeder
+    depends_on: [zabbix-web, zabbix-server]
+    environment:
+      - ZBX_URL=http://zabbix-web:8080/api_jsonrpc.php
+      - ZBX_USER=Admin
+      - ZBX_PASS=zabbix
+      - ZBX_HOSTS=agent1,agent2,agent3,agent4,agent5
+      - ZBX_GROUP=Demo Hosts
+      - ZBX_TEMPLATE=Linux by Zabbix agent
+    volumes:
+      - ./zabbix/seeder/seed_zabbix.sh:/seed/seed_zabbix.sh:ro
+    entrypoint: [ "sh", "/seed/seed_zabbix.sh" ]
+    networks: [obs-net]
+    restart: "no"
+
+  # Flooder: injeta dados nos itens trapper
+  zbx-flood:
+    image: zabbix/zabbix-agent2:alpine-6.4-latest
+    container_name: zbx-flood
+    depends_on: [zabbix-server, zbx-seeder]
+    entrypoint: [ "sh", "-lc" ]
+    command: >
+      'while :; do
+         for h in agent1 agent2 agent3 agent4 agent5; do
+           v=$((RANDOM % 100));
+           zabbix_sender -z zabbix-server -p 10051 -s "$$h" -k custom.trapper.random -o "$$v" >/dev/null 2>&1;
+         done;
+         sleep 1;
+       done'
     networks: [obs-net]
     restart: unless-stopped
