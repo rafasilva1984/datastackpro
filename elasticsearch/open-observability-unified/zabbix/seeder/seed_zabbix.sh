@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 set -e
 
 echo "⏳ Aguardando Zabbix Web ficar disponível..."
@@ -7,7 +7,7 @@ until curl -s -o /dev/null "$ZBX_URL"; do
 done
 echo "✅ Zabbix Web está no ar!"
 
-# Login e pegar token
+# Login e obter token
 AUTH_RESPONSE=$(curl -s -X POST -H 'Content-Type: application/json' \
   -d @- "$ZBX_URL" <<EOF
 {
@@ -22,15 +22,16 @@ AUTH_RESPONSE=$(curl -s -X POST -H 'Content-Type: application/json' \
 EOF
 )
 
-AUTH_TOKEN=$(echo "$AUTH_RESPONSE" | sed -n 's/.*"result":"\([^"]*\)".*/\1/p')
+AUTH_TOKEN=$(echo "$AUTH_RESPONSE" | sed -n 's/.*"result"[ ]*:[ ]*"\([^"]*\)".*/\1/p')
 
 if [ -z "$AUTH_TOKEN" ]; then
-  echo "❌ Erro ao obter token de autenticação. Resposta completa:"
+  echo "❌ Erro ao obter token de autenticação. Verifique usuário e senha."
+  echo "Resposta completa:"
   echo "$AUTH_RESPONSE"
   exit 1
-else
-  echo "🔑 Token obtido com sucesso!"
 fi
+
+echo "🔑 Token obtido: $AUTH_TOKEN"
 
 # Criar grupo se não existir
 GROUP_RESPONSE=$(curl -s -X POST -H 'Content-Type: application/json' \
@@ -38,28 +39,32 @@ GROUP_RESPONSE=$(curl -s -X POST -H 'Content-Type: application/json' \
 {
   "jsonrpc": "2.0",
   "method": "hostgroup.get",
-  "params": { "filter": { "name": "$ZBX_GROUP" } },
+  "params": {
+    "filter": { "name": "$ZBX_GROUP" }
+  },
   "auth": "$AUTH_TOKEN",
   "id": 1
 }
 EOF
 )
 
-GROUP_ID=$(echo "$GROUP_RESPONSE" | sed -n 's/.*"groupid":"\([^"]*\)".*/\1/p')
+GROUP_ID=$(echo "$GROUP_RESPONSE" | sed -n 's/.*"groupid"[ ]*:[ ]*"\([^"]*\)".*/\1/p')
 
 if [ -z "$GROUP_ID" ]; then
-  CREATE_GROUP_RESPONSE=$(curl -s -X POST -H 'Content-Type: application/json' \
+  CREATE_GROUP=$(curl -s -X POST -H 'Content-Type: application/json' \
     -d @- "$ZBX_URL" <<EOF
 {
   "jsonrpc": "2.0",
   "method": "hostgroup.create",
-  "params": { "name": "$ZBX_GROUP" },
+  "params": {
+    "name": "$ZBX_GROUP"
+  },
   "auth": "$AUTH_TOKEN",
   "id": 1
 }
 EOF
-)
-  GROUP_ID=$(echo "$CREATE_GROUP_RESPONSE" | sed -n 's/.*"groupids":\["\([^"]*\)"\].*/\1/p')
+  )
+  GROUP_ID=$(echo "$CREATE_GROUP" | sed -n 's/.*"groupids"[ ]*:[ ]*\["\([^"]*\)".*/\1/p')
   echo "📦 Grupo criado: $GROUP_ID"
 else
   echo "📦 Grupo já existe: $GROUP_ID"
@@ -71,23 +76,19 @@ TEMPLATE_RESPONSE=$(curl -s -X POST -H 'Content-Type: application/json' \
 {
   "jsonrpc": "2.0",
   "method": "template.get",
-  "params": { "filter": { "host": "$ZBX_TEMPLATE" } },
+  "params": {
+    "filter": { "host": "$ZBX_TEMPLATE" }
+  },
   "auth": "$AUTH_TOKEN",
   "id": 1
 }
 EOF
 )
 
-TEMPLATE_ID=$(echo "$TEMPLATE_RESPONSE" | sed -n 's/.*"templateid":"\([^"]*\)".*/\1/p')
+TEMPLATE_ID=$(echo "$TEMPLATE_RESPONSE" | sed -n 's/.*"templateid"[ ]*:[ ]*"\([^"]*\)".*/\1/p')
+echo "📋 Template encontrado: $TEMPLATE_ID"
 
-if [ -z "$TEMPLATE_ID" ]; then
-  echo "❌ Template \"$ZBX_TEMPLATE\" não encontrado!"
-  exit 1
-else
-  echo "📋 Template encontrado: $TEMPLATE_ID"
-fi
-
-# Criar hosts e itens
+# Criar hosts
 IFS=',' read -ra HOSTS <<< "$ZBX_HOSTS"
 for HOST in "${HOSTS[@]}"; do
   HOST_RESPONSE=$(curl -s -X POST -H 'Content-Type: application/json' \
@@ -95,32 +96,33 @@ for HOST in "${HOSTS[@]}"; do
 {
   "jsonrpc": "2.0",
   "method": "host.get",
-  "params": { "filter": { "host": "$HOST" } },
+  "params": {
+    "filter": { "host": "$HOST" }
+  },
   "auth": "$AUTH_TOKEN",
   "id": 1
 }
 EOF
-)
-  HOST_ID=$(echo "$HOST_RESPONSE" | sed -n 's/.*"hostid":"\([^"]*\)".*/\1/p')
+  )
+
+  HOST_ID=$(echo "$HOST_RESPONSE" | sed -n 's/.*"hostid"[ ]*:[ ]*"\([^"]*\)".*/\1/p')
 
   if [ -z "$HOST_ID" ]; then
-    CREATE_HOST_RESPONSE=$(curl -s -X POST -H 'Content-Type: application/json' \
+    CREATE_HOST=$(curl -s -X POST -H 'Content-Type: application/json' \
       -d @- "$ZBX_URL" <<EOF
 {
   "jsonrpc": "2.0",
   "method": "host.create",
   "params": {
     "host": "$HOST",
-    "interfaces": [
-      {
-        "type": 1,
-        "main": 1,
-        "useip": 1,
-        "ip": "$HOST",
-        "dns": "",
-        "port": "10050"
-      }
-    ],
+    "interfaces": [{
+      "type": 1,
+      "main": 1,
+      "useip": 1,
+      "ip": "$HOST",
+      "dns": "",
+      "port": "10050"
+    }],
     "groups": [{ "groupid": "$GROUP_ID" }],
     "templates": [{ "templateid": "$TEMPLATE_ID" }]
   },
@@ -128,14 +130,14 @@ EOF
   "id": 1
 }
 EOF
-)
-    HOST_ID=$(echo "$CREATE_HOST_RESPONSE" | sed -n 's/.*"hostids":\["\([^"]*\)".*/\1/p')
+    )
+    HOST_ID=$(echo "$CREATE_HOST" | sed -n 's/.*"hostids"[ ]*:[ ]*\["\([^"]*\)".*/\1/p')
     echo "🖥 Host criado: $HOST_ID ($HOST)"
   else
     echo "🖥 Host já existe: $HOST_ID ($HOST)"
   fi
 
-  # Criar item trapper
+  # Criar item trapper custom.trapper.random
   ITEM_RESPONSE=$(curl -s -X POST -H 'Content-Type: application/json' \
     -d @- "$ZBX_URL" <<EOF
 {
@@ -149,11 +151,12 @@ EOF
   "id": 1
 }
 EOF
-)
-  ITEM_ID=$(echo "$ITEM_RESPONSE" | sed -n 's/.*"itemid":"\([^"]*\)".*/\1/p')
+  )
+
+  ITEM_ID=$(echo "$ITEM_RESPONSE" | sed -n 's/.*"itemid"[ ]*:[ ]*"\([^"]*\)".*/\1/p')
 
   if [ -z "$ITEM_ID" ]; then
-    CREATE_ITEM_RESPONSE=$(curl -s -X POST -H 'Content-Type: application/json' \
+    CREATE_ITEM=$(curl -s -X POST -H 'Content-Type: application/json' \
       -d @- "$ZBX_URL" <<EOF
 {
   "jsonrpc": "2.0",
@@ -170,8 +173,8 @@ EOF
   "id": 1
 }
 EOF
-)
-    ITEM_ID=$(echo "$CREATE_ITEM_RESPONSE" | sed -n 's/.*"itemids":\["\([^"]*\)".*/\1/p')
+    )
+    ITEM_ID=$(echo "$CREATE_ITEM" | sed -n 's/.*"itemids"[ ]*:[ ]*\["\([^"]*\)".*/\1/p')
     echo "📊 Item criado: $ITEM_ID"
   else
     echo "📊 Item já existe: $ITEM_ID"
