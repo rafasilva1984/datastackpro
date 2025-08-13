@@ -85,9 +85,8 @@ fi
 
 echo "📋 Template encontrado: $TEMPLATE_ID"
 
-IFS=',' read -r -a HOSTS_ARRAY <<< "$ZBX_HOSTS"
-
-for HOST in "${HOSTS_ARRAY[@]}"; do
+IFS=','; set -- $ZBX_HOSTS
+for HOST; do
   echo "⚙️  Processando host: $HOST"
 
   HOST_RESPONSE=$(curl -s -X POST -H 'Content-Type: application/json' \
