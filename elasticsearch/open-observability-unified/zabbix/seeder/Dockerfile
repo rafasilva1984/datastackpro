@@ -1,8 +1,8 @@
 FROM alpine:3.19
 
-# Substitui o mirror padrão para um mais confiável e instala dependências
-RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.aliyun.com/' /etc/apk/repositories && \
-    apk add --no-cache curl jq bash
+# Instala dependências necessárias
+RUN apk update && \
+    apk add --no-cache bash curl jq
 
 # Copia o script de seed
 COPY seed_zabbix.sh /seed/seed_zabbix.sh
