@@ -1,6 +1,0 @@
-apiVersion: v2
-name: sampleapp
-description: Helm chart for sampleapp (Node) with OTLP envs
-type: application
-version: 0.1.0
-appVersion: "1.0.0"
