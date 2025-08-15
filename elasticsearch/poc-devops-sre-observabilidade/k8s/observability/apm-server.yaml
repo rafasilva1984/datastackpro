@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: apm-server
+  namespace: cicd
+spec:
+  replicas: 1
+  selector: { matchLabels: { app: apm-server } }
+  template:
+    metadata: { labels: { app: apm-server } }
+    spec:
+      containers:
+      - name: apm-server
+        image: docker.elastic.co/apm/apm-server:8.14.0
+        args:
+        - "-e"
+        - "--strict.perms=false"
+        - "-E"
+        - "output.elasticsearch.hosts=[\"http://elasticsearch.cicd.svc.cluster.local:9200\"]"
+        - "-E"
+        - "apm-server.otlp.enabled=true"
+        - "-E"
+        - "apm-server.otlp.grpc.endpoint=0.0.0.0:8200"
+        - "-E"
+        - "apm-server.otlp.http.enabled=true"
+        - "-E"
+        - "apm-server.otlp.http.endpoint=0.0.0.0:8201"
+        ports:
+        - { containerPort: 8200, name: otlp-grpc }
+        - { containerPort: 8201, name: otlp-http }
+        resources:
+          requests: { cpu: "100m", memory: "256Mi" }
+          limits:   { cpu: "1",    memory: "1Gi" }
+---
+apiVersion: v1
+kind: Service
+metadata: { name: apm-server, namespace: cicd }
+spec:
+  selector: { app: apm-server }
+  ports:
+  - { name: grpc, port: 8200, targetPort: 8200 }
+  - { name: http, port: 8201, targetPort: 8201 }

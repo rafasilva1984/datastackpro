@@ -1,0 +1,11 @@
+replicaCount: 3
+image:
+  repository: CHANGEME/yourorg/sampleapp
+  tag: "latest"
+  pullPolicy: IfNotPresent
+service:
+  type: ClusterIP
+  port: 80
+otel:
+  endpoint: "http://otel-collector.observability.svc:4317"
+  serviceName: "sampleapp"

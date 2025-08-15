@@ -1,0 +1,10 @@
+{
+  "name": "sampleapp",
+  "version": "1.0.0",
+  "scripts": {
+    "test": "node -e \"process.exit(0)\""
+  },
+  "dependencies": {
+    "express": "^4.19.2"
+  }
+}

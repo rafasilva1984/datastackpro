@@ -1,0 +1,35 @@
+pipeline {
+  agent any
+  environment {
+    APP_NAME   = 'sampleapp'
+    KUBE_NS    = 'cicd'
+    TAG        = "${env.BRANCH_NAME?:'main'}-${env.BUILD_NUMBER}"
+    KIND_NAME  = 'poc-cicd'
+  }
+  options { timestamps(); ansiColor('xterm') }
+  stages {
+    stage('Checkout') { steps { checkout scm } }
+    stage('Unit tests') { steps { sh 'docker run --rm -v "$PWD:/w" -w /w node:20-alpine sh -lc "cd sampleapp && npm ci && npm test"' } }
+    stage('Build image (local)') { steps { sh 'docker build -t ${APP_NAME}:${TAG} -f sampleapp/Dockerfile .' } }
+    stage('Load image into kind') { steps { sh 'kind get clusters | grep -q "^${KIND_NAME}$" || { echo "Cluster ${KIND_NAME} não encontrado"; exit 1; }'; sh 'kind load docker-image ${APP_NAME}:${TAG} --name ${KIND_NAME}' } }
+    stage('Deploy to K8s') { steps { sh '''
+      kubectl apply -f k8s/namespace.yaml
+      kubectl -n ${KUBE_NS} apply -f k8s/observability/elasticsearch.yaml
+      kubectl -n ${KUBE_NS} apply -f k8s/observability/kibana.yaml
+      kubectl -n ${KUBE_NS} apply -f k8s/observability/apm-server.yaml
+      kubectl -n ${KUBE_NS} apply -f k8s/observability/otel-collector.yaml
+      sed -i.bak "s|sampleapp:__TAG__|${APP_NAME}:${TAG}|g" k8s/app/deployment.yaml
+      kubectl -n ${KUBE_NS} apply -f k8s/app
+      kubectl -n ${KUBE_NS} rollout status deploy/sampleapp --timeout=180s
+      mv k8s/app/deployment.yaml.bak k8s/app/deployment.yaml
+    ''' } }
+    stage('Smoke (k6 Job)') { steps { sh '''
+      kubectl -n ${KUBE_NS} apply -f k8s/jobs/k6-smoke-job.yaml || true
+      kubectl -n ${KUBE_NS} delete job k6-smoke --ignore-not-found=true
+      kubectl -n ${KUBE_NS} apply -f k8s/jobs/k6-smoke-job.yaml
+      kubectl -n ${KUBE_NS} wait --for=condition=complete job/k6-smoke --timeout=180s || FAILED=1
+      if [ "$FAILED" = "1" ]; then echo "k6 smoke falhou"; exit 1; fi
+    ''' } }
+  }
+  post { always { echo "Pipeline finalizado: ${currentBuild.currentResult}"; sh 'kubectl -n ${KUBE_NS} get pods -o wide || true' } }
+}
