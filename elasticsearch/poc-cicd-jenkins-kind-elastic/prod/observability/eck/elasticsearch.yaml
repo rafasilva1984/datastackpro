@@ -1,0 +1,29 @@
+apiVersion: elasticsearch.k8s.elastic.co/v1
+kind: Elasticsearch
+metadata:
+  name: es-prod
+  namespace: observability
+spec:
+  version: 8.14.0
+  nodeSets:
+  - name: default
+    count: 3
+    config:
+      node.roles: ["master","data","ingest","transform"]
+      xpack.security.enabled: true
+      xpack.security.http.ssl.enabled: true
+      xpack.security.transport.ssl.enabled: true
+    podTemplate:
+      spec:
+        containers:
+        - name: elasticsearch
+          resources:
+            requests: { cpu: "1", memory: "2Gi" }
+            limits:   { cpu: "2", memory: "4Gi" }
+    volumeClaimTemplates:
+    - metadata: { name: elasticsearch-data }
+      spec:
+        accessModes: ["ReadWriteOnce"]
+        resources:
+          requests:
+            storage: 50Gi

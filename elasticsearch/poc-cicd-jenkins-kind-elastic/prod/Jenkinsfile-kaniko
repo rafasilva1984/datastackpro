@@ -1,0 +1,57 @@
+pipeline {
+  agent { label 'k8s-agent' } // ou 'any' se você tiver kaniko disponível
+  environment {
+    REGISTRY_URL = 'docker.io'             // ou ghcr.io, ecr...
+    IMAGE_NAME   = 'youruser/sampleapp'    // troque pelo seu usuário/org
+    IMAGE_TAG    = "${env.BRANCH_NAME}-${env.BUILD_NUMBER}"
+    KUBE_NS      = 'app'                   // namespace de produção
+    REGISTRY_CREDS = 'docker-registry-creds'
+    RELEASE_NAME = 'sampleapp'
+  }
+  options { timestamps(); ansiColor('xterm') }
+
+  stages {
+    stage('Checkout') {
+      steps { checkout scm }
+    }
+
+    stage('Tests') {
+      steps {
+        sh 'cd sampleapp && npm ci && npm test'
+      }
+    }
+
+    stage('Build & Push (kaniko)') {
+      steps {
+        container('kaniko') {
+          withCredentials([usernamePassword(credentialsId: "${REGISTRY_CREDS}", usernameVariable: 'USER', passwordVariable: 'PASS')]) {
+            sh '''
+              echo "{"auths":{"$REGISTRY_URL":{"username":"$USER","password":"$PASS"}}}" > /kaniko/.docker/config.json
+              /kaniko/executor                 --context `pwd`                 --dockerfile sampleapp/Dockerfile                 --destination $REGISTRY_URL/$IMAGE_NAME:$IMAGE_TAG                 --destination $REGISTRY_URL/$IMAGE_NAME:latest
+            '''
+          }
+        }
+      }
+    }
+
+    stage('Deploy (Helm)') {
+      steps {
+        sh '''
+          helm upgrade --install $RELEASE_NAME charts/sampleapp -n $KUBE_NS             --set image.repository=$REGISTRY_URL/$IMAGE_NAME             --set image.tag=$IMAGE_TAG             --set image.pullPolicy=IfNotPresent             --set otel.endpoint=http://otel-collector.observability.svc.cluster.local:4317             --set otel.environment=production
+          kubectl -n $KUBE_NS rollout status deploy/$RELEASE_NAME-sampleapp --timeout=300s
+        '''
+      }
+    }
+
+    stage('Smoke (k6)') {
+      steps {
+        sh '''
+          # supondo que você tenha um job k6 semelhante em prod
+          kubectl -n $KUBE_NS delete job k6-smoke --ignore-not-found=true
+          kubectl -n $KUBE_NS apply -f prod/k6/k6-smoke-job.yaml
+          kubectl -n $KUBE_NS wait --for=condition=complete job/k6-smoke --timeout=300s
+        '''
+      }
+    }
+  }
+}

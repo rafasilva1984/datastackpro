@@ -1,0 +1,59 @@
+replicaCount: 3
+
+image:
+  repository: REGISTRY_URL/yourorg/sampleapp
+  tag: "latest"
+  pullPolicy: IfNotPresent
+  pullSecrets: []  # e.g., ["regcred"]
+
+service:
+  type: ClusterIP
+  port: 80
+  targetPort: 3000
+
+ingress:
+  enabled: false
+  className: ""
+  annotations: {}
+  hosts:
+    - host: sampleapp.example.com
+      paths:
+        - path: /
+          pathType: Prefix
+  tls: []
+
+resources:
+  requests:
+    cpu: 100m
+    memory: 128Mi
+  limits:
+    cpu: 500m
+    memory: 256Mi
+
+podAnnotations: {}
+nodeSelector: {}
+tolerations: []
+affinity: {}
+
+otel:
+  endpoint: "http://otel-collector.observability.svc.cluster.local:4317"
+  protocol: "grpc"
+  serviceName: "sampleapp"
+  environment: "production"
+
+hpa:
+  enabled: true
+  minReplicas: 3
+  maxReplicas: 10
+  cpu:
+    averageUtilization: 70
+  memory:
+    averageUtilization: 80
+
+pdb:
+  enabled: true
+  minAvailable: 1
+
+networkPolicy:
+  enabled: true
+  egressOTel: true   # allow egress to OTel collector

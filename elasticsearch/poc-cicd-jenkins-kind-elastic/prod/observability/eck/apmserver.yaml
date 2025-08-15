@@ -1,0 +1,23 @@
+apiVersion: apm.k8s.elastic.co/v1
+kind: ApmServer
+metadata:
+  name: apm
+  namespace: observability
+spec:
+  version: 8.14.0
+  count: 1
+  elasticsearchRef:
+    name: es-prod
+  kibanaRef:
+    name: kibana
+  podTemplate:
+    spec:
+      containers:
+      - name: apm-server
+        resources:
+          requests: { cpu: "250m", memory: "512Mi" }
+          limits:   { cpu: "1",    memory: "1Gi" }
+  http:
+    tls:
+      selfSignedCertificate:
+        disabled: false
