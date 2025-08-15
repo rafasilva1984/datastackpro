@@ -1,89 +1,112 @@
 # PoC CI/CD + K8s (kind) + Observabilidade (Elastic local)
 
+<p align="center">
+  <img src="assets/poc-banner.png" alt="PoC CI/CD + Kubernetes + Observabilidade" width="920">
+</p>
+
+<p align="center">
+  <img src="assets/stack-strip-poc.png" alt="Tecnologias e versões" width="920">
+</p>
+
+---
+
 ## 0) Visão geral
 
-Objetivo: uma PoC local, sem registry, que comprova **DevOps + SRE + Observabilidade ponta-a-ponta**:
+Esta PoC comprova **DevOps + SRE + Observabilidade** localmente **sem usar registry**.  
+A imagem Docker é construída no host, **carregada no cluster kind** e o deploy acontece com `kubectl`.  
+A observabilidade é feita por **OpenTelemetry Collector → APM Server → Elasticsearch → Kibana (APM)**.
 
 ```
-Dev → Git push → Jenkins (Docker) 
+Dev → Git push → Jenkins (Docker)
       ├─ docker build sampleapp:<TAG>
       ├─ kind load docker-image sampleapp:<TAG>
       ├─ kubectl apply (Deploy/Service)
       └─ Job k6 (smoke + thresholds)
 
-[SampleApp] -- OTLP --> [OpenTelemetry Collector] -- OTLP --> [APM Server]
-                                              ↘ logs (stdout)
-                 [APM Server] → [Elasticsearch] ↔ [Kibana (APM)]
+[SampleApp] -- OTLP --> [OTel Collector] -- OTLP --> [APM Server]
+                                            ↘ logging (stdout)
+         [APM Server] → [Elasticsearch] ↔ [Kibana (APM)]
 ```
 
 **Por que funciona sem registry?**  
-A imagem é construída localmente, e o `kind load docker-image` copia a imagem para o runtime dos nós do cluster kind. O Deployment usa `imagePullPolicy: IfNotPresent`, então o kubelet encontra a imagem local no nó e não tenta puxar de um registry externo.
+`kind load docker-image` copia a imagem local para o runtime dos nós do cluster kind.  
+Com `imagePullPolicy: IfNotPresent`, o kubelet **encontra a imagem local** e não tenta fazer pull externo.
 
 ---
 
-## 1) O que vem no repositório
+## 1) Estrutura do repositório
 
 ```
 .
-├─ Jenkinsfile                           # pipeline sem registry
-├─ kind-cluster.yaml                     # cluster local (kind)
-├─ sampleapp/                            # app NodeJS com healthchecks
+├─ Jenkinsfile                           # pipeline sem registry (build → kind load → deploy → k6)
+├─ kind-cluster.yaml                     # cluster kind (1 control-plane, 1 worker)
+├─ sampleapp/                            # app NodeJS demo
 │  ├─ Dockerfile
 │  ├─ package.json
-│  └─ app.js
+│  └─ app.js                             # /login, /checkout, /error + healthz/readyz
 └─ k8s/
-   ├─ namespace.yaml                     # namespace cicd
+   ├─ namespace.yaml                     # Namespace: cicd
    ├─ app/
-   │  ├─ deployment.yaml                 # image: sampleapp:__TAG__ + OTEL envs
-   │  └─ service.yaml                    # Service (ClusterIP)
+   │  ├─ deployment.yaml                 # image: sampleapp:__TAG__ + envs OTel
+   │  └─ service.yaml                    # ClusterIP (8080 → 3000)
    ├─ jobs/
-   │  └─ k6-smoke-job.yaml               # smoke test (p95<300ms, erro<2%)
+   │  └─ k6-smoke-job.yaml               # k6 (vus=3, 20s, p95<300ms, erro<2%)
    └─ observability/
-      ├─ elasticsearch.yaml              # ES single-node (sem auth) p/ PoC
-      ├─ kibana.yaml                     # Kibana apontando para ES local
-      ├─ apm-server.yaml                  # APM Server com OTLP habilitado
-      └─ otel-collector.yaml              # OTel Collector (OTLP→APM + logging)
+      ├─ elasticsearch.yaml              # ES single-node (sem auth) — PoC
+      ├─ kibana.yaml                     # Kibana ↔ ES
+      ├─ apm-server.yaml                 # APM Server (OTLP habilitado)
+      └─ otel-collector.yaml             # OTel Collector (OTLP→APM + logging)
 ```
 
 ---
 
-## 2) Requisitos
+## 2) Pré‑requisitos
 
-### Windows (recomendado)
-- Docker Desktop (habilite “Use the WSL 2 based engine”).
-- `kubectl.exe` no PATH — [download](https://dl.k8s.io/release/v1.30.2/bin/windows/amd64/kubectl.exe)  
-- `kind.exe` no PATH — [download](https://kind.sigs.k8s.io/dl/latest/kind-windows-amd64)  
-  Renomeie para `kind.exe` e adicione ao PATH.
+### Windows (recomendado nesta PoC)
+- **Docker Desktop** (WSL2 habilitado).
+- **kubectl.exe** no PATH → https://dl.k8s.io/release/v1.30.2/bin/windows/amd64/kubectl.exe  
+- **kind.exe** no PATH → https://kind.sigs.k8s.io/dl/latest/kind-windows-amd64 (renomeie para `kind.exe`).
 
-Valide no PowerShell:
+> Dica rápida (PATH): copie `kubectl.exe` e `kind.exe` para `C:\Windows\System32`  
+> ou crie `C:\Ferramentas\k8s`, mova os `.exe` e adicione ao **Path**.
+
+Validação:
 ```powershell
 kind version
 kubectl version --client
 ```
 
 ### macOS / Linux
-- Docker, kubectl e kind instalados (via brew/apt/yum).
+- Docker, kubectl e kind instalados (brew/apt/yum).
 
 ---
 
 ## 3) Subindo o cluster kind
+
 ```powershell
 kind create cluster --config kind-cluster.yaml
 kubectl get nodes
 ```
 
-**Ajuste necessário para o Elasticsearch (vm.max_map_count)**:
+**Ajuste necessário para o Elasticsearch (vm.max_map_count)**  
+Os nós do kind são containers Linux; ajuste **dentro** de cada nó:
 ```powershell
 docker exec -it poc-cicd-control-plane sysctl -w vm.max_map_count=262144
 docker exec -it poc-cicd-worker         sysctl -w vm.max_map_count=262144
 ```
+> Se recriar o cluster, reaplique o ajuste.
 
 ---
 
-## 4) Subindo o Jenkins (em Docker) com acesso ao Docker/K8s
+## 4) Jenkins local (Docker) com acesso ao Docker/K8s
+
+Crie o volume de dados:
 ```powershell
 mkdir jenkins_home
+```
 
+Suba o Jenkins:
+```powershell
 docker run -d --name jenkins `
   -p 8081:8080 -p 50000:50000 `
   -v "$PWD/jenkins_home:/var/jenkins_home" `
@@ -92,7 +115,7 @@ docker run -d --name jenkins `
   jenkins/jenkins:lts
 ```
 
-**Instalar kubectl e kind dentro do container**:
+Instale **kubectl** e **kind** **dentro** do container Jenkins (uma vez):
 ```bash
 docker exec -it jenkins bash -lc '
   apt-get update && apt-get install -y curl ca-certificates;
@@ -102,70 +125,143 @@ docker exec -it jenkins bash -lc '
 '
 ```
 
----
+Acesse **http://localhost:8081** e instale:
+- **Pipeline**
+- **Credentials Binding**
+- **Timestamper**
+- (Opcional) **Blue Ocean**
 
-## 5) Criando o pipeline e primeiro build
-No Jenkins:
-1. Crie Pipeline apontando para este repositório.
-2. Execute.
-
-Estágios:
-- **Checkout**
-- **Unit tests** (Node 20)
-- **Build image**  
-  `docker build -t sampleapp:<TAG> -f sampleapp/Dockerfile .`
-- **Load para kind**  
-  `kind load docker-image sampleapp:<TAG> --name poc-cicd`
-- **Deploy**
-- **Smoke Test (k6)**
+> O pipeline usa agente `any` — não precisa configurar agentes extras.
 
 ---
 
-## 6) Acessando app e Kibana
+## 5) Pipeline (Jenkinsfile)
+
+**Estágios e lógica:**
+1. **Checkout**
+2. **Unit tests** (Node 20 em container)
+3. **Build da imagem local**
+   ```bash
+   docker build -t sampleapp:<TAG> -f sampleapp/Dockerfile .
+   ```
+4. **Load para o kind**
+   ```bash
+   kind load docker-image sampleapp:<TAG> --name poc-cicd
+   ```
+5. **Deploy**
+   - Aplica `k8s/namespace.yaml`.
+   - Sobe **Elasticsearch, Kibana, APM Server e OTel Collector**.
+   - Troca `sampleapp:__TAG__` no `deployment.yaml` → aplica `k8s/app/`.
+   - Aguarda `rollout` de `sampleapp`.
+6. **Smoke (k6)**
+   - Cria/roda Job `k6-smoke` (vus=3, 20s).
+   - **Thresholds**: `http_req_failed: rate<0.02` e `http_req_duration: p(95)<300`.
+   - Se violar thresholds ⇒ **falha** o pipeline.
+
+---
+
+## 6) Acessando o app e o Kibana
+
 ```powershell
 # Kibana
 kubectl -n cicd port-forward svc/kibana 5601:5601
 # App
 kubectl -n cicd port-forward svc/sampleapp 8080:8080
 ```
-- Kibana: [http://localhost:5601](http://localhost:5601) → Observability > APM  
-- App: [http://localhost:8080/login](http://localhost:8080/login)
+
+- **Kibana:** http://localhost:5601 → *Observability > APM*  
+- **Aplicação:** http://localhost:8080/login
+
+Gerar tráfego manual (opcional):
+```powershell
+Invoke-WebRequest http://localhost:8080/login     | Out-Null
+Invoke-WebRequest http://localhost:8080/checkout  | Out-Null
+Invoke-WebRequest http://localhost:8080/error     | Out-Null
+```
 
 ---
 
-## 7) Entendendo a Observabilidade
-- **OpenTelemetry Collector** → recebe OTLP, exporta para logging + APM Server.
-- **APM Server** → habilitado para OTLP, indexa no Elasticsearch.
-- **Elasticsearch & Kibana** → armazenam e exibem dados APM.
+## 7) Observabilidade: como tudo integra
+
+- **OTel Collector**
+  - Recebe **OTLP** (gRPC 4317 / HTTP 4318).
+  - Exporta para:
+    - **logging** (stdout do Pod – fácil de inspecionar),
+    - **otlp/elastic** (gRPC) → **APM Server**.
+- **APM Server**
+  - OTLP habilitado (gRPC: 8200, HTTP: 8201).
+  - Converte e indexa no **Elasticsearch**.
+- **Kibana (APM)**
+  - Visualiza serviços, transações, latência p95/p99, taxa de erro, traces e dependências.
+
+> **PoC simplificada**: ES sem segurança/TLS. Em produção, habilite **TLS, usuários e roles**.
 
 ---
 
-## 8) k6 (quality gate)
-Rodar manualmente:
+## 8) k6 como Quality Gate
+
+Ver logs do job:
+```bash
+kubectl -n cicd logs job/k6-smoke
+```
+
+Reexecutar:
 ```bash
 kubectl -n cicd delete job k6-smoke --ignore-not-found=true
 kubectl -n cicd apply -f k8s/jobs/k6-smoke-job.yaml
 kubectl -n cicd wait --for=condition=complete job/k6-smoke --timeout=180s
 ```
 
+Ajustar thresholds: edite `options.thresholds` embutidos no manifest do job.
+
 ---
 
 ## 9) Troubleshooting
-- **Elasticsearch CrashLoopBackOff** → ajustar `vm.max_map_count`.
-- **Jenkins sem acesso a Docker/K8s** → conferir volumes montados.
-- **Sem dados no APM** → gerar tráfego no app e verificar logs.
-- **k6 falhando thresholds** → verificar recursos e ajustar thresholds.
+
+- **Elasticsearch em CrashLoopBackOff**  
+  Quase sempre é `vm.max_map_count` baixo (reaplique nos nós do kind):
+  ```powershell
+  docker exec -it poc-cicd-control-plane sysctl -w vm.max_map_count=262144
+  docker exec -it poc-cicd-worker         sysctl -w vm.max_map_count=262144
+  kubectl -n cicd rollout restart deploy/elasticsearch
+  ```
+
+- **Jenkins sem acesso a Docker/K8s**  
+  Confirme os mounts:
+  - `//var/run/docker.sock:/var/run/docker.sock`
+  - `$env:USERPROFILE\.kube:/home/jenkins/.kube`  
+  Teste dentro do container: `kubectl get nodes` e `kind version`.
+
+- **Sem dados no Kibana (APM vazio)**  
+  Gere tráfego (k6/curl). Inspecione:
+  ```bash
+  kubectl -n cicd logs deploy/otel-collector -f
+  kubectl -n cicd logs deploy/apm-server -f
+  ```
+
+- **k6 falhando thresholds**  
+  Sua máquina pode estar no limite — aumente requests/limits do `sampleapp` ou relaxe thresholds.
+
+- **Port‑forward não conecta**  
+  Verifique Pods/Services:
+  ```bash
+  kubectl -n cicd get pods,svc -o wide
+  ```
 
 ---
 
 ## 10) Extensões úteis
-- Elastic Agent (DaemonSet) para logs/métricas do cluster.
-- SLOs & Alertas no Kibana.
-- Quality Gate via SLO.
+
+- **Logs/Métricas do cluster**: adicionar **Elastic Agent** (DaemonSet) + integrações Kubernetes/System/Prometheus.  
+- **SLOs e Alertas (Kibana)**: defina SLI/SLO e crie alertas (Slack/Teams/Email).  
+- **Quality Gate por SLO**: stage adicional no Jenkins que consulta a API do Kibana/Elastic e falha se orçamento de erro > limite.  
+- **Segurança**: Trivy (scan), SBOM (Syft/Grype), OPA/Gatekeeper (políticas), assinaturas (cosign).  
+- **Release strategies**: canary/blue‑green (Argo Rollouts) com rollback automático por métricas.
 
 ---
 
 ## 11) Limpeza
+
 ```powershell
 docker rm -f jenkins
 kind delete cluster --name poc-cicd
@@ -174,9 +270,10 @@ kind delete cluster --name poc-cicd
 ---
 
 ## 12) Glossário rápido
-- **kind**: Kubernetes in Docker.  
-- **Jenkins**: servidor de automação/CI.  
-- **OpenTelemetry (OTel)**: padrão aberto para observabilidade.  
-- **APM Server**: recebe dados APM/OTLP e indexa no ES.  
-- **Elasticsearch/Kibana**: armazenamento/visualização.  
-- **k6**: testes de carga e performance.
+
+- **kind**: Kubernetes in Docker (cluster local).  
+- **Jenkins**: servidor de automação CI/CD.  
+- **OpenTelemetry**: padrão aberto para **traces, métricas e logs**.  
+- **APM Server**: ingere OTLP/APM e indexa no Elasticsearch.  
+- **Elasticsearch/Kibana**: armazenamento/visualização de observabilidade.  
+- **k6**: testes de carga com **thresholds** (gates de qualidade).
