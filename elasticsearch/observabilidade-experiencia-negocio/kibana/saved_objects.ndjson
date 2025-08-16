@@ -1,0 +1,2 @@
+{"attributes":{"name":"app-logs-*","title":"app-logs-*","timeFieldName":"@timestamp"},"id":"app-logs-dataview","type":"index-pattern","references":[]}
+{"attributes":{"name":"biz-metrics-*","title":"biz-metrics-*","timeFieldName":"@timestamp"},"id":"biz-metrics-dataview","type":"index-pattern","references":[]}

@@ -1,0 +1,10 @@
+{
+  "description": "Ensure transaction.duration.us is set based on latency_ms",
+  "processors": [
+    {
+      "script": {
+        "source": "\n        if (ctx.latency_ms != null) {\n          ctx.transaction = ctx.transaction != null ? ctx.transaction : new HashMap();\n          ctx.transaction.duration = ctx.transaction.duration != null ? ctx.transaction.duration : new HashMap();\n          ctx.transaction.duration.us = (long)(ctx.latency_ms * 1000);\n        }\n      "
+      }
+    }
+  ]
+}

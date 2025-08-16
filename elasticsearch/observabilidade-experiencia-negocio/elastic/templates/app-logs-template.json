@@ -1,0 +1,86 @@
+{
+  "index_templates": [
+    {
+      "name": "app-logs-template",
+      "index_template": {
+        "index_patterns": [
+          "app-logs-*"
+        ],
+        "data_stream": {},
+        "template": {
+          "settings": {
+            "index.lifecycle.name": "app-logs-ilm",
+            "number_of_shards": 1,
+            "number_of_replicas": 0
+          },
+          "mappings": {
+            "dynamic": "strict",
+            "properties": {
+              "@timestamp": {
+                "type": "date"
+              },
+              "service": {
+                "properties": {
+                  "name": {
+                    "type": "keyword"
+                  }
+                }
+              },
+              "event": {
+                "properties": {
+                  "dataset": {
+                    "type": "keyword"
+                  }
+                }
+              },
+              "http": {
+                "properties": {
+                  "response": {
+                    "properties": {
+                      "status_code": {
+                        "type": "integer"
+                      }
+                    }
+                  }
+                }
+              },
+              "latency_ms": {
+                "type": "long"
+              },
+              "transaction": {
+                "properties": {
+                  "duration": {
+                    "properties": {
+                      "us": {
+                        "type": "long"
+                      }
+                    }
+                  }
+                }
+              },
+              "user": {
+                "properties": {
+                  "id": {
+                    "type": "keyword"
+                  }
+                }
+              },
+              "region": {
+                "type": "keyword"
+              },
+              "env": {
+                "type": "keyword"
+              },
+              "route": {
+                "type": "keyword"
+              },
+              "is_error": {
+                "type": "boolean"
+              }
+            }
+          }
+        }
+      }
+    }
+  ]
+}
