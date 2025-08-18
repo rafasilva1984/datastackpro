@@ -14,8 +14,8 @@ def _load_model():
     try:
         from sentence_transformers import SentenceTransformer
         _model = SentenceTransformer(get_model_name())
-    except Exception as e:
-        # Ambiente sem internet/SSL corporativo etc.
+    except Exception:
+        # Ambiente sem internet / SSL corporativo etc. → segue sem embeddings
         _model = None
         _model_failed = True
 
