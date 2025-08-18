@@ -1,14 +1,18 @@
 # 🔎 Buscador Unificado (Elastic 8.x **sem autenticação**) — v1
 
 PoC pronta para rodar: **Elasticsearch + Kibana + API FastAPI + UI Streamlit**.  
-Sem tokens e sem enrollment: o Elasticsearch sobe com **`xpack.security.enabled=false`**, e o Kibana se conecta automaticamente.
+Sem tokens e sem enrollment: o Elasticsearch sobe com **`xpack.security.enabled=false`**,  
+e o Kibana se conecta automaticamente.
 
 ---
 
 ## ✨ O que vem pronto
 - **Elasticsearch 8.x** sem autenticação (single-node) + **Kibana**
-- **API** (`/ingest`, `/search`) que cria índice, gera embeddings e faz **KNN** no ES
-- **UI** com 2 abas: **Ingestão (botão)** e **Busca**
+- **API** (`/ingest`, `/ingest_confluence`, `/search`) que cria índice, gera embeddings e faz **KNN** no ES
+- **UI** com 3 abas:
+  - **Ingestão Local** → carrega docs de `data/docs/`
+  - **Ingestão Confluence** → puxa páginas via API
+  - **Busca** → pesquisa em PT-BR
 - **Embeddings PT-BR** com `paraphrase-multilingual-MiniLM-L12-v2` (384 dims)
 - **Docs de exemplo** em `data/docs/`
 
@@ -16,11 +20,7 @@ Sem tokens e sem enrollment: o Elasticsearch sobe com **`xpack.security.enabled=
 
 ## ⚙️ Requisitos
 - Docker + Docker Compose v2
-- Portas livres:  
-  - **9200** → Elasticsearch  
-  - **5601** → Kibana  
-  - **8000** → API  
-  - **8501** → UI  
+- Portas livres: **9200** (ES), **5601** (Kibana), **8000** (API), **8501** (UI)
 
 ---
 
@@ -34,7 +34,8 @@ docker compose up -d --build
 
 # 3) abrir a UI
 # http://localhost:8501
-# Aba "Ingestão" → clique em "Rodar ingestão"
+# Aba "Ingestão Local" → clique em "Rodar ingestão"
+# Aba "Ingestão Confluence" → clique em "Rodar ingestão Confluence"
 # Aba "Busca" → pesquise em PT-BR
 ```
 
@@ -42,9 +43,9 @@ docker compose up -d --build
 
 ## 🔧 Configurações
 Edite `.env` para ajustar:
-- `ES_URL` → padrão `http://elasticsearch:9200` (quando roda via containers)
-- `MODEL_NAME` → embeddings multilíngue por padrão
-- `LOCAL_DOCS_DIR` → pasta de documentos para ingestão
+- `ES_URL` (padrão `http://elasticsearch:9200` para containers)
+- `MODEL_NAME` (embeddings multilíngue por padrão)
+- Pastas (`LOCAL_DOCS_DIR`)
 
 ---
 
@@ -56,73 +57,44 @@ docker compose up -d --build
 
 ---
 
-## 🛠️ Erros Comuns & Soluções
-
-### ❌ Kibana não sobe
-- Verifique se a porta **5601** está livre:  
-  ```bash
-  lsof -i:5601
-  ```
-- Se houver outro processo, finalize ou altere a porta no `docker-compose.yml`.
+⚠️ **Atenção**: desabilitar segurança é apenas para PoC local.  
+Não use em produção.
 
 ---
 
-### ❌ API retorna erro de conexão com Elasticsearch
-- Confirme se o ES está **rodando**:
-  ```bash
-  curl http://localhost:9200
-  ```
-- Se não responder, rode:
-  ```bash
-  docker compose logs elasticsearch
-  ```
+## 📑 Integração com Confluence
+
+Além de usar a pasta `data/docs/`, você pode integrar diretamente com **Confluence** e buscar páginas internas.  
+O botão **"Rodar ingestão Confluence"** já está disponível na UI.
+
+### 1) Criar API Token no Atlassian
+- Acesse: [https://id.atlassian.com/manage/api-tokens](https://id.atlassian.com/manage/api-tokens)  
+- Clique em **Create API token**  
+- Guarde o **token** e o **usuário de login (e-mail)**  
+
+### 2) Ajustar variáveis no `.env`
+```env
+# URL da instância Confluence (exemplo: https://empresa.atlassian.net/wiki)
+CONFLUENCE_URL=https://empresa.atlassian.net/wiki
+CONFLUENCE_USER=seu.email@empresa.com
+CONFLUENCE_TOKEN=token_aqui
+CONFLUENCE_SPACE=OBS  # código do espaço que você deseja buscar
+```
+
+### 3) Dependência já incluída
+O projeto já contém no `requirements.txt`:
+```
+atlassian-python-api==3.41.2
+```
+
+### 4) Uso
+- Subir os containers normalmente  
+- Abrir a **UI** (`http://localhost:8501`)  
+- Clicar em **Rodar ingestão Confluence** para puxar páginas do espaço configurado  
+- Buscar termos diretamente na aba **Busca**
 
 ---
 
-### ❌ Problemas de cache no Docker
-- Use **build sem cache**:
-  ```bash
-  docker compose build --no-cache
-  docker compose up -d
-  ```
-
----
-
-### ❌ UI (Streamlit) não abre no navegador
-- Verifique logs:
-  ```bash
-  docker compose logs search-ui
-  ```
-- Se for erro de dependência Python, rode novamente o build:
-  ```bash
-  docker compose up -d --build search-ui
-  ```
-
----
-
-## 💡 Dicas Úteis
-- Para **adicionar novos documentos**, coloque arquivos `.txt` em `data/docs/` e rode a aba **Ingestão** da UI novamente.  
-- Para **resetar apenas o índice** no ES:
-  ```bash
-  curl -X DELETE "http://localhost:9200/docs"
-  ```
-- Para acompanhar os logs em tempo real:
-  ```bash
-  docker compose logs -f
-  ```
-
----
-
-## ❓ FAQ
-**1. Posso usar em produção?**  
-🚫 Não. Essa PoC desabilita autenticação do Elasticsearch. É apenas para estudo/local.  
-
-**2. Posso trocar o modelo de embeddings?**  
-Sim, altere a variável `MODEL_NAME` no `.env`.  
-
-**3. Posso rodar sem Docker?**  
-Pode, mas exigirá instalar manualmente Elasticsearch, Kibana e dependências Python.  
-
----
-
-📌 **Atenção**: desabilitar segurança é apenas para PoC local. Não use em produção.  
+💡 Dessa forma, você pode escolher:  
+- **Docs locais** → PoC rápida  
+- **Confluence** → Casos reais na sua empresa
