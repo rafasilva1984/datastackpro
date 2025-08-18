@@ -25,8 +25,8 @@ services:
     depends_on:
       - elasticsearch
     environment:
-       ELASTICSEARCH_HOSTS=http://elasticsearch:9200
-       KIBANA_SERVICE_ACCOUNT_TOKEN="${KIBANA_SERVICE_ACCOUNT_TOKEN}"
+      - ELASTICSEARCH_HOSTS=http://elasticsearch:9200
+      - KIBANA_SERVICE_ACCOUNT_TOKEN="${KIBANA_SERVICE_ACCOUNT_TOKEN}"
     ports:
       - "5601:5601"
 
