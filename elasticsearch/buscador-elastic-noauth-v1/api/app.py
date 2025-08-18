@@ -1,4 +1,5 @@
 import os
+from datetime import datetime, timezone
 from fastapi import FastAPI
 from pydantic import BaseModel
 from dotenv import load_dotenv
@@ -34,21 +35,30 @@ def ingest():
     if not items:
         return IngestResponse(local_docs=0, total_chunks=0, used_embeddings=False)
 
-    # (opcional) exemplo: marque categoria/tags
+    # metadados simples automáticos + timestamp
     for it in items:
-        if "vpn" in (it["title"].lower() + " " + it["text"].lower()):
-            it["categoria"] = "Infra"
-            it["tags"] = ["vpn","mfa"]
-        elif "home office" in it["text"].lower():
-            it["categoria"] = "RH"
-            it["tags"] = ["beneficios","remoto"]
+        text_lc = (it["title"] + " " + it["text"]).lower()
+        if "vpn" in text_lc or "mfa" in text_lc:
+            it["categoria"] = "Infra"; it["tags"] = ["vpn","mfa"]
+        elif "home office" in text_lc or "remoto" in text_lc:
+            it["categoria"] = "RH"; it["tags"] = ["home-office","remoto","beneficios"]
+        elif "viagem" in text_lc or "hospedagem" in text_lc:
+            it["categoria"] = "RH"; it["tags"] = ["viagens","reembolso"]
+        elif "sla" in text_lc:
+            it["categoria"] = "Suporte"; it["tags"] = ["sla"]
+        elif "lgpd" in text_lc:
+            it["categoria"] = "Compliance"; it["tags"] = ["lgpd"]
+        elif "cab" in text_lc:
+            it["categoria"] = "Mudanças"; it["tags"] = ["cab","change"]
+        it["ingested_at"] = datetime.now(timezone.utc).isoformat()
 
-    embeds = embed_texts([it["text"] for it in items])  # pode ser None (fallback para full-text)
+    embeds = embed_texts([it["text"] for it in items])  # pode ser None (fallback)
     bulk_index(items, embeddings=embeds)
     return IngestResponse(local_docs=len(items), total_chunks=len(items), used_embeddings=embeds is not None)
 
 @app.post("/search")
 def search(req: SearchRequest):
     qvec = embed_text(req.query)  # pode ser None
-    results = hybrid_search(req.query, qvec, k=req.k, categoria=req.categoria, tags=req.tags)
+    results = hybrid_search(req.query, qvec, k=req.k,
+                            categoria=req.categoria, tags=req.tags)
     return {"results": results}
