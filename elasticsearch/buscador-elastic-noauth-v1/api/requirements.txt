@@ -6,3 +6,4 @@ beautifulsoup4==4.12.3
 markdown==3.6
 python-dotenv==1.0.1
 requests==2.32.3
+atlassian-python-api==3.41.2
