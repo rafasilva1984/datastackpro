@@ -1,0 +1,3 @@
+Política de Home Office
+A empresa permite trabalho remoto até 3 dias por semana. Solicitações devem ser aprovadas pelo gestor imediato.
+Ferramentas necessárias: VPN corporativa e MFA habilitado.
