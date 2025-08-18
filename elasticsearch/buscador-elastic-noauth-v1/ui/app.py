@@ -1,4 +1,4 @@
-import os, requests, textwrap
+import os, requests
 import streamlit as st
 from dotenv import load_dotenv
 
@@ -8,28 +8,49 @@ API = "http://search-api:8000"
 st.set_page_config(page_title="Buscador Elastic (no-auth)", layout="wide")
 st.title("🔎 Buscador Unificado — Elastic 8.x (sem autenticação)")
 
-tabs = st.tabs(["Ingestão", "Busca"])
+tabs = st.tabs(["Ingestão Local", "Ingestão Confluence", "Busca"])
 
+# ---------------- Ingestão Local ----------------
 with tabs[0]:
     st.subheader("Ingestão de Conteúdo (arquivos locais)")
     st.write("Coloque arquivos em `./data/docs` (PDF, TXT, MD).")
-    if st.button("▶️ Rodar ingestão agora"):
-        with st.spinner("Ingerindo conteúdo..."):
+    if st.button("▶️ Rodar ingestão (local)"):
+        with st.spinner("Ingerindo conteúdo local..."):
             try:
                 r = requests.post(f"{API}/ingest", timeout=1200)
                 r.raise_for_status()
                 data = r.json()
                 st.success(
-                    f"Ingestão concluída! {data['total_chunks']} chunks "
+                    f"Ingestão (local) concluída! {data['total_chunks']} chunks "
                     f"(embeddings: {'ativados' if data.get('used_embeddings') else 'desligados'})"
                 )
             except Exception as e:
-                st.error(f"Falha na ingestão: {e}")
+                st.error(f"Falha na ingestão local: {e}")
 
+# --------------- Ingestão Confluence ---------------
 with tabs[1]:
+    st.subheader("Ingestão de Conteúdo — Confluence")
+    st.caption("Usa variáveis de ambiente: CONFLUENCE_URL, CONFLUENCE_USER, CONFLUENCE_TOKEN, CONFLUENCE_SPACE.")
+    if st.button("🏢 Rodar ingestão Confluence"):
+        with st.spinner("Buscando páginas no Confluence..."):
+            try:
+                r = requests.post(f"{API}/ingest_confluence", timeout=1800)
+                r.raise_for_status()
+                data = r.json()
+                if data.get("total_chunks", 0) == 0:
+                    st.warning("Nenhum documento ingerido. Verifique as variáveis do Confluence no .env.")
+                else:
+                    st.success(
+                        f"Ingestão (Confluence) concluída! {data['total_chunks']} chunks "
+                        f"(embeddings: {'ativados' if data.get('used_embeddings') else 'desligados'})"
+                    )
+            except Exception as e:
+                st.error(f"Falha na ingestão do Confluence: {e}")
+
+# --------------------- Busca ----------------------
+with tabs[2]:
     st.subheader("Busca")
 
-    # filtros (sidebar)
     with st.sidebar:
         st.header("Filtros")
         categoria = st.selectbox("Categoria", options=["(todas)", "RH", "Infra", "Suporte", "Compliance", "Mudanças"], index=0)
@@ -62,7 +83,7 @@ with tabs[1]:
                         tg   = ", ".join(md.get("tags") or [])
                         st.markdown(f"### {hit['rank']}. {title}")
                         st.caption(f"Fonte: **{source}**  •  {path}  •  Categoria: {cat}  •  Tags: {tg}")
-                        st.write(hit["document"], unsafe_allow_html=True)  # highlight
+                        st.write(hit["document"], unsafe_allow_html=True)  # highlight quando houver
                         st.divider()
             except Exception as e:
                 st.error(f"Falha na busca: {e}")
