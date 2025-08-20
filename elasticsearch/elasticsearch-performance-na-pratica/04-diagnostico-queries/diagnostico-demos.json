@@ -1,0 +1,132 @@
+{
+  "1_baseline_warning_cpu85": {
+    "description": "Baseline: status=warning AND cpu>=85 (mede custo de match + range)",
+    "devtools": {
+      "method": "GET",
+      "path": "infra-hosts/_search",
+      "body": {
+        "profile": true,
+        "size": 0,
+        "query": {
+          "bool": {
+            "must": [
+              {
+                "match": {
+                  "status": "warning"
+                }
+              },
+              {
+                "range": {
+                  "cpu": {
+                    "gte": 85
+                  }
+                }
+              }
+            ]
+          }
+        }
+      }
+    },
+    "curl": "curl -s -H 'Content-Type: application/json' -X POST 'http://localhost:9200/infra-hosts/_search?pretty' -d '{\"profile\":true,\"size\":0,\"query\":{\"bool\":{\"must\":[{\"match\":{\"status\":\"warning\"}},{\"range\":{\"cpu\":{\"gte\":85}}}]}}}'"
+  },
+  "2_term_no_keyword": {
+    "description": "Otimiza\u00e7\u00e3o: troque match->term quando o campo \u00e9 keyword (status \u00e9 keyword).",
+    "devtools": {
+      "method": "GET",
+      "path": "infra-hosts/_search",
+      "body": {
+        "profile": true,
+        "size": 0,
+        "query": {
+          "bool": {
+            "must": [
+              {
+                "term": {
+                  "status": "warning"
+                }
+              },
+              {
+                "range": {
+                  "cpu": {
+                    "gte": 85
+                  }
+                }
+              }
+            ]
+          }
+        }
+      }
+    },
+    "curl": "curl -s -H 'Content-Type: application/json' -X POST 'http://localhost:9200/infra-hosts/_search?pretty' -d '{\"profile\":true,\"size\":0,\"query\":{\"bool\":{\"must\":[{\"term\":{\"status\":\"warning\"}},{\"range\":{\"cpu\":{\"gte\":85}}}]}}}'"
+  },
+  "3_aggs_terms_servico": {
+    "description": "Adiciona agrega\u00e7\u00e3o terms por servico para ver distribui\u00e7\u00e3o dos cr\u00edticos.",
+    "devtools": {
+      "method": "GET",
+      "path": "infra-hosts/_search",
+      "body": {
+        "profile": true,
+        "size": 0,
+        "query": {
+          "bool": {
+            "should": [
+              {
+                "range": {
+                  "cpu": {
+                    "gte": 85
+                  }
+                }
+              },
+              {
+                "range": {
+                  "memoria": {
+                    "gte": 90
+                  }
+                }
+              }
+            ]
+          }
+        }
+      },
+      "aggs_note": "Inclui agg terms; o profile mostrar\u00e1 tempo da agrega\u00e7\u00e3o."
+    },
+    "curl": "curl -s -H 'Content-Type: application/json' -X POST 'http://localhost:9200/infra-hosts/_search?pretty' -d '{\"profile\":true,\"size\":0,\"query\":{\"bool\":{\"should\":[{\"range\":{\"cpu\":{\"gte\":85}}},{\"range\":{\"memoria\":{\"gte\":90}}}]}} ,\"aggs\":{\"criticos_por_servico\":{\"terms\":{\"field\":\"servico\"}}}}'"
+  },
+  "4_sort_timestamp_collector": {
+    "description": "Ordena por @timestamp desc para observar custo no collector.",
+    "devtools": {
+      "method": "GET",
+      "path": "infra-hosts/_search",
+      "body": {
+        "profile": true,
+        "size": 20,
+        "sort": [
+          {
+            "@timestamp": "desc"
+          }
+        ],
+        "query": {
+          "bool": {
+            "should": [
+              {
+                "range": {
+                  "cpu": {
+                    "gte": 85
+                  }
+                }
+              },
+              {
+                "range": {
+                  "memoria": {
+                    "gte": 90
+                  }
+                }
+              }
+            ]
+          }
+        }
+      }
+    },
+    "curl": "curl -s -H 'Content-Type: application/json' -X POST 'http://localhost:9200/infra-hosts/_search?pretty' -d '{\"profile\":true,\"size\":20,\"sort\":[{\"@timestamp\":\"desc\"}],\"query\":{\"bool\":{\"should\":[{\"range\":{\"cpu\":{\"gte\":85}}},{\"range\":{\"memoria\":{\"gte\":90}}}]}}}'"
+  }
+}
