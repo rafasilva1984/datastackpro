@@ -97,6 +97,19 @@ docker stats --no-stream
 
 ---
 
+## ⚙️ Execução automática (benchmark-all.sh)
+
+Automatize tudo e obtenha um **resumo consolidado**:
+```bash
+cd 02-benchmark-indexacao
+chmod +x benchmark-all.sh
+./benchmark-all.sh
+```
+Variáveis opcionais:
+```bash
+ES_URL=http://localhost:9200 INDEX=infra-perf FILE=dados-10000.ndjson ./benchmark-all.sh
+```
+
 ## 🔎 Diagnóstico com _search/profile_ — guia prático
 
 O profile é o **raio-X da busca**. Com `"profile": true` você vê **onde o tempo é gasto** (por shard):
@@ -120,22 +133,7 @@ Veja `04-diagnostico-queries/diagnostico-demos.json` com os 4 exemplos prontos.
 - Agregações lentas? Reduza o conjunto via filtros antes de agregar.
 - Shard sempre lento? Reindex/ajuste de shards; forcemerge (somente laboratório).
 
----
 
-## ⚙️ Execução automática (benchmark-all.sh)
-
-Automatize tudo e obtenha um **resumo consolidado**:
-```bash
-cd 02-benchmark-indexacao
-chmod +x benchmark-all.sh
-./benchmark-all.sh
-```
-Variáveis opcionais:
-```bash
-ES_URL=http://localhost:9200 INDEX=infra-perf FILE=dados-10000.ndjson ./benchmark-all.sh
-```
-
----
 
 ## Observações
 - Se editar `.sh` no Windows e aparecer `^M`, use `dos2unix *.sh`.
