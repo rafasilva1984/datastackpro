@@ -105,36 +105,49 @@ cd 02-benchmark-indexacao
 chmod +x benchmark-all.sh
 ./benchmark-all.sh
 ```
+
 Variáveis opcionais:
 ```bash
 ES_URL=http://localhost:9200 INDEX=infra-perf FILE=dados-10000.ndjson ./benchmark-all.sh
 ```
 
+---
+
 ## 🔎 Diagnóstico com _search/profile_ — guia prático
 
-O profile é o **raio-X da busca**. Com `"profile": true` você vê **onde o tempo é gasto** (por shard):
-- **rewrite_time**: custo para reescrever a query (wildcards/regex/expansões).
-- **query[].time_in_nanos**: tempo de execução da query (núcleo).
-- **collector**: custo para coletar/ordenar `size` (piora com `sort` cardinal e `size` alto).
-- **breakdown**: sub-etapas (criar peso, iterar, pontuar).
-- **aggs**: tempo por agregação quando presente.
+O `profile` é o **raio-X da busca**. Com `"profile": true` você vê **onde o tempo é gasto** (por shard e por operação).
 
-### Demos (iguais no Dev Tools e cURL)
-1) **Baseline** — `status=warning AND cpu>=85` (mede custo de `match` + `range`)  
-2) **Otimização** — `term` em `status` (keyword) + `range` em `cpu`  
-3) **Com agregação** — `terms` por `servico` para ver distribuição dos críticos  
-4) **Ordenação** — por `@timestamp desc` para observar custo no `collector`  
+### Principais métricas
+- **rewrite_time** → custo para reescrever a query (wildcards, regex, expansions).  
+- **query[].time_in_nanos** → tempo de execução da query em si.  
+- **collector** → custo para ordenar/coletar resultados (`size` alto ou `sort` complexos aumentam).  
+- **breakdown** → detalhamento de cada etapa interna (peso, iteração, pontuação).  
+- **aggs** → tempo consumido pelas agregações.
 
-Veja `04-diagnostico-queries/diagnostico-demos.json` com os 4 exemplos prontos.
+---
+
+### Demos disponíveis
+Você pode rodar direto no Kibana Dev Tools ou via cURL (`profile-examples.sh`):
+
+1. **Baseline** — `status=warning AND cpu>=85` (mede custo de `match` + `range`).  
+2. **Otimização** — `term` em `status.keyword` + `range` em `cpu`.  
+3. **Com agregação** — `terms` por `servico` para medir custo de agregações.  
+4. **Ordenação** — ordenar por `@timestamp desc` para observar impacto no `collector`.
+
+👉 Todos esses exemplos estão em:  
+- `04-diagnostico-queries/diagnostico-demos.json` (pacote de queries prontas).  
+- `04-diagnostico-queries/queries-exemplos.json` (modelos de uso).  
+
+---
 
 ### Checklist de interpretação
-- `match` em campo `keyword` → prefira **term**.
-- Ordenação cara? Reduza `size`, filtre mais, use `search_after`.
-- Agregações lentas? Reduza o conjunto via filtros antes de agregar.
-- Shard sempre lento? Reindex/ajuste de shards; forcemerge (somente laboratório).
+- Query lenta em campo `text`? Use `keyword` com `term`.  
+- Custo alto no `collector`? Reduza `size`, aplique filtros antes ou use `search_after`.  
+- Agregação pesada? Restrinja o conjunto de dados antes (`filter + aggs`).  
+- Um shard sempre mais lento? Reindex, ajuste de shard size ou forcemerge (somente laboratório).  
 
-
+---
 
 ## Observações
-- Se editar `.sh` no Windows e aparecer `^M`, use `dos2unix *.sh`.
-- Todos os dados usam timestamps de **julho/2025**.
+- Se editar `.sh` no Windows e aparecer `^M`, use `dos2unix *.sh`.  
+- Todos os dados usam timestamps de **julho/2025**.  
