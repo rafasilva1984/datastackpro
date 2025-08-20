@@ -1,0 +1,40 @@
+{
+  "match_servico_api": {
+    "query": {
+      "match": {
+        "servico": "api"
+      }
+    }
+  },
+  "cpu_maior_que_80": {
+    "query": {
+      "range": {
+        "cpu": {
+          "gte": 80
+        }
+      }
+    }
+  },
+  "criticos_cpu85_ou_mem90": {
+    "query": {
+      "bool": {
+        "should": [
+          {
+            "range": {
+              "cpu": {
+                "gte": 85
+              }
+            }
+          },
+          {
+            "range": {
+              "memoria": {
+                "gte": 90
+              }
+            }
+          }
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,2 @@
+{"type":"index-pattern","id":"infra-hosts","attributes":{"title":"infra-hosts","timeFieldName":"@timestamp"}}
+{"type":"search","id":"saved-search-infra","attributes":{"title":"Hosts críticos","columns":["host","servico","status","cpu","memoria","@timestamp"],"sort":[["@timestamp","desc"]],"kibanaSavedObjectMeta":{"searchSourceJSON":"{\"index\":\"infra-hosts\",\"query\":{\"language\":\"kuery\",\"query\":\"cpu >= 85 or memoria >= 90\"},\"filter\":[]}"}}}
